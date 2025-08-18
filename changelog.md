@@ -9,7 +9,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ### Added
 
 - [feature/doc-coord-repo-update-readme-md] Estructura inicial del proyecto.  
-  PR: [#1]([link](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2)) - @GonzaloBarbano (Documentador / Coordinador)
+  PR: [#1](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
 
 ### Changed
 
