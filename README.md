@@ -12,13 +12,16 @@
 
 # Integrantes:
 
-|-------------------|----------------------|  
-| **Apellido y Nombre** | **Matrícula** | **Usuario GitHub** |
-|Barbano Gonzalo | 152127 | GonzaloBarbano |
-|Benitez Juan Sebastian | 150900 | Sebas-Benitez |
-|Samitier Santiago | 148249 | Santi22-7 |
-|Rivas Rodrigo | 152009 | RodrigoRivas89 |
+---
+
+|                        |               |
+| ---------------------- | ------------- | ------------------ |
+| **Apellido y Nombre**  | **Matrícula** | **Usuario GitHub** |
+| Barbano Gonzalo        | 152127        | GonzaloBarbano     |
+| Benitez Juan Sebastian | 150900        | Sebas-Benitez      |
+| Samitier Santiago      | 148249        | Santi22-7          |
+| Rivas Rodrigo          | 152009        | RodrigoRivas89     |
 
 # Diagramas y Diseños
 
-- [Anexos](anexos.md)
+- [Anexos](anexos/anexos.md)
