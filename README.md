@@ -1,6 +1,6 @@
-# Sistema Productora de Videos - Diseño Orientado a Obejetos
+# Sistema Productora de Videos - Diseño Orientado a Objetos
 
-- Materia : Diseño Orientado a Obejtos
+- Materia : Diseño Orientado a Objetos
 - Carrera : Tec. en Programación de Sistemas
 - Grupo: Grupo Nº 3
 
