@@ -1,6 +1,6 @@
 # Introduccion
 
--**Descripción del paradigma orientado a obejtos:**
+-**Descripción del paradigma orientado a objetos:**
 
 Es un paradigma de programación basado en la organización del código en torno a "objetos" que representan entidades del mundo real. Cada objeto encapsula datos y comportamientos que lo definen y lo hacen interactuar con otros objetos. Este enfoque permite mejorar la reutilización del código, la modularidad y la mantenibilidad de los sistemas.
 
@@ -35,3 +35,45 @@ El polimorfismo permite que diferentes clases respondan de manera distinta a un 
 
 Ejemplo:
 Se puede tener una clase base Animal con un método hacerSonido(). Las clases Perro y Gato podrían heredar de Animal y redefinir el método hacerSonido() para que cada una haga su sonido específico ("Guau!" para Perro y "Miau!" para Gato). De esta forma, al llamar a hacerSonido() en un objeto Animal, el comportamiento actual será el de la subclase específica (Perro o Gato).
+
+## Requisitos de Actividad
+
+-**Requisitos Funcionales**
+
+Gestión de Proyectos:
+
+    ◦ Registrar nuevos proyectos con campos básicos como nombre, fechas estimadas de inicio y fin, responsable general del proyecto, estado (en curso, terminado, pausado) y observaciones generales.
+
+    ◦ Cargar y gestionar múltiples proyectos simultáneamente.
+
+    ◦ Visualizar un tablero de control o panel general que permita ver de un vistazo el estado de todos los proyectos (en curso, terminado o pausado).
+
+    ◦ Filtrar la lista de proyectos por estado, responsable y tipo de proyecto (publicidad, videoclip, institucional, etc.).
+
+• Gestión de Etapas y Tareas:
+
+    ◦ Registrar etapas dentro de cada proyecto con campos como nombre de etapa, fechas estimadas de inicio y fin, responsable de etapa, estado de etapa (pendiente, en curso, finalizada) y observaciones específicas de etapa.
+
+• Comunicación y Notificaciones:
+
+    ◦ Notificaciones automáticas por email y WhatsApp cuando una etapa se completa y está lista para el siguiente responsable.
+
+Almacenamiento y Enlaces:
+    ◦ Permitir adjuntar enlaces a carpetas de Drive, Vimeo u otras plataformas donde se guarden archivos brutos, videos editados u otros materiales del proyecto.
+
+-**Requisitos No Funcionales**
+
+• Facilidad de Uso / Intuitividad:
+
+    ◦ La interfaz debe ser simple y fácil de usar.
+    ◦ Es una prioridad porque parte del equipo no es muy técnico.
+    ◦ La interfaz debe incluir una lista de proyectos, filtros por estado y botones rápidos para cargar avances.
+
+• Accesibilidad y Responsividad:
+
+    ◦ El sistema debe ser una aplicación web.
+    ◦ Debe ser accesible y funcional tanto desde computadoras como desde teléfonos celulares (responsivo).
+
+• Persistencia de Datos:
+
+    ◦ La información debe quedar guardada aunque se recargue la página.
