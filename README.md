@@ -23,4 +23,4 @@
 
 - [Anexos](anexos/anexos.md)
 
-- [Diagramas] (diagamas/01-diagrama-clases)
+[Diagramas](diagamas/01-diagrama-clases.md)
