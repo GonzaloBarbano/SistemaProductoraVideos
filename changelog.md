@@ -9,23 +9,20 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ### Added
 
 - [feature/doc-coord-repo-update-readme-md] Estructura inicial del proyecto.  
-  PR: [#1](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
-
-  - [feature/diseniador-clases-add-boceto-inicial ] Boceto inicial.  
-  PR: [#2](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/6) - @Santi22-7 (Diseñador  de clases iniciales  )
+  PR: [#2](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
+  
+- [feature/diseniador-clases-add-boceto-inicial ] Boceto inicial.  
+  PR: [#6](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/6) - @Santi22-7 (Diseñador  de clases iniciales)
 
 ### Changed
-
-- [feature/readme-y-mockup] Actualización README.md con mockup.  
-  PR: [#3](link) - @usuario3 (Documentador / Diseñador UX)
-
-- [feature/index-html] Estructura HTML5 básica.  
-  PR: [#2](link) - @usuario2 (Desarrollador Frontend)
+=======
+- [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
+  PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
 ### Fixed
 
-- [feature/fix-rutas] Corrección de rutas en README.md.  
-  PR: [#5](link) - @usuario3 (Documentador / Diseñador UX)
+- [feature/modelador-casos-uso] Correcion de errores-Casos uso
+  PR: [#13](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/13) - @GonzaloBarbano (Documentador/Coordinador)
 
 ---
 
