@@ -4,11 +4,11 @@
 
 Es un paradigma de programación basado en la organización del código en torno a "objetos" que representan entidades del mundo real. Cada objeto encapsula datos y comportamientos que lo definen y lo hacen interactuar con otros objetos. Este enfoque permite mejorar la reutilización del código, la modularidad y la mantenibilidad de los sistemas.
 
-# Fundamentos de la Programacion Orientada a Objetos
+# Fundamentos de la Programación Orientada a Objetos
 
 -**Abstracción**
 
-La abstraccion facilita la creación de modelos simplificados de sistemas complejos, enfocándose en los aspectos esenciales. Permite ocultar los detalles internos y presentar una interfaz simple y comprensible.
+La abstracción facilita la creación de modelos simplificados de sistemas complejos, enfocándose en los aspectos esenciales. Permite ocultar los detalles internos y presentar una interfaz simple y comprensible.
 
 Ejemplo:
 Un ejemplo clásico es un coche: para conducir, solo necesitas interactuar con el volante, el acelerador y el freno, sin necesidad de entender cómo funciona el motor o la transmisión.
@@ -27,7 +27,7 @@ La herencia permite que una clase derive de otra, reutilizando atributos y méto
 Ejemplo:
 Imagina que tienes una bicicleta y una motocicleta.
 Ambas tienen ruedas, manubrio y frenos (atributos comunes).
-Pero la motocicleta tiene motor, mientras que la bicicleta no
+Pero la motocicleta tiene motor, mientras que la bicicleta no.
 
 -**Polimorfismo**
 
@@ -167,5 +167,11 @@ Almacenamiento y Enlaces:
 -**Precondiciones:** Que el proyecto este finalizado correctamente
 
 -**Postcondiciones:** Que el cliente no pida rehacer el proyecto.
+
+# Boceto Inicial del Diseño de Clases
+
+![boceto](../diagamas/01-diagrama.png)
+
+[Ir a la sección Diagramas](https://drive.google.com/file/d/1A0j3wN0qF8jCNqg29rq2CDcZzCWzdf0H/view)
 
 
