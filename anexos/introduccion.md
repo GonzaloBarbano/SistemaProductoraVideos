@@ -40,4 +40,4 @@ Se puede tener una clase base Animal con un método hacerSonido(). Las clases Pe
 
 ![boceto](../diagamas/01-diagrama.png)
 
-[Ver diagrama de clases](diagamas\01-diagrama-clases.md)
+[Ir a la sección Diagramas](../diagamas\01-diagrama-clases.md)

@@ -1,3 +1,3 @@
 # Diagramas-clases 
 
-[boceto](01-diagrama.png)
+![boceto](../diagamas/01-diagrama.png)
