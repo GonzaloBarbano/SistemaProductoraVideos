@@ -172,6 +172,6 @@ Almacenamiento y Enlaces:
 
 ![boceto](../diagamas/01-diagrama.png)
 
-[Ir a la sección Diagramas](../diagamas\01-diagrama-clases.md)
+[Ir a la sección Diagramas](https://drive.google.com/file/d/1A0j3wN0qF8jCNqg29rq2CDcZzCWzdf0H/view)
 
 
