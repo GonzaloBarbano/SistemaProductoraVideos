@@ -1,0 +1,55 @@
+@startuml 01-diagrama
+class Cliente {
+    +nombre
+    +contacto
+    +enviarProyecto()
+    +recibirProyecto()
+}
+
+class Asistente {
+    +registrarProyecto()
+    +confirmarProyecto()
+    +enviarRegistro()
+    +avisarFinalizacion()
+    +entregarProyecto()
+}
+
+class Administrador {
+    +revisarPedido()
+    +crearProyecto()
+    +designarDisenador()
+    +designarResponsable()
+    +recibirProyecto()
+    +revisarProyecto()
+    +archivarProyecto()
+}
+
+class "Responsable del Proyecto" as Responsable {
+    +cambiarEstadoEnCurso()
+    +cambiarEstadoTerminado()
+}
+
+class Disenador {
+    +comenzarDiseno()
+    +entregarDiseno()
+}
+
+class Proyecto {
+    +caracteristicas
+    +fechaPedido
+    +fechaFinalizacion
+    +estado
+}
+
+' Relaciones
+Cliente --> Asistente : enviaProyecto
+Asistente --> Administrador : enviaRegistro
+Administrador --> Disenador : designa
+Administrador --> Responsable : designa
+Disenador --> Administrador : entregarDiseno
+Administrador --> Asistente : enviarProyectoFinal
+Asistente --> Cliente : entregarProyecto
+Responsable --> Proyecto : actualizaEstado
+Administrador --> Proyecto : crear/archivar
+Asistente --> Proyecto : registrar
+@enduml
