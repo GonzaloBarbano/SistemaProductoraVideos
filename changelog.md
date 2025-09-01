@@ -15,7 +15,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
 ### Changed
-
+=======
 - [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
   PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
