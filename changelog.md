@@ -12,23 +12,17 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#1](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
 
 - [feature/analista-requerimentos-add-introduccion-md] Creación de la rama.
-  PR: [#9] (https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
+  PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
 ### Changed
-
+=======
 - [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
-  PR: [#9] (https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
-
-- [feature/readme-y-mockup] Actualización README.md con mockup.  
-  PR: [#3](link) - @usuario3 (Documentador / Diseñador UX)
-
-- [feature/index-html] Estructura HTML5 básica.  
-  PR: [#2](link) - @usuario2 (Desarrollador Frontend)
+  PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
 ### Fixed
 
-- [feature/fix-rutas] Corrección de rutas en README.md.  
-  PR: [#5](link) - @usuario3 (Documentador / Diseñador UX)
+- [feature/modelador-casos-uso] Correcion de errores-Casos uso
+  PR: [#13](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/13) - @GonzaloBarbano (Documentador/Coordinador)
 
 ---
 
