@@ -11,7 +11,13 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/doc-coord-repo-update-readme-md] Estructura inicial del proyecto.  
   PR: [#1](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
 
+- [feature/analista-requerimentos-add-introduccion-md] Creación de la rama.
+  PR: [#8] (https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/8) - @Sebas-Benitez (Analista de Requerimentos)
+
 ### Changed
+
+- [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
+  PR: [#8] (https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/8) - @Sebas-Benitez (Analista de Requerimentos)
 
 - [feature/readme-y-mockup] Actualización README.md con mockup.  
   PR: [#3](link) - @usuario3 (Documentador / Diseñador UX)
