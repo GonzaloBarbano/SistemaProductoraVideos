@@ -77,3 +77,95 @@ Almacenamiento y Enlaces:
     ◦ La información debe quedar guardada aunque se recargue la página.
 
 # Casos de Uso
+
+### Pedir Proyecto
+
+-**Actor(es):** Cliente, asistente
+
+-**Descripción:** El cliente le hara un pedido al asistente para la creación del proyecto y el asistente registrará dicho proyecto junto con sus características, su fecha de pedido y su fecha de finalización.
+
+-**Flujo principal:**
+
+1. El cliente entra en el contacto del asistente
+2. El cliente le envia el pedido del proyecto al asistente
+3. El asistente revisa si no hay un proyecto igual al pedido
+4. El asistente registra el pedido
+5. El asistente le confirma al cliente que su proyecto esta en realización
+
+-**Precondiciones:** Que no haya ningun proyecto igual al pedido
+
+-**Postcondiciones:** Que el cliente no cancele el pedido
+
+### Crear proyecto
+
+-**Actor(es):** Asistente, Administrador
+
+-**Descripción:** El asistente le enviara el registro del pedido al administrador, el administrador revisara el pedido y creara el proyecto, designando al diseñador y el responsable de manejar las etapas del proyecto.
+
+-**Flujo principal:**
+
+1. El asistente registra el pedido
+2. El asistente envia el pedido al administrador
+3. El administrador revisa el pedido
+4. El administrador designa los roles de diseñador y responsable de etapas
+5. El administrador crea el proyecto
+
+-**Precondiciones:** Que el pedido se haya enviado
+
+-**Postcondiciones:** Que el pedido no sea cancelado
+
+### Diseñar proyecto
+
+-**Actor(es):** Diseñador, Responsable de etapa
+
+-**Descripción:** El responsable de etapa cambia el estado de la etapa a "en curso" al proyecto, y el diseñador comienza a diseñarlo, cuando finaliza el diseño, se lo envia al administrador, y el responsable de etapa cambia el estado de la etapa a "finalizado"
+
+-**Flujo principal:**
+
+1. El responsable de etapa cambia el estado a "en curso"
+2. El diseñador comienza el diseño del proyecto
+3. El diseñador finaliza el diseño
+4. El responsable de etapa cambia el estado a "finalizado"
+5. El diseñador le envia el proyecto al administrador
+
+-**Precondiciones:** Que el administrador haya dado las caracteristicas del diseño
+
+-**Postcondiciones:** Que el pedido no sea cancelado
+
+### Entregar proyecto
+
+-**Actor(es):** Administrador, Asistente, Cliente
+
+-**Descripción:** El administrador recibe el proyecto, lo revisa y se lo envia al asistente, el asistente luego le notifica al cliente que el proyecto ya esta finalizado y se lo entrega al cliente
+
+-**Flujo principal:**
+
+1. El administrador recibe el proyecto finalizado
+2. El administrador revisa el proyecto
+3. El administrador envia el proyecto al asistente
+4. El asistente le notifica al cliente que su proyecto esta finalizado
+5. El asistente le entrega el proyecto al cliente
+
+-**Precondiciones:** Que el proyecto este finalizado correctamente
+
+-**Postcondiciones:** Que el cliente no pida rehacer el proyecto
+
+### Archivar proyecto
+
+-**Actor(es):** Administrador
+
+-**Descripción:** El administrador recibe el proyecto, lo revisa y lo archiva en la colección de proyectos del dia en que se finalizo
+
+-**Flujo principal:**
+
+1. El administrador recibe el proyecto finalizado
+2. El administrador revisa el proyecto
+3. El administrador va hacia la colección de proyectos
+4. El administrador entra en la sección del dia en que se finalizo
+5. El administrador archiva el proyecto en esa sección
+
+-**Precondiciones:** Que el proyecto este finalizado correctamente
+
+-**Postcondiciones:** Que el cliente no pida rehacer el proyecto.
+
+
