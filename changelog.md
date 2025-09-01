@@ -21,6 +21,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Fixed
 
+- [feature/modelador-casos-uso] Correcion de errores-Casos uso
+  PR: [#13](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/13) - @GonzaloBarbano (Documentador/Coordinador)
+
 ---
 
 ## [Release Actividad Obligatoria N°1] - 2025-08-10
