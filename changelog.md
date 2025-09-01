@@ -8,11 +8,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-- [feature/estructura-base] Estructura inicial del proyecto.  
-  PR: [#1](link) - @usuario1 (Coordinador / DevOps)
-
-- [feature/ia-prompts] Documentación de 5 prompts de IA.  
-  PR: [#4](link) - @usuario4 (Especialista en IA)
+- [feature/modelador-casos-uso] Casos de Uso.
+  PR: [#4] (https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/7) - @GonzaloBarbano (Coordinador de rep)
 
 ### Changed
 
