@@ -209,6 +209,6 @@ El mismo método existe en diferentes clases, pero su implementación se adapta 
 
 # Boceto Inicial del Diseño de Clases
 
-![boceto](https://github.com/GonzaloBarbano/SistemaProductoraVideos/blob/release/actividad-obligatoria-1/diagamas/01-diagrama-clases/01-boceto-inicial.png?raw=true)
+![boceto](../diagramas/01-diagrama-clases/01-boceto-inicial.png)
 
 
