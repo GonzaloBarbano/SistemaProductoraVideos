@@ -8,28 +8,26 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+
+### Changed
+
+### Fixed
+
+---
+
+## [Release Actividad Obligatoria N°1] - 2025-08-10
+
 - [feature/doc-coord-repo-update-readme-md] Estructura inicial del proyecto.  
   PR: [#2](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
   
 - [feature/diseniador-clases-add-boceto-inicial ] Boceto inicial.  
   PR: [#6](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/6) - @Santi22-7 (Diseñador  de clases iniciales)
 
-### Changed
-=======
 - [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
   PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
 
-### Fixed
-
 - [feature/modelador-casos-uso] Correcion de errores-Casos uso
   PR: [#13](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/13) - @GonzaloBarbano (Documentador/Coordinador)
-
----
-
-## [Release Actividad Obligatoria N°1] - 2025-08-10
-
-Aquí se listarán todas las Pull Requests que entraron en esta release.  
-Actualmente están en la sección [Unreleased] porque sólo están en la rama `develop`.
 
 ---
 

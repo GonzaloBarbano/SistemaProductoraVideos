@@ -1,0 +1,152 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' ====================
+' Clase base
+' ====================
+class Usuario {
+    -idUsuario
+    -nombre
+    -email
+    -rol
+    +asignarRol()
+    +participarEnProyecto()
+}
+
+' ====================
+' Roles como especialización de Usuario
+' ====================
+class Administrador {
+    -idAdmin
+    -nivelAcceso
+    +revisarPedido()
+    +crearProyecto()
+    +designarDisenador()
+    +designarResponsable()
+    +recibirProyecto()
+    +revisarProyecto()
+    +archivarProyecto()
+}
+
+class Disenador {
+    -idDisenador
+    -especialidad
+    +comenzarDiseno()
+    +entregarDiseno()
+}
+
+class "Responsable del Proyecto" as Responsable {
+    -idResponsable
+    -area
+    +cambiarEstadoEnCurso()
+    +cambiarEstadoTerminado()
+}
+
+class Asistente {
+    -idAsistente
+    -telefono
+    +registrarProyecto()
+    +confirmarProyecto()
+    +enviarRegistro()
+    +avisarFinalizacion()
+    +entregarProyecto()
+}
+
+Usuario <|-- Administrador
+Usuario <|-- Disenador
+Usuario <|-- Responsable
+Usuario <|-- Asistente
+
+' ====================
+' Cliente externo
+' ====================
+class Cliente {
+    -idCliente
+    -nombre
+    -contacto
+    +enviarProyecto()
+    +recibirProyecto()
+}
+
+' ====================
+' Entidades núcleo
+' ====================
+class Proyecto {
+    -idProyecto
+    -nombre
+    -descripcion
+    -caracteristicas
+    -fechaPedido
+    -fechaInicio
+    -fechaFin
+    -estado
+    +crearProyecto()
+    +finalizarProyecto()
+}
+
+class Etapa {
+    -idEtapa
+    -nombre
+    -descripcion
+    -estado
+    -fechaInicio
+    -fechaFin
+    +configurarEtapa()
+    +cambiarEstado()
+}
+
+' ====================
+' Entidades auxiliares
+' ====================
+class Comentario {
+    -idComentario
+    -contenido
+    -fecha
+    -autor
+    +agregarComentario()
+    +editarComentario()
+}
+
+class Adjunto {
+    -idAdjunto
+    -url
+    -tipo
+    +subirAdjunto()
+    +eliminarAdjunto()
+}
+
+class Notificacion {
+    -idNotificacion
+    -mensaje
+    -fecha
+    -destinatario
+    +enviarNotificacion()
+    +programarNotificacion()
+}
+
+' ====================
+' Relaciones de actores con Proyecto
+' ====================
+Cliente --> Asistente : enviaProyecto
+Asistente --> Proyecto : registra
+Asistente --> Administrador : enviaRegistro
+Administrador --> Proyecto : crea / archiva
+Administrador --> Disenador : designa
+Administrador --> Responsable : designa
+Disenador --> Administrador : entregaDiseno
+Administrador --> Asistente : enviaProyectoFinal
+Asistente --> Cliente : entregaProyecto
+Responsable --> Etapa : cambiaEstado
+
+' ====================
+' Relaciones internas del modelo
+' ====================
+Proyecto *--> Etapa : contiene
+Etapa *--> Comentario : tiene
+Etapa *--> Adjunto : vincula
+Usuario --> Proyecto : participa
+Usuario --> Comentario : crea
+Comentario --> Etapa : pertenece a
+Notificacion --> Usuario : se envia a
+Notificacion --> Proyecto : se genera por
+@enduml
