@@ -211,5 +211,4 @@ El mismo método existe en diferentes clases, pero su implementación se adapta 
 
 ![boceto](https://github.com/GonzaloBarbano/SistemaProductoraVideos/blob/release/actividad-obligatoria-1/diagamas/01-diagrama-clases/01-boceto-inicial.png?raw=true)
 
-[Ir a la sección Diagramas](https://drive.google.com/file/d/1-_2Kro96nXtjSi6y-iaEUsgH0wIYyfn8/view?usp=sharing)
 
