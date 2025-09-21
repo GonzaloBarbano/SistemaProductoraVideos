@@ -1,0 +1,9 @@
+|                                                                       |                   |                                                                                                          |               |
+| --------------------------------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
+| **Nombre de la Clase:**                                               | Cliente           |                                                                                                          |               |
+| **Superclase:**                                                       |                   |                                                                                                          |               |
+| **Subclase:**                                                         |                   |                                                                                                          |               |
+| **Responsabilidades**                                                 | **Colaboradores** | **Pensamiento del objeto**                                                                               | **Propiedad** |
+| Proporcionar el proyecto a Vizion Estudio (enviarProyecto)            | Proyecto          | Soy la persona o entidad externa que encarga el proyecto y cuyos datos de contacto deben ser almacenados | idCliente     |
+| Registrar los datos de contacto para no buscarlos en mails o carpetas |                   | Conozco mi idCliente y contacto.                                                                         | contacto      |
+| Recibir el proyecto finalizado (recibirProyecto)                      |                   |                                                                                                          | nombre        |

@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Responsable" as TriggerActor
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+actor "Destinatario (Cliente/Resp/Coord)" as Dest
+
+rectangle "Enviar Notificaciones Automáticas (UC5)" {
+    usecase "Componer Mensaje (Datos Proyecto/Etapa)" as Compone
+    usecase "Determinar Canal (Mail o WhatsApp)" as Determina
+    usecase "Enviar por Canal Seleccionado" as Envia
+    usecase "Registrar Envío en Historial" as RegEnvio
+    usecase "Reintentar Envío o Marcar Fallo" as Reintentar
+}
+
+TriggerActor --> Notif : Acciona evento relevante
+
+Notif --> Compone
+Compone ..> Determina : <<include>>
+Determina ..> Envia : <<include>>
+
+Envia --> Dest : Notificación
+Envia ..> RegEnvio : <<include>>
+
+RegEnvio <.. Reintentar : <<extend>> (Condición: Fallo de envío)
+@endumll
