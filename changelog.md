@@ -14,7 +14,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/diseniador-tarjetas-crc] Creacion de tarjetas CRC  
   PR: [#17](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/17) - @GonzaloBarbano (Diseñador Tarjetas CRC) 
 - [feature/espec-escenarios-casos-uso] Creación de los esecenarios de Casos de Uso 
-  PR: [#24](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/24/) - @Santi22-7 (Diseñador Tarjetas CRC)
+  PR: [#24](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/24/) - @Santi22-7 (Diseñador de escenarios de Casos de Uso)
 
 ### Changed
 - [feature/diseniador-tarjetas-crc] Correcion de links de las tarjetas CRC 
