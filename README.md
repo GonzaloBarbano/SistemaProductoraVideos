@@ -22,4 +22,6 @@
 # Diagramas y Diseños
 
 - [Anexos](anexos/anexos.md)
+- [Diagramas UML](diagramas/diagramasUML.md)
 - [Herramientas Agile](herramientas-agile/herramientas_agile.md)
+

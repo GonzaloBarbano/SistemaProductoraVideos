@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Productor" as Prod
+actor "Cliente/Administrador" as Client
+
+rectangle "Configuración Inicial de Proyectos" {
+    usecase "Crear/Editar Proyecto" as UC1
+    usecase "Validar Datos (Duplicados/Formato)" as ValDatos
+    usecase "Gestionar Etapas de un Proyecto" as UC2
+    usecase "Agregar Etapa Extra (Animación, Subtitulado)" as AddExtra
+    usecase "Registrar Links (Drive, Vimeo)" as RegLinks
+}
+
+Prod --> UC1
+Client --> UC1
+Prod --> UC2
+
+UC1 ..> ValDatos : <<include>> (Flujo Principal: Validar)
+UC2 <.. AddExtra : <<extend>> (A veces agregamos alguna extra [3])
+UC1 ..> RegLinks : <<include>> (Permite registrar enlaces en el proyecto [3, 4])
+@endumll
