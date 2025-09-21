@@ -6,28 +6,22 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
-### Added
 
+### Added
+- [feature/diseniador-tarjetas-crc] Creacion de tarjetas CRC  
+  PR: [#17](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/17) - @GonzaloBarbano (Diseñador Tarjetas CRC)
+  
 
 ### Changed
+- [feature/diseniador-tarjetas-crc] Correcion de links de las tarjetas CRC 
+  PR: [#19](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/19) - @GonzaloBarbano (Diseñador Tarjetas CRC)
+  
 
 ### Fixed
 
 ---
 
-## [Release Actividad Obligatoria N°1] - 2025-08-10
-
-- [feature/doc-coord-repo-update-readme-md] Estructura inicial del proyecto.  
-  PR: [#2](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/2) - @GonzaloBarbano (Documentador / Coordinador)
-  
-- [feature/diseniador-clases-add-boceto-inicial ] Boceto inicial.  
-  PR: [#6](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/6) - @Santi22-7 (Diseñador  de clases iniciales)
-
-- [feature/analista-requerimentos-add-introduccion-md] Documentación requerimentos en introduccion.md
-  PR: [#9](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/9) - @Sebas-Benitez (Analista de Requerimentos)
-
-- [feature/modelador-casos-uso] Correcion de errores-Casos uso
-  PR: [#13](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/13) - @GonzaloBarbano (Documentador/Coordinador)
+## [Release Actividad Obligatoria N°2] - 2025-09-22
 
 ---
 
