@@ -1,0 +1,9 @@
+|                                                          |                   |                                                                                                                 |               |
+| -------------------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Nombre de la Clase:**                                  | Administrador     |                                                                                                                 |               |
+| **Superclase:**                                          | Usuario           |                                                                                                                 |               |
+| **Subclase:**                                            |                   |                                                                                                                 |               |
+| **Responsabilidades**                                    | **Colaboradores** | **Pensamiento del objeto**                                                                                      | **Propiedad** |
+| Iniciar el registro de un nuevo proyecto (crearProyecto) | Proyecto          | Soy el rol con los permisos necesarios para iniciar, revisar y cerrar el ciclo de vida completo de un proyecto. | idAdmin       |
+| Designar al Diseñador o Responsable de una tarea/etapa   | Usuario           | Conozco mi idAdmin y mi nivelAcceso para gestionar y archivar proyectos.                                        | nivelAcceso   |
+| Recibir y revisar un proyecto terminado                  | Cliente           |                                                                                                                 |               |

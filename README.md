@@ -17,9 +17,11 @@
 | Barbano Gonzalo        | 152127        | GonzaloBarbano     |
 | Benitez Juan Sebastian | 150900        | Sebas-Benitez      |
 | Samitier Santiago      | 148249        | Santi22-7          |
-| Rivas Rodrigo          | 152009        | RodrigoRivas89     |
+| Medel Marquez Santiago | 154076        | santimarM          |
 
 # Diagramas y Diseños
 
 - [Anexos](anexos/anexos.md)
 - [Diagramas UML](diagramas/diagramasUML.md)
+- [Herramientas Agile](herramientas-agile/herramientas_agile.md)
+
