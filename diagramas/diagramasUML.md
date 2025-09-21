@@ -1,3 +1,9 @@
-## Diagramas UML 
 
-[ Ecenarios de Casos de Uso](../diagramas/01-diagrama-clases/03-escenarios-casos-de-uso/escenarios_de_casos_de_uso.md)
+# Diagramas UML
+
+- [Diagramas de Casos de Uso](/diagramas/02-casos-de-uso/diagramas_de_casos_de_uso.md)
+
+- [Ecenarios de Casos de Uso](../diagramas/01-diagrama-clases/03-escenarios-casos-de-uso/escenarios_de_casos_de_uso.md)
+
+
+
