@@ -6,18 +6,25 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ## [Unreleased]
 
-### Added
 
 - [feature/diseniador-tarjetas-crc] Creacion diagramas de casos de uso
   PR: [#20](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/20) - @GonzaloBarbano (Modelador de diagramas de Casos de Uso)
 
+### Added
+- [feature/diseniador-tarjetas-crc] Creacion de tarjetas CRC  
+  PR: [#17](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/17) - @GonzaloBarbano (Diseñador Tarjetas CRC)
+
 ### Changed
+- [feature/diseniador-tarjetas-crc] Correcion de links de las tarjetas CRC 
+  PR: [#19](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/19) - @GonzaloBarbano (Diseñador Tarjetas CRC)
+  
 
 ### Fixed
 
 ---
 
-## [Release Actividad Obligatoria N°1] - 2025-09-22
+
+## [Release Actividad Obligatoria N°2] - 2025-09-22
 
 ---
 
