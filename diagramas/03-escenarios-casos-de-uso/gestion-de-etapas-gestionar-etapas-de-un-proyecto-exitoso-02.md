@@ -11,16 +11,15 @@
 
 | **Pasos desempeñados (ruta principal)** | **Información para los pasos** |
 |---|---|
-| 1. El coordinador abre el detalle del proyecto y selecciona Gestionar etapas.
- |El sistema muestra la lista de etapas  |                                                                                                                                        
-| 2. El coordinador elige Agregar, Editar o Eliminar.| El sistema espera a que el coordinador elija alguna de las opciones.Para mostrarle un formulario específico (Para cada elección) |
-| 3. El sistema despliega formulario con nombre, responsable, estado, fechas estimadas, observaciones.| El usuario mira el formulario y el sistema espera las respuestas |
-| 4. El coordinador completa o modifica los campos y confirma.| El sistema espera que el usuario rellene los campos |
+| 1. El coordinador abre el detalle del proyecto y selecciona Gestionar etapas.|El sistema muestra la lista de etapas  |                                                                                        
+| 2. El coordinador elige Agregar, Editar o Eliminar.| Opciones del menú (Agregar, Editar, Eliminar) y formularios correspondientes a cada opción. |
+| 3. El sistema despliega formulario con nombre, responsable, estado, fechas estimadas, observaciones.|  Formulario con campos: nombre, responsable, estado, fechas estimada, observaciones. |
+| 4. El coordinador completa o modifica los campos y confirma.| El sistema le da la autorización a el cordinador para rellenar los campos |
 | 5. El sistema valida (responsable válido, fechas coherentes, estado permitido).
-| El usuario espera , mientras el sistema revisa los campos para ver si hay un error en alguno de ellos. |
-| 6.El sistema guarda los cambios y registra el evento (alta/edición/baja). | El sistema guarda los cambios en una base de datos y le muestra al usuario un mensaje informando lo de esto|
-| 7.El servicio de notificaciones envía aviso al usuario responsable asignado afectado por la modificación.| El sistema le manda un aviso al sistema de notificaciones para que notifique al usuario responsable  |
-| 8. El sistema actualiza la lista y muestra confirmación al coordinador.|El sistema recibe la notificación de que el usuario a recibido el mensaje y se lo muestra al coordinador  |
+| el sistema revisa los campos para ver si hay un error en alguno de ellos quietandole al coordinador permisos que le consedio en el anterior paso. |
+| 6.El sistema guarda los cambios y registra el evento (alta/edición/baja). | El sistema guarda los cambios en una base de datos de proyectos.|
+| 7.El servicio de notificaciones envía aviso al usuario responsable asignado afectado por la modificación.| El sistema le manda un aviso al sistema de notificaciones.|
+| 8. El sistema actualiza la lista y muestra confirmación al coordinador.|El sistema recibe la notificación de que el usuario a recibido el mensaje por parte del sistema de notificaciónes  |
 
 | **Condiciones, suposiciones y preguntas** | |
 |---|---|

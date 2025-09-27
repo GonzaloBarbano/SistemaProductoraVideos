@@ -22,6 +22,8 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   
 
 ### Fixed
+- [release/actividad-obligatoria-2] Correcion de los casos de uso 
+  PR: [#25](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/25) - @Santi22-7 (Diseñador de escenarios de Casos de Uso)
 
 ---
 
