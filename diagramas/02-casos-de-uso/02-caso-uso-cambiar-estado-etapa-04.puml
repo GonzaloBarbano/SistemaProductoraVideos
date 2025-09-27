@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+
+actor "Responsable de Etapa" as Resp
+actor "Coordinador/Productor" as Prod
+actor "Asistente de Producción" as Asist
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+
+rectangle "Cambiar Estado de Etapa (UC4)" {
+    usecase "Validar Reglas de Negocio" as ValidaReglas
+    usecase "Alertar Posible Retraso" as AlertaRetraso
+    usecase "Registrar Auditoría" as RegAudit
+    usecase "Registrar Observaciones/Comentarios" as RegObs
+    usecase "Adjuntar Links a Material" as Links
+    usecase "Enviar Notificaciones Automáticas" as UC5
+}
+
+Resp -- ValidaReglas
+Resp -- AlertaRetraso
+Resp -- RegObs
+Resp -- Links
+Prod -- ValidaReglas
+Prod -- AlertaRetraso
+Asist -- RegObs
+
+' Relaciones de inclusión
+UC4 ..> ValidaReglas : <<include>>
+UC4 ..> RegAudit : <<include>>
+UC4 ..> RegObs : <<include>>
+UC4 ..> Links : <<include>>
+UC4 ..> UC5 : <<include>>
+
+' Extensión opcional
+UC4 <.. AlertaRetraso : <<extend>> (Condición: Cambio de fecha/estado indica retraso)
+@enduml

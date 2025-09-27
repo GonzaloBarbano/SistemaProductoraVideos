@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Productor" as Prod
+actor "Responsable de Etapa" as Resp
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+
+rectangle "Asignar Responsable a Etapa (UC3)" {
+    usecase "Seleccionar Etapa" as SeleccionarEtapa
+    usecase "Elegir Responsable" as ElegirResp
+    usecase "Validar Responsable Seleccionado" as ValidaResp
+    usecase "Registrar Auditoría (Historial)" as RegAudit
+    usecase "Enviar Notificaciones Automáticas" as UC5
+}
+
+' Asociaciones principales
+Prod -- SeleccionarEtapa
+Prod -- ElegirResp
+
+' Relaciones de inclusión (flujos obligatorios)
+ElegirResp ..> ValidaResp : <<include>>
+ValidaResp ..> RegAudit : <<include>>
+ValidaResp ..> UC5 : <<include>>
+
+' Notificación al Responsable asignado
+UC5 --> Resp : Notificación de asignación/cambio
+
+@enduml

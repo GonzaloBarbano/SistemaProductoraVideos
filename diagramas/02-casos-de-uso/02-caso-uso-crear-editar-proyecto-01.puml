@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Productor" as Prod
+actor "Cliente/Administrador" as Client
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+
+rectangle "Crear/Editar Proyecto (UC1)" {
+    usecase "Registrar Datos Básicos del Proyecto" as DatosProyecto
+    usecase "Registrar Contactos del Cliente" as DatosCliente
+    usecase "Gestionar Etapas Iniciales" as Etapas
+    usecase "Asignar Responsable a Etapa" as UC3
+    usecase "Adjuntar Links a Material" as Links
+    usecase "Enviar Notificaciones Automáticas" as UC5
+}
+
+Prod -- DatosProyecto
+Prod -- DatosCliente
+Prod -- Etapas
+Prod -- UC3
+Prod -- Links
+Client -- DatosProyecto
+Client -- DatosCliente
+
+' Relaciones de inclusión
+DatosProyecto ..> UC5 : <<include>>
+DatosCliente ..> UC5 : <<include>>
+Etapas ..> UC5 : <<include>>
+UC3 ..> UC5 : <<include>>
+Links ..> UC5 : <<include>>
+
+@enduml
+

@@ -1,4 +1,4 @@
-# 📦 [GRUPO N°X][Actividad Obligatoria N°1] Entrega Final - Release a master
+# 📦 [GRUPO N°3][Actividad Obligatoria N°2] Entrega Final - Release a master
 
 > ⚠️ GitHub permite utilizar diferentes plantillas de Pull Request dependiendo del tipo de rama.
 > Por ejemplo:
@@ -12,18 +12,18 @@
 
 ## 🧾 Descripción General de la Entrega
 
-Esta Pull Request representa la **entrega final de la Actividad Obligatoria N°1**. Incluye la integración de los aportes realizados por todos los integrantes del grupo, previamente mergeados en `develop`.
+Esta Pull Request representa la **entrega final de la Actividad Obligatoria N°2**. Incluye la integración de los aportes realizados por todos los integrantes del grupo, previamente mergeados en `develop`.
 
 ---
 
 ## 👥 Integrantes del Grupo
 
-| Nombre completo | Rol asignado en esta entrega  | Usuario GitHub |
-| --------------- | ----------------------------- | -------------- |
-| Nombre 1        | Analista de Requerimientos    | @usuario1      |
-| Nombre 2        | Modelador de Casos de Uso     | @usuario2      |
-| Nombre 3        | Diseñador de Clases Iniciales | @usuario3      |
-| Nombre 4        | Documentador y Coordinador    | @usuario4      |
+| Nombre completo        | Rol asignado en esta entrega               | Usuario GitHub  |
+| ---------------------- | ------------------------------------------ | --------------- |
+| Barbano Gonzalo        | Diseñador de Tarjetas CRC                  | @GonzaloBarbano |
+| Samitier Santiago      | Especialista en Escenarios de Casos de Uso | @Santi22-7      |
+| Benitez Juan Sebastian | Documentador y Coordinador de Repositorio  | @Sebas-Benitez  |
+| Medel Marquez Santiago | Modelador de Diagramas de Casos de Uso     | @santimarM      |
 
 ---
 
@@ -44,7 +44,7 @@ Esta Pull Request representa la **entrega final de la Actividad Obligatoria N°1
 - [x] La estructura de carpetas y archivos sigue el formato solicitado.
 - [x] Se completó correctamente el archivo `changelog.md`.
 - [x] Se revisaron los comentarios de revisión en cada PR individual.
-- [x] Esta Pull Request se realiza desde `release/actividad-obligatoria-1` hacia `master`.
+- [x] Esta Pull Request se realiza desde `release/actividad-obligatoria-2` hacia `master`.
 - [x] Se notificó en el canal de Slack con el formato correcto.
 
 ---

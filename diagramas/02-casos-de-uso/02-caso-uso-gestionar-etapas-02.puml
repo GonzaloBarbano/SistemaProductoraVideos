@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Productor" as Prod
+
+rectangle "Gestionar Etapas de un Proyecto (UC2)" {
+    usecase "Definir Nombre y Tipo de Etapa" as NombreEtapa
+    usecase "Definir Fechas Estimadas" as Fechas
+    usecase "Asignar Responsable a Etapa" as UC3
+    usecase "Definir Prioridad y Alertas" as Prioridad
+    usecase "Agregar Etapa Extra" as AddExtra
+}
+
+Prod -- NombreEtapa
+Prod -- Fechas
+Prod -- UC3
+Prod -- Prioridad
+NombreEtapa ..> AddExtra : <<extend>> (Opcional: Etapa no estándar)
+@enduml
