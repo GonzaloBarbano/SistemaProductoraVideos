@@ -11,15 +11,15 @@
 
 | **Pasos desempeñados (ruta principal)** | **Información para los pasos** |
 |---|---|
-| 1.El coordinador abre el detalle del proyecto y selecciona una etapa. |El sistema muestra la lista de etapas.Y el coordinador selecciona una etapa|                                                                                                                                        
+| 1.El coordinador abre el detalle del proyecto y selecciona una etapa. |Lista de etapas del proyecto |                                                                                                                                        
 | 2. El sistema muestra los datos actuales de la etapa. |El sistema entra en la base de datos y busca los datos de la etapa solicitada|
-| 3. El coordinador selecciona en Asignar responsable. |El sistema lee la acción y prepara el selector de usuarios|
-| 4. El sistema despliega un selector de usuarios.|El sistema espera la respuesta del coordinador |
-| 5. El coordinador elige al responsable y confirma. |El coordinador elige y el sistema recibe la información y empieza a procesar la|
-| 6. El sistema valida el usuario y actualiza la etapa. |El sistema termina de procesar la información y verifica la información y lo muestra en la pagina|
-| 7. El sistema registra el cambio en el historial (quién, a quién, cuándo). |El usuario ve el cambio y el sistema guarda el cambio en la base de datos|
-| 8. El servicio de notificaciones envía un aviso al usuario responsable indicando la  asignación. |El sistema le manda la información al servicio de notificación que le tiene que enviar una notificación al usuario responsable.Y el sistema aguarda la confirmación de que llego la notificación al usuario.|
-| 9. El sistema muestra confirmación al coordinador. |El sistema al llegar la notificación se lo muestra al coordinador.Y la notificación se guarda en una base de datos.|
+| 3. El coordinador selecciona en Asignar responsable. |El sistema le muestra un boton ('Asignar responsable')y prepara el selector de usuarios|
+| 4. El sistema despliega un selector de usuarios.|El sistema Muestra el selector de usuarios con los datos :Nombre , Apellido , proyectos finalisados anteriormente y Jerarquía dentro de la empresa  |
+| 5. El coordinador elige al responsable y confirma. | El sistema recibe la información y empieza a procesarla|
+| 6. El sistema valida el usuario y actualiza la etapa. |El sistema termina de procesar la información  y lo muestra en la pagina con la actualizacion echa por el coordinador|
+| 7. El sistema registra el cambio en el historial (quién, a quién, cuándo). | El sistema guarda el cambio en la base de datos con los datos quien, a quien y cuando|
+| 8. El servicio de notificaciones envía un aviso al usuario responsable indicando la  asignación. |El sistema le manda la información al servicio de notificación.Y el sistema aguarda la confirmación de que llego la notificación al usuario.|
+| 9. El sistema muestra confirmación al coordinador. |El sistema al llegar la notificación se lo muestra al coordinador como un mensaje.Y la notificación se guarda en una base de datos.|
 
 | **Condiciones, suposiciones y preguntas** | |
 |---|---|

@@ -12,11 +12,11 @@
 | **Pasos desempeñados (ruta principal)** | **Información para los pasos** |
 |---|---|
 | 1. El actor navega a Proyectos y selecciona Nuevo. |El acto selecciona nuevo o editar  y el sistema le permite acceder al formulario | 
-| 2.El sistema muestra un formulario con campos: nombre, cliente, fechas de inicio y fin estimada, estado, observaciones. | El sistema muestra el formulario  |
-| 3.  El actor completa los campos obligatorios. | El actor empieza a escribir para rellenar los campos |
-| 4.  El sistema valida (obligatorios, formato de fechas, duplicados de nombre).  | El sistema empieza a revisar si hay algún error mientra el actor espera |
-| 5.  Si hay errores, el sistema resalta los campos inválidos y muestra mensajes. | El sistema termina con la revisión y al actor le aparece los resultados  |
-| 6. El sistema persiste el proyecto y registra auditoría (quién/cuándo).|El sistema registra el proyecto  |
+| 2.El sistema muestra un formulario con campos: nombre, cliente, fechas de inicio y fin estimada, estado, observaciones. | Formulario de etapa con campos: nombre,cliente,fecha de inicio y fin estimada,estado,observaciones.  |
+| 3.  El actor completa los campos obligatorios. | El actor debe tener en claro los campos obligatoria a rellenar |
+| 4.  El sistema valida (obligatorios, formato de fechas, duplicados de nombre).  | El sistema empieza a revisar si hay algún error |
+| 5.  Si hay errores, el sistema resalta los campos inválidos y muestra mensajes. | El sistema termina con la revisión |
+| 6. El sistema persiste el proyecto y registra auditoría (quién/cuándo).|El sistema registra el proyecto automaticamente  |
 | 7. El Servicio de Notificaciones envía aviso de "proyecto creado/editado" al cliente y/o administrador.|Mensaje de confirmación mandado por el sistema  |
 | 8. El sistema confirma y redirige al detalle del proyecto.|El sistema después de confirmar que le llego el mensaje a cliente y al administrador  |
 
