@@ -1,8 +1,9 @@
-|                                              |                          |                                                                                              |               |
-| -------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------- | ------------- |
-| **Nombre de la Clase:**                      | Responsable del Proyecto |                                                                                              |               |
-| **Superclase:**                              | Usuario                  |                                                                                              |               |
-| **Subclase:**                                |                          |                                                                                              |               |
-| **Responsabilidades**                        | **Colaboradores**        | **Pensamiento del objeto**                                                                   | **Propiedad** |
-| Cambiar el estado de una etapa a "En Curso"  | Etapa                    | Soy la persona designada para llevar a cabo y confirmar el progreso de una etapa específica. | idResponsable |
-| Cambiar el estado de una etapa a "Terminado" | Notificacion             | Conozco mi idResponsable para gestionar el avance de las etapas a mi cargo.                  | area          |
+|                                           |                          |                                                        |               |
+| ----------------------------------------- | ------------------------ | ------------------------------------------------------ | ------------- |
+| **Nombre de la Clase:**                   | Responsable del Proyecto |                                                        |               |
+| **Superclase:**                           | Usuario                  |                                                        |               |
+| **Subclase:**                             |                          |                                                        |               |
+| **Responsabilidades**                     | **Colaboradores**        | **Pensamiento del objeto**                             | **Propiedad** |
+| Cambiar estado de una etapa a “En Curso”  | Etapa                    | Soy quien autoriza y controla el inicio de las etapas. | autorizacion  |
+| Cambiar estado de una etapa a “Terminado” | Etapa                    | Confirmo que la etapa ha sido completada.              | validacion    |
+| Revisar entregables del diseñador         | Diseñador                | Verifico calidad y cumplimiento de lo solicitado.      | observaciones |
