@@ -29,10 +29,10 @@ Esta Pull Request representa la **entrega final de la Actividad Obligatoria N°2
 
 ## 📂 Archivos y entregables principales incluidos
 
-- `introduccion.md`: Requisitos, casos de uso y fundamentos POO.
+- `diagramas/diagramas-de-casos-deuso.md`: Diagramas de casos de uso, archivos .png y .puml
+- `diagramas/escenarios-de-casos-deuso.md`: Escenarios de casos de uso, archivos .md
 - `diagramas/boceto_inicial_clases.puml`: Diagrama inicial de clases.
-- `README.md`: Descripción general del proyecto.
-- `anexos.md`: Recursos complementarios.
+- `herramientas-agile/tarjetas-crc.md`: Tarjetas CRC, archivos .md
 - `changelog.md`: Registro de contribuciones y PRs.
 
 ---
