@@ -5,24 +5,39 @@ actor "Coordinador/Productor" as Prod
 actor "Responsable de Etapa" as Resp
 actor "Servicio de Notificaciones" as Notif <<Sistema>>
 
-rectangle "Asignar Responsable a Etapa (UC3)" {
-    usecase "Seleccionar Etapa" as SeleccionarEtapa
-    usecase "Elegir Responsable" as ElegirResp
-    usecase "Validar Responsable Seleccionado" as ValidaResp
-    usecase "Registrar Auditoría (Historial)" as RegAudit
-    usecase "Enviar Notificaciones Automáticas" as UC5
-}
+usecase "Asignar Responsable a Etapa (UC3)" as UC3
+usecase "Seleccionar Etapa" as SeleccionarEtapa
+usecase "Elegir Responsable" as ElegirResp
+usecase "Validar Responsable\n(rol válido y activo)" as ValidaResp
+usecase "Registrar Auditoría" as Audit
+usecase "Enviar Notificaciones Automáticas" as UC5
 
-' Asociaciones principales
-Prod -- SeleccionarEtapa
-Prod -- ElegirResp
+' Relaciones de actores
+Prod --> UC3
+UC3 --> SeleccionarEtapa
+UC3 --> ElegirResp
 
-' Relaciones de inclusión (flujos obligatorios)
-ElegirResp ..> ValidaResp : <<include>>
-ValidaResp ..> RegAudit : <<include>>
-ValidaResp ..> UC5 : <<include>>
+' Relaciones entre casos de uso
+ElegirResp --> ValidaResp : <<include>>
+ValidaResp --> Audit : <<include>>
+ValidaResp --> UC5 : <<include>>
 
-' Notificación al Responsable asignado
-UC5 --> Resp : Notificación de asignación/cambio
+UC5 --> Resp : Aviso asignación/cambio
+UC5 --> Notif
 
+' Notas explicativas
+note right of ValidaResp
+  Valida:
+  - Usuario existe en sistema
+  - Rol válido (Productor, Editor, Asistente)
+  - Usuario activo
+end note
+
+note bottom of UC3
+  Flujos:
+  - Asignación inicial: simple
+  - Reasignación: requiere Productor/Admin
+    y notificación obligatoria al nuevo responsable
+end note
 @enduml
+

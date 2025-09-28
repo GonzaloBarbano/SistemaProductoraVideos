@@ -23,13 +23,19 @@ Prod -- ValidaReglas
 Prod -- AlertaRetraso
 Asist -- RegObs
 
-' Relaciones de inclusión
-UC4 ..> ValidaReglas : <<include>>
-UC4 ..> RegAudit : <<include>>
-UC4 ..> RegObs : <<include>>
-UC4 ..> Links : <<include>>
-UC4 ..> UC5 : <<include>>
+' Inclusiones del caso de uso principal
+"Cambiar Estado de Etapa (UC4)" ..> ValidaReglas : <<include>>
+"Cambiar Estado de Etapa (UC4)" ..> RegAudit : <<include>>
+"Cambiar Estado de Etapa (UC4)" ..> RegObs : <<include>>
+"Cambiar Estado de Etapa (UC4)" ..> Links : <<include>>
+"Cambiar Estado de Etapa (UC4)" ..> UC5 : <<include>>
 
-' Extensión opcional
-UC4 <.. AlertaRetraso : <<extend>> (Condición: Cambio de fecha/estado indica retraso)
+' Extensión
+AlertaRetraso ..> UC5 : <<extend>> (si cambio indica retraso)
+
+' Flechas ocultas para orden
+ValidaReglas -[#white]-> AlertaRetraso
+RegObs -[#white]-> Links
+RegAudit -[#white]-> RegObs
+
 @enduml

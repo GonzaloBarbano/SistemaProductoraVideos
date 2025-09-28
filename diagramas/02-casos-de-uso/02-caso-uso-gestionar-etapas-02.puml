@@ -2,18 +2,36 @@
 left to right direction
 
 actor "Coordinador/Productor" as Prod
+actor "Responsable de Etapa" as Resp
+actor "Asistente de Producción" as Asist
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
 
-rectangle "Gestionar Etapas de un Proyecto (UC2)" {
-    usecase "Definir Nombre y Tipo de Etapa" as NombreEtapa
-    usecase "Definir Fechas Estimadas" as Fechas
-    usecase "Asignar Responsable a Etapa" as UC3
-    usecase "Definir Prioridad y Alertas" as Prioridad
-    usecase "Agregar Etapa Extra" as AddExtra
+rectangle "Gestionar Etapas (UC2)" {
+    usecase "Crear/Editar Etapa" as CrearEtapa
+    usecase "Cambiar/Cerrar Etapa" as CambiarEtapa
+    usecase "Registrar Observaciones/Comentarios" as RegObs
+    usecase "Adjuntar Materiales/Links" as Links
+    usecase "Alertar Posible Retraso" as Alerta
+    usecase "Enviar Notificaciones Automáticas" as UC5
 }
 
-Prod -- NombreEtapa
-Prod -- Fechas
-Prod -- UC3
-Prod -- Prioridad
-NombreEtapa ..> AddExtra : <<extend>> (Opcional: Etapa no estándar)
+' Actores
+Prod -- CrearEtapa
+Prod -- CambiarEtapa
+Resp -- CambiarEtapa
+Resp -- RegObs
+Resp -- Links
+Asist -- RegObs
+
+' Relaciones internas
+CrearEtapa ..> UC5 : <<include>>
+CambiarEtapa ..> UC5 : <<include>>
+RegObs ..> UC5 : <<include>>
+Links ..> UC5 : <<include>>
+Alerta ..> UC5 : <<include>>
+
+' Flechas ocultas para acomodar
+CrearEtapa -[#white]-> CambiarEtapa
+RegObs -[#white]-> Links
+
 @enduml

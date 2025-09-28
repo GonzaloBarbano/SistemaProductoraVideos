@@ -1,27 +1,30 @@
 @startuml
 left to right direction
 
-actor "Coordinador/Responsable de Etapa" as Trigger
 actor "Servicio de Notificaciones" as Notif <<Sistema>>
-actor "Destinatario" as Dest
+actor "Responsable de Etapa" as Resp
+actor "Coordinador/Productor" as Prod
 
 rectangle "Enviar Notificaciones Automáticas (UC5)" {
-    usecase "Identificar Evento Activador" as Evento
-    usecase "Identificar Destinatario" as DestinatarioUC
-    usecase "Componer Mensaje" as Componer
-    usecase "Determinar Canal (Mail/WhatsApp)" as Canal
-    usecase "Enviar Notificación" as Enviar
-    usecase "Registrar Envío en Historial" as RegEnvio
-    usecase "Reintentar o Marcar Fallo" as Reintentar
+    usecase "Identificar destinatarios" as Destinatarios
+    usecase "Determinar canal de envío" as Canal
+    usecase "Componer mensaje" as Mensaje
+    usecase "Registrar envío en historial" as Registro
 }
 
-Trigger --> Evento
-Evento ..> DestinatarioUC : <<include>>
-Evento ..> Componer : <<include>>
-Componer ..> Canal : <<include>>
-Canal ..> Enviar : <<include>>
-Enviar ..> Dest : Notificación
-Enviar ..> RegEnvio : <<include>>
-RegEnvio <.. Reintentar : <<extend>> (Condición: Fallo de envío)
-@enduml
+Prod -- Destinatarios
+Resp -- Destinatarios
+Notif -- Canal
 
+Destinatarios ..> Canal : <<include>>
+Canal ..> Mensaje : <<include>>
+Mensaje ..> Registro : <<include>>
+
+note right of Destinatarios
+  Eventos activadores:
+  - Cambio de estado a Finalizada o Lista
+  - Asignación o cambio de responsable
+  - Cambio de estado a Pendiente o En curso
+  - Alerta de posible retraso
+end note
+@enduml
