@@ -11,14 +11,14 @@
 
 | **Pasos desempeñados (ruta principal)** | **Información para los pasos** |
 |---|---|
-| 1. El Responsable realiza una acción relevante (ej: cambiar estado).|Evento generado:Cambio de estado de la etapa: Pendiente , En curso , Finalizada  |  
-| 2. El sistema identifica destinatarios según el evento. | Busca dentro de la base de datos  |
-| 3. El sistema determina el canal de notificación según preferencias de cada usuario.|El sistema termina de buscar la información  de la base de datos |
-| 4. El sistema compone mensajes con datos del proyecto/etapa. |Hace un mensaje con la información  |
-| 5. El servicio de notificaciones envía la notificación al destinatario |El sistema manda el mensaje/notificación |
-| 6. El servicio de notificaciones devuelve resultado (éxito) | El sistema se auto notifica que el mensaje fue enviado con éxito  |
-| 7. El servicio de notificaciones envía el resultado a otros sistemas|El sistema hace un mensaje con la información.| 
-| 8. El sistema registra el envío en el historial de notificaciones. | El sistema lo guarda dentro base de datos |
+| 1. El Responsable realiza una acción relevante (ej:cambiar estado).|Evento generado: cambio de estado de la etapa (Pendiente, En curso, Finalizada).  |  
+| 2. El sistema identifica destinatarios según el evento. | Lista de destinatarios vinculados al proyecto/etapa en la base de datos.  |
+| 3. El sistema determina el canal de notificación según preferencias de cada usuario.|Preferencias de notificación almacenadas por usuario (correo, aplicación, SMS, etc.). |
+| 4. El sistema compone mensajes con datos del proyecto/etapa. |Mensaje generado con información del proyecto o etapa: nombre, estado, responsable, fecha y observaciones.  |
+| 5. El servicio de notificaciones envía la notificación al destinatario |Notificación emitida a los destinatarios seleccionados. |
+| 6. El servicio de notificaciones devuelve resultado (éxito) | Resultado de envío: estado de entrega confirmado.  |
+| 7. El servicio de notificaciones envía el resultado a otros sistemas|Registro de integración con otros sistemas que consumen el resultado del envío.| 
+| 8. El sistema registra el envío en el historial de notificaciones. | Registro en el historial: evento, destinatarios, canal, fecha, hora y estado del envío. |
 
 | **Condiciones, suposiciones y preguntas** | |
 |---|---|
