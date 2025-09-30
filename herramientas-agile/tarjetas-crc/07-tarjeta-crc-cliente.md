@@ -1,9 +1,9 @@
-|                                                                       |                   |                                                                                                          |               |
-| --------------------------------------------------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------- | ------------- |
-| **Nombre de la Clase:**                                               | Cliente           |                                                                                                          |               |
-| **Superclase:**                                                       |                   |                                                                                                          |               |
-| **Subclase:**                                                         |                   |                                                                                                          |               |
-| **Responsabilidades**                                                 | **Colaboradores** | **Pensamiento del objeto**                                                                               | **Propiedad** |
-| Proporcionar el proyecto a Vizion Estudio (enviarProyecto)            | Proyecto          | Soy la persona o entidad externa que encarga el proyecto y cuyos datos de contacto deben ser almacenados | idCliente     |
-| Registrar los datos de contacto para no buscarlos en mails o carpetas |                   | Conozco mi idCliente y contacto.                                                                         | contacto      |
-| Recibir el proyecto finalizado (recibirProyecto)                      |                   |                                                                                                          | nombre        |
+|                             |                   |                                                          |                 |
+| --------------------------- | ----------------- | -------------------------------------------------------- | --------------- |
+| **Nombre de la Clase:**     | Cliente           |                                                          |                 |
+| **Superclase:**             |                   |                                                          |                 |
+| **Subclase:**               |                   |                                                          |                 |
+| **Responsabilidades**       | **Colaboradores** | **Pensamiento del objeto**                               | **Propiedad**   |
+| Solicitar un nuevo proyecto | Proyecto          | Soy la persona o entidad que encarga producciones.       | requerimiento   |
+| Registrar datos de contacto | Administrador     | Guardo mi información para mantener comunicación fluida. | contacto        |
+| Recibir proyecto finalizado | Proyecto          | Soy destinatario de la entrega final.                    | produccionFinal |

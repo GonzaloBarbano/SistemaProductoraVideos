@@ -1,0 +1,58 @@
+@startuml
+left to right direction
+
+' --- Actores (fuera del sistema) ---
+actor "Coordinador/Productor" as Prod
+actor "Responsable de Etapa" as Resp
+actor "Asistente de Producción" as Asist
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+
+' --- Límite del sistema (rectángulo que separa actores de casos de uso) ---
+rectangle "Sistema de Gestión de Vizion Estudio" {
+    usecase "Asignar Responsable a Etapa" as UC3
+    usecase "Seleccionar Etapa" as SeleccionarEtapa
+    usecase "Elegir Responsable" as ElegirResp
+    usecase "Validar Responsable\n(rol válido y activo)" as ValidaResp
+    usecase "Registrar Auditoría" as Audit
+    usecase "Enviar Notificaciones\nAutomáticas (UC5)" as UC5
+}
+
+' --- Asociaciones actor <-> caso de uso principal ---
+Prod --> UC3
+Resp --> UC3
+
+' --- Descomposición / sub-casos del UC3 ---
+UC3 --> SeleccionarEtapa
+UC3 --> ElegirResp
+
+' --- Inclusiones obligatorias ---
+ElegirResp ..> ValidaResp : <<include>>
+ValidaResp ..> Audit : <<include>>
+ValidaResp ..> UC5 : <<include>>
+
+' --- Notificación: actor servicio y destinatario ---
+UC5 --> Notif
+UC5 --> Resp : "Aviso asignación / cambio"
+
+' --- Notas explicativas para el revisor ---
+note right of ValidaResp
+  Validación:
+  - Usuario existe en el sistema
+  - Rol válido (Productor, Editor, Asistente, ...)
+  - Usuario activo
+end note
+
+note bottom of UC3
+  Flujos:
+  - Asignación inicial: al crear la etapa (flujo simple)
+  - Reasignación: en etapa ya activa, requiere
+    permiso de Productor/Admin y notificación
+    obligatoria al nuevo responsable
+end note
+
+' --- Flechas ocultas para ordenar y evitar cruces ---
+SeleccionarEtapa -[#white]-> ElegirResp
+ValidaResp -[#white]-> Audit
+
+@enduml
+
