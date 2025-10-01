@@ -12,16 +12,24 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#30](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/30) - @GonzaloBarbano
   (Documentador y Coordinador de Repositorio + SRP)
 
-- [feature/esp-extension-ocp-add-anexo-ocp] Creacion de principio solid OCP. 
+- [feature/esp-extension-ocp-add-anexo-ocp] Creacion de principio solid OCP.
   PR: [#34](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/34) - @Santi22-7
   (Especialista en Principios de Extensión (OCP + LSP))
 
 - [feature/esp-srp-add-anexo-srp] Creacion de principio solid SRP y estructura de carpetas
   PR: [#35](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/35) - @Santi22-7
   (Especialista en Principios de Extensión (OCP + LSP))
+
+- [feature/esp-dip-esp-isp] Creacion de principio solid ISP y DIP
+  PR: [#37](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/37) - @GonzaloBarbano
+  (Especialista en Inversión de Dependencias y Segregación de Interfaces)
+
+https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/37
+
 ### Changed
 
 ### Fixed
+
 - [feature/esp-srp-add-anexo-srp] Actualizacion link de anexo.md
   PR: [#33](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/33) - @GonzaloBarbano
   (Documentador y Coordinador de Repositorio + SRP)

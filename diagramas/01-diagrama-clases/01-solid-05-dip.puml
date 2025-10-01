@@ -1,0 +1,22 @@
+@startuml
+interface INotificacion {
+  + enviar(mensaje, destinatario)
+}
+
+class EmailNotificacion implements INotificacion {
+  + enviar(mensaje, destinatario)
+}
+
+class WhatsAppNotificacion implements INotificacion {
+  + enviar(mensaje, destinatario)
+}
+
+class Proyecto {
+  - INotificacion notificador
+  + finalizarProyecto()
+}
+
+Proyecto --> INotificacion
+INotificacion <|.. EmailNotificacion
+INotificacion <|.. WhatsAppNotificacion
+@enduml
