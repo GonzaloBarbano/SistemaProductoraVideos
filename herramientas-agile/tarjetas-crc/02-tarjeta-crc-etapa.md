@@ -1,9 +1,10 @@
-|                                                                        |                          |                                                                                                   |               |
-| ---------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------- | ------------- |
-| **Nombre de la Clase:**                                                | Etapa                    |                                                                                                   |               |
-| **Superclase:**                                                        |                          |                                                                                                   |               |
-| **Subclase:**                                                          |                          |                                                                                                   |               |
-| **Responsabilidades**                                                  | **Colaboradores**        | **Pensamiento del objeto**                                                                        | **Propiedad** |
-| Configurar (agregar o quitar) pasos según las necesidades del proyecto | Proyecto                 | Soy la unidad de trabajo secuencial dentro de un proyecto, y mi cambio de estado dispara acciones | idEtapa       |
-| Registrar el estado (en curso, terminado, pendiente)                   | Responsable del Proyecto | Conozco mi idEtapa para registrar mis tiempos estimados y reales                                  | estado        |
-| Registrar fecha estimada de inicio y fin para calcular demoras         | Notificacion             |                                                                                                   | fechaInicio   |
+|                                                   |                          |                                             |                       |
+| ------------------------------------------------- | ------------------------ | ------------------------------------------- | --------------------- |
+| **Nombre de la Clase:**                           | Etapa                    |                                             |                       |
+| **Superclase:**                                   |                          |                                             |                       |
+| **Subclase:**                                     |                          |                                             |                       |
+| **Responsabilidades**                             | **Colaboradores**        | **Pensamiento del objeto**                  | **Propiedad**         |
+| Configurar pasos según el proyecto                | Proyecto                 | Soy la unidad secuencial de un proyecto.    | pasos                 |
+| Registrar estado (pendiente, en curso, terminado) | Responsable del Proyecto | Mi estado refleja el progreso de la etapa.  | estado                |
+| Registrar fechas estimadas de inicio y fin        | Notificacion             | Guardo planificación para detectar demoras. | fechaInicio, fechaFin |
+| Calcular tiempos reales de ejecución              | Proyecto                 | Comparo lo planificado con lo ejecutado.    | tiempoReal            |

@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor "Coordinador/Productor" as Prod
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+
+rectangle "Crear/Editar Proyecto (UC1)" {
+    usecase "Completar Formulario de Proyecto" as Form
+    usecase "Validar Datos (campos obligatorios, fechas, duplicados)" as Valida
+    usecase "Registrar Auditoría" as Audit
+    usecase "Enviar Notificaciones Automáticas" as UC5
+}
+
+' Relaciones
+Prod -- Form
+Form ..> Valida : <<include>>
+Valida ..> Audit : <<include>>
+Valida ..> UC5 : <<include>>
+
+@enduml
+
+

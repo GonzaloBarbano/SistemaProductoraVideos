@@ -7,3 +7,7 @@
 - [05-tarjeta-crc-notificacion](05-tarjeta-crc-notificacion.md)
 - [06-tarjeta-crc-administrador](06-tarjeta-crc-administrador.md)
 - [07-tarjeta-crc-cliente](07-tarjeta-crc-cliente.md)
+- [08-tarjeta-crc-diseñador](08-tarjeta-crc-diseñador.md)
+- [09-tarjeta-crc-asistente](09-tarjeta-crc-asistente.md)
+- [10-tarjeta-crc-tarea](10-tarjeta-crc-tarea.md)
+- [11-tarjeta-crc-recurso](11-tarjeta-crc-recurso.md)

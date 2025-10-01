@@ -1,9 +1,9 @@
-|                                                                 |                         |                                                                                                                                      |                |
-| --------------------------------------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------- |
-| **Nombre de la Clase:**                                         | Notificacion            |                                                                                                                                      |                |
-| **Superclase:**                                                 |                         |                                                                                                                                      |                |
-| **Subclase:**                                                   |                         |                                                                                                                                      |                |
-| **Responsabilidades**                                           | **Colaboradores**       | **Pensamiento del objeto**                                                                                                           | **Propiedad**  |
-| Enviar avisos automáticos por mail o WhatsApp                   | Etapa                   | Soy el mecanismo automático de comunicación que avisa a los destinatarios cuando ocurre un evento importante en el flujo de trabajo. | idNotificacion |
-| Avisar cuando se completa una etapa o se asigna una nueva tarea | Usuario                 | Conozco el destinatario y el mensaje a enviar.                                                                                       | mensaje        |
-| Programar el envío de la notificación                           | Responsable de Proyecto |                                                                                                                                      | destinatario   |
+|                                      |                          |                                                           |               |
+| ------------------------------------ | ------------------------ | --------------------------------------------------------- | ------------- |
+| **Nombre de la Clase:**              | Notificacion             |                                                           |               |
+| **Superclase:**                      |                          |                                                           |               |
+| **Subclase:**                        |                          |                                                           |               |
+| **Responsabilidades**                | **Colaboradores**        | **Pensamiento del objeto**                                | **Propiedad** |
+| Enviar avisos automáticos al usuario | Etapa                    | Soy el mecanismo de comunicación interna y externa.       | mensaje       |
+| Avisar cuando se completa una etapa  | Usuario                  | Informo a los destinatarios sobre cambios relevantes.     | destinatario  |
+| Programar fecha y hora de envío      | Responsable del Proyecto | Puedo programarme para que llegue en el momento indicado. | fechaEnvio    |
