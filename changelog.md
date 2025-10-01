@@ -15,6 +15,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/esp-extension-ocp-add-anexo-ocp] Creacion de principio solid OCP. 
   PR: [#34](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/34) - @Santi22-7
   (Especialista en Principios de Extensión (OCP + LSP))
+
+- [feature/esp-srp-add-anexo-srp] Creacion de principio solid SRP y estructura de carpetas
+  PR: [#35](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/35) - @Santi22-7
+  (Especialista en Principios de Extensión (OCP + LSP))
 ### Changed
 
 ### Fixed
