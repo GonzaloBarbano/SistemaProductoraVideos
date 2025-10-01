@@ -8,9 +8,16 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+- [feature/esp-srp-add-anexo-srp] Creacion de principio solid SRP y estructura de carpetas
+  PR: [#30](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/30) - @GonzaloBarbano
+  (Documentador y Coordinador de Repositorio + SRP)
+
 ### Changed
 
 ### Fixed
+- [feature/esp-srp-add-anexo-srp] Actualizacion link de anexo.md
+  PR: [#33](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/33) - @GonzaloBarbano
+  (Documentador y Coordinador de Repositorio + SRP)
 
 ---
 
