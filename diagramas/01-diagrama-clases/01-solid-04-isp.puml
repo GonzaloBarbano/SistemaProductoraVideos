@@ -1,0 +1,26 @@
+@startuml
+interface IColaboradorProyecto {
+  + participarProyecto()
+}
+
+interface IDiseño {
+  + subirEntregable()
+}
+
+interface IGestion {
+  + gestionarEtapas()
+}
+
+class Diseñador implements IColaboradorProyecto, IDiseño
+class Administrador implements IColaboradorProyecto, IGestion
+class ResponsableProyecto implements IColaboradorProyecto, IGestion
+
+IColaboradorProyecto <|.. Diseñador
+IDiseño <|.. Diseñador
+
+IColaboradorProyecto <|.. Administrador
+IGestion <|.. Administrador
+
+IColaboradorProyecto <|.. ResponsableProyecto
+IGestion <|.. ResponsableProyecto
+@enduml
