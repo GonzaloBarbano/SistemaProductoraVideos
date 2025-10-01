@@ -15,6 +15,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ### Changed
 
 ### Fixed
+- [feature/esp-srp-add-anexo-srp] Actualizacion link de anexo.md
+  PR: [#33](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/33) - @GonzaloBarbano
+  (Documentador y Coordinador de Repositorio + SRP)
 
 ---
 
