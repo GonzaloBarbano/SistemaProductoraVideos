@@ -37,7 +37,7 @@ En este sistema el OCP se aplica en dos áreas principales:
 
 - **Etapa del Proyecto**: la clase `Etapa` mantiene una referencia a la interfaz `EstadoEtapa`. Cada estado concreto se implementa como una clase independiente. Así, la lógica de `Etapa` nunca cambia y se pueden añadir nuevos estados sin modificar código existente.
 
-![diagrama](/SistemaProductoraVideos/diagramas/01-diagrama-clases/01-solid-02-ocp.png)
+![OCP](../../diagramas/01-diagrama-clases/01-solid-02-ocp.png)
 ---
 
 ## Justificación Técnica

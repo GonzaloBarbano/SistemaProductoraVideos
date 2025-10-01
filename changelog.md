@@ -12,6 +12,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#30](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/30) - @GonzaloBarbano
   (Documentador y Coordinador de Repositorio + SRP)
 
+- [feature/esp-extension-ocp-add-anexo-ocp] Creacion de principio solid OCP. 
+  PR: [#34](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/34) - @Santi22-7
+  (Especialista en Principios de Extensión (OCP + LSP))
 ### Changed
 
 ### Fixed
