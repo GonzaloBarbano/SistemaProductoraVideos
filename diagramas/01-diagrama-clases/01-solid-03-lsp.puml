@@ -1,0 +1,24 @@
+@startuml
+title Principio de Sustitución de Liskov (LSP)
+
+abstract class Figura {
+  +area(): double
+}
+
+class Rectangulo {
+  -ancho: double
+  -alto: double
+  +setAncho(ancho: double)
+  +setAlto(alto: double)
+  +area(): double
+}
+
+class Circulo {
+  -radio: double
+  +setRadio(r: double)
+  +area(): double
+}
+
+Figura <|-- Rectangulo
+Figura <|-- Circulo
+@enduml
