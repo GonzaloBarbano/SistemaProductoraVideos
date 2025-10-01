@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+
+actor "Servicio de Notificaciones" as Notif <<Sistema>>
+actor "Responsable de Etapa" as Resp
+actor "Coordinador/Productor" as Prod
+
+rectangle "Enviar Notificaciones Automáticas (UC5)" {
+    usecase "Identificar destinatarios" as Destinatarios
+    usecase "Determinar canal de envío" as Canal
+    usecase "Componer mensaje" as Mensaje
+    usecase "Registrar envío en historial" as Registro
+}
+
+Prod -- Destinatarios
+Resp -- Destinatarios
+Notif -- Canal
+
+Destinatarios ..> Canal : <<include>>
+Canal ..> Mensaje : <<include>>
+Mensaje ..> Registro : <<include>>
+
+note right of Destinatarios
+  Eventos activadores:
+  - Cambio de estado a Finalizada o Lista
+  - Asignación o cambio de responsable
+  - Cambio de estado a Pendiente o En curso
+  - Alerta de posible retraso
+end note
+@enduml
