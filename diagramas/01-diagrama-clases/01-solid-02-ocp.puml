@@ -1,0 +1,56 @@
+@startuml
+title Aplicación del Principio Abierto/Cerrado (OCP)
+
+' =========================
+' Caso 1: Notificaciones
+' =========================
+abstract class Notificacion {
+  +enviar(mensaje: String)
+}
+
+class NotificacionEmail {
+  +enviar(mensaje: String)
+}
+
+class NotificacionSMS {
+  +enviar(mensaje: String)
+}
+
+class NotificacionWhatsApp {
+  +enviar(mensaje: String)
+}
+
+Notificacion <|-- NotificacionEmail
+Notificacion <|-- NotificacionSMS
+Notificacion <|-- NotificacionWhatsApp
+
+' =========================
+' Caso 2: Etapas de Proyecto
+' =========================
+class Etapa {
+  -estado: EstadoEtapa
+  +setEstado(estado: EstadoEtapa)
+  +avanzar()
+}
+
+interface EstadoEtapa {
+  +avanzar(etapa: Etapa)
+}
+
+class EstadoEnCurso {
+  +avanzar(etapa: Etapa)
+}
+
+class EstadoFinalizado {
+  +avanzar(etapa: Etapa)
+}
+
+class EstadoEnRevision {
+  +avanzar(etapa: Etapa)
+}
+
+Etapa --> EstadoEtapa
+EstadoEtapa <|.. EstadoEnCurso
+EstadoEtapa <|.. EstadoFinalizado
+EstadoEtapa <|.. EstadoEnRevision
+@enduml
