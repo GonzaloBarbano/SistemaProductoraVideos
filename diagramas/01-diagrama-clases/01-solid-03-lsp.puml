@@ -1,24 +1,47 @@
 @startuml
-title Principio de Sustitución de Liskov (LSP)
+title Principio de Sustitución de Liskov (LSP) - Sistema de Productora Audiovisual
 
-abstract class Figura {
-  +area(): double
+' Clase base
+abstract class Proyecto {
+  - nombre: String
+  - cliente: String
+  - fechaInicio: Date
+  - fechaEntrega: Date
+  + iniciarProduccion(): void
+  + entregarProyecto(): void
 }
 
-class Rectangulo {
-  -ancho: double
-  -alto: double
-  +setAncho(ancho: double)
-  +setAlto(alto: double)
-  +area(): double
+' Subclases que extienden Proyecto
+class ProyectoPublicitario {
+  - guion: String
+  - locacion: String
+  + iniciarProduccion(): void
+  + entregarProyecto(): void
 }
 
-class Circulo {
-  -radio: double
-  +setRadio(r: double)
-  +area(): double
+class ProyectoDocumental {
+  - cantidadEntrevistas: int
+  - temaCentral: String
+  + iniciarProduccion(): void
+  + entregarProyecto(): void
 }
 
-Figura <|-- Rectangulo
-Figura <|-- Circulo
+class ProyectoEvento {
+  - duracionHoras: double
+  - tipoEvento: String
+  + iniciarProduccion(): void
+  + entregarProyecto(): void
+}
+
+Proyecto <|-- ProyectoPublicitario
+Proyecto <|-- ProyectoDocumental
+Proyecto <|-- ProyectoEvento
+
+note right of Proyecto
+El contrato base define la estructura general
+de un proyecto audiovisual.
+Las subclases pueden sustituir a Proyecto
+sin alterar el comportamiento esperado.
+end note
+
 @enduml
