@@ -9,14 +9,23 @@ Es mejor tener interfaces pequeñas y específicas que una sola interfaz con muc
 
 ## Motivación
 
-En el diseño inicial, una interfaz hipotética **IUsuarioSistema** podía incluir métodos para diseñar, administrar proyectos y enviar notificaciones.  
-Esto obliga a que clases como **Cliente** implementen métodos que no necesitan.
+En el diseño inicial, **Diseñador**, **Administrador** y **Responsable del Proyecto** compartían comportamientos comunes (participar o colaborar en proyectos), pero no todos gestionaban tareas o etapas.
+Sin embargo, al definir una interfaz amplia (por ejemplo, “IGestion”), se forzaba a algunos roles a implementar operaciones que no les correspondían.
 
-Con ISP se crean interfaces más pequeñas y enfocadas:
+Aplicando ISP:
 
-- **IColaboradorProyecto** (participar en proyectos).
-- **IDiseño** (subir entregables).
-- **IGestion** (gestionar etapas).
+- Se **dividen las interfaces** según responsabilidades reales.
+
+- IColaborador define las acciones comunes a todos los roles que participan en proyectos.
+
+- IGestor define solo las acciones administrativas o de supervisión, y la implementan quienes realmente gestionan (Administrador y Responsable del Proyecto).
+
+---
+
+## Explicación de Interfaces
+
+En programación orientada a objetos, una **interfaz** define un contrato que una clase debe cumplir, sin imponer detalles de implementación.  
+El ISP propone que esas interfaces sean **cohesivas y específicas**, reduciendo la obligación de implementar operaciones innecesarias.
 
 ---
 
@@ -30,8 +39,7 @@ Con ISP se crean interfaces más pequeñas y enfocadas:
 
 El diagrama muestra cómo aplicar ISP:
 
-- **Diseñador** solo implementa lo que necesita (colaborar en proyectos y diseñar).
+- **Diseñador** solo implementa IColaborador, porque su función es contribuir creativamente al proyecto, no gestionarlo.
+- **Administrador** y **Responsable** implementan ambas interfaces, porque además de colaborar, también gestionan tareas o etapas.
 
-- **Administrador** y **Responsable** implementan gestión.
-
-Así se evitan dependencias innecesarias, logrando un sistema más claro, flexible y con bajo acoplamiento.
+Este enfoque reduce el acoplamiento y hace que cada clase tenga solo las dependencias que realmente necesita, respetando el principio de segregación de interfaces (ISP).
