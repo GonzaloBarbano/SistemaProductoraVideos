@@ -1,0 +1,30 @@
+@startuml
+title Principio de Inversión de Dependencias (DIP)
+
+interface INotificacion {
+    +enviarNotificacion()
+    +programarNotificacion()
+}
+
+class Proyecto {
+    -nombre
+    -descripcion
+    -estado
+    -fechaInicio
+    -fechaFin
+    +crearProyecto()
+    +finalizarProyecto()
+}
+
+class Notificacion {
+    -mensaje
+    -fecha
+    -destinatario
+    +enviarNotificacion()
+    +programarNotificacion()
+}
+
+Proyecto --> INotificacion : depende de 
+Notificacion ..|> INotificacion
+
+@enduml
