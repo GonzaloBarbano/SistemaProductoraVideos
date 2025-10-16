@@ -1,22 +1,30 @@
 @startuml
+title Principio de Inversión de Dependencias (DIP)
+
 interface INotificacion {
-  + enviar(mensaje, destinatario)
-}
-
-class EmailNotificacion implements INotificacion {
-  + enviar(mensaje, destinatario)
-}
-
-class WhatsAppNotificacion implements INotificacion {
-  + enviar(mensaje, destinatario)
+    +enviarNotificacion()
+    +programarNotificacion()
 }
 
 class Proyecto {
-  - INotificacion notificador
-  + finalizarProyecto()
+    -nombre
+    -descripcion
+    -estado
+    -fechaInicio
+    -fechaFin
+    +crearProyecto()
+    +finalizarProyecto()
 }
 
-Proyecto --> INotificacion
-INotificacion <|.. EmailNotificacion
-INotificacion <|.. WhatsAppNotificacion
+class Notificacion {
+    -mensaje
+    -fecha
+    -destinatario
+    +enviarNotificacion()
+    +programarNotificacion()
+}
+
+Proyecto --> INotificacion : depende de 
+Notificacion ..|> INotificacion
+
 @enduml

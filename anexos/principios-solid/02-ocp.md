@@ -28,8 +28,20 @@ En este sistema:
 - `Notificacion` es abstracta → define el contrato común. Subclases (`NotificacionEmail`, `NotificacionSMS`) extienden el sistema con nuevos canales sin modificar la clase principal.  
 - `Etapa` se apoya en la interfaz `EstadoEtapa` (patrón State). Cada estado (`EstadoEnCurso`, `EstadoFinalizado`) se implementa como clase separada, y se pueden agregar más sin alterar la clase `Etapa`.
 
----
 
+##  Patrón de Diseño State
+El **Patrón State** es un patrón de comportamiento que permite que un objeto cambie su comportamiento cuando cambia su estado interno, **como si cambiara de clase**.  
+Cada estado se representa mediante una clase concreta que implementa una interfaz común.
+
+En este caso:
+- La interfaz `EstadoEtapa` define operaciones como `iniciar()`, `finalizar()`, `cancelar()`.  
+- Las clases concretas (`EstadoPendiente`, `EstadoEnCurso`, `EstadoFinalizado`) implementan esas operaciones de manera diferente.  
+- La clase `Etapa` **no necesita modificar su código** para manejar nuevos estados; simplemente se le puede asignar un nuevo objeto de tipo `EstadoEtapa`.  
+
+Así, el uso del **Patrón State** refuerza el **Principio Abierto/Cerrado (OCP)** porque el sistema:
+- Está **abierto a la extensión** (se pueden agregar nuevos estados).  
+- Está **cerrado a la modificación** (la clase `Etapa` no se altera).
+---
 ## Estructura de Clases
 En este sistema el OCP se aplica en dos áreas principales:  
 

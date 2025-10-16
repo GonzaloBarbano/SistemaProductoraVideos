@@ -34,12 +34,11 @@ El siguiente diagrama UML muestra la refactorización propuesta al aplicar SRP:
 
 ## Justificación Técnica
 
-En el diagrama se observa cómo cada clase queda enfocada en una única responsabilidad:
+Cada clase presenta una única razón de cambio, cumpliendo con el principio SRP.
 
-- **Proyecto** se ocupa solo de la definición básica, mientras que EstadísticaProyecto maneja estadísticas y TiempoProyecto los cálculos temporales.
+- **Proyecto** podría modificarse únicamente si se alteran los datos generales que gestiona (por ejemplo, agregar un nuevo atributo como “cliente asociado”).
+- **TiempoProyecto** cambiaría solo si se modifican las reglas de cálculo de duración o la forma de registrar las fechas de inicio y fin.
+- **EstadisticaProyecto** se vería afectada únicamente si se redefinen las métricas o indicadores utilizados para evaluar el rendimiento del proyecto.
+- **NotificacionProyecto** cambiaría únicamente si se agregan o eliminan canales de comunicación, o si se ajustan las condiciones que disparan una notificación.
 
-- **Etapa** concentra el flujo de trabajo, pero se apoya en CalendarioEtapa para gestionar tiempos y demoras.
-
-- **Notificación** se limita al contenido del mensaje, delegando la programación a ProgramadorNotificaciones y los distintos medios de envío a CanalNotificacion.
-
-De esta forma, cada clase tiene un único motivo de cambio, reflejando correctamente la aplicación del principio SOLID. Esto asegura mayor cohesión interna, reduce el acoplamiento y facilita la escalabilidad del sistema audiovisual de Vizion Estudio.
+Esta separación permite que el sistema evolucione sin afectar otras partes, facilita las pruebas unitarias y promueve un diseño coherente con los principios de alta cohesión y bajo acoplamiento.

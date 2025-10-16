@@ -1,26 +1,34 @@
 @startuml
-interface IColaboradorProyecto {
-  + participarProyecto()
+title Principio de Segregación de Interfaces (ISP) - Refactorización
+
+interface IColaborador {
+    +colaborarEnProyecto()
 }
 
-interface IDiseño {
-  + subirEntregable()
+interface IGestor {
+    +asignarTareas()
+    +revisarProgreso()
 }
 
-interface IGestion {
-  + gestionarEtapas()
+class Administrador {
+    +crearProyecto()
+    +cerrarProyecto()
 }
 
-class Diseñador implements IColaboradorProyecto, IDiseño
-class Administrador implements IColaboradorProyecto, IGestion
-class ResponsableProyecto implements IColaboradorProyecto, IGestion
+class ResponsableProyecto {
+    +actualizarEstadoEtapa()
+}
 
-IColaboradorProyecto <|.. Diseñador
-IDiseño <|.. Diseñador
+class Diseñador {
+    +diseñarMaterialAudiovisual()
+}
 
-IColaboradorProyecto <|.. Administrador
-IGestion <|.. Administrador
+Administrador ..|> IGestor
+Administrador ..|> IColaborador
 
-IColaboradorProyecto <|.. ResponsableProyecto
-IGestion <|.. ResponsableProyecto
+ResponsableProyecto ..|> IGestor
+ResponsableProyecto ..|> IColaborador
+
+Diseñador ..|> IColaborador
+
 @enduml
