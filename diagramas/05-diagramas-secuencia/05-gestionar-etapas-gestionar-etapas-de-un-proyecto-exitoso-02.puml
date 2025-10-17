@@ -1,0 +1,59 @@
+@startuml
+title Gestionar Etapas de un Proyecto (Exitoso) - Sistema de Gestión de Etapas y Proyectos
+
+actor Coordinador
+participant PantallaProyecto
+participant ServicioEtapa
+participant RepositorioEtapas
+participant ServicioNotificaciones
+
+
+Coordinador -> PantallaProyecto : abrirDetalleProyecto()
+activate PantallaProyecto
+note right: El coordinador accede al detalle del proyecto\ny selecciona "Gestionar Etapas".
+
+PantallaProyecto -> ServicioEtapa : mostrarListaEtapas(proyectoId)
+activate ServicioEtapa
+ServicioEtapa -> RepositorioEtapas : obtenerEtapas(proyectoId)
+activate RepositorioEtapas
+RepositorioEtapas --> ServicioEtapa : listaEtapas()
+deactivate RepositorioEtapas
+ServicioEtapa --> PantallaProyecto : listaEtapas()
+
+== Gestión de etapas ==
+Coordinador -> PantallaProyecto : seleccionarAccionEtapa(agregar/editar/eliminar)
+note right: El coordinador elige una acción de gestión\nsobre las etapas del proyecto.
+
+PantallaProyecto -> PantallaProyecto : mostrarFormularioEtapa()
+note right: Se muestra formulario con campos:\nnombre, responsable, estado, fechas, observaciones.
+
+Coordinador -> PantallaProyecto : completarFormularioEtapa(datosEtapa)
+PantallaProyecto -> ServicioEtapa : validarEtapa(datosEtapa)
+note right: Se valida que el responsable exista,\nfechas coherentes y estado permitido.
+
+alt Datos inválidos
+  ServicioEtapa --> PantallaProyecto : mostrarErroresValidacion()
+  note left: Si hay errores de validación,\nse muestran los mensajes correspondientes.
+else Datos válidos
+  ServicioEtapa -> RepositorioEtapas : guardarEtapa(datosEtapa)
+  activate RepositorioEtapas
+  RepositorioEtapas --> ServicioEtapa : confirmacionGuardado()
+  deactivate RepositorioEtapas
+  note right: El registro se guarda y se genera\nauditoría (alta, edición o baja).
+end
+
+== Notificación ==
+ServicioEtapa -> ServicioNotificaciones : enviarNotificacion(responsable, mensaje)
+activate ServicioNotificaciones
+note right: Se notifica al usuario responsable afectado\npor la modificación de la etapa.
+ServicioNotificaciones --> ServicioEtapa : confirmacionEnvio()
+destroy ServicioNotificaciones
+
+== Confirmación ==
+ServicioEtapa --> PantallaProyecto : actualizarListaEtapas()
+PantallaProyecto --> Coordinador : mostrarConfirmacion()
+note right: Se actualiza la lista y se confirma\nla acción al coordinador.
+
+deactivate ServicioEtapa
+deactivate PantallaProyecto
+@enduml
