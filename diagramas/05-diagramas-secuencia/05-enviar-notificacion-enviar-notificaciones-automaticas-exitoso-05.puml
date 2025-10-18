@@ -1,0 +1,41 @@
+@startuml
+title Diagrama de Secuencia - Enviar Notificaciones Automáticas (Exitoso)
+
+actor ResponsableEtapa
+participant "Sistema:GestorNotificaciones" as Sistema
+participant "ServicioNotificaciones:notificador" as ServicioNotificaciones
+participant "Usuario:destinatario" as Destinatario
+participant "SistemaIntegracion:registroExterno" as SistemaIntegracion
+
+'--- Inicio del flujo ---
+ResponsableEtapa -> Sistema: generarEventoNotificable(tipoEvento, datosEvento)
+activate Sistema
+
+Sistema -> Sistema: identificarDestinatarios(idProyecto, tipoEvento)
+Sistema -> Sistema: determinarCanalNotificacion(listaDestinatarios)
+Sistema -> Sistema: componerMensajes(listaDestinatarios, datosProyecto)
+
+Sistema -> ServicioNotificaciones: enviarNotificaciones(listaMensajes)
+activate ServicioNotificaciones
+
+ServicioNotificaciones -> Destinatario: enviarMensaje(canal, contenido)
+activate Destinatario
+Destinatario --> ServicioNotificaciones: confirmarRecepcion()
+deactivate Destinatario
+
+ServicioNotificaciones --> Sistema: devolverResultadoEnvio(resultado)
+Sistema -> SistemaIntegracion: registrarResultadoEnvio(resultado)
+activate SistemaIntegracion
+SistemaIntegracion --> Sistema: confirmacionRegistro()
+deactivate SistemaIntegracion
+
+Sistema -> Sistema: registrarHistorialNotificaciones(evento, destinatarios, canal, fechaHora, estadoEnvio)
+Sistema --> ResponsableEtapa: mostrarConfirmacionEnvio("Notificaciones enviadas correctamente")
+
+deactivate ServicioNotificaciones
+deactivate Sistema
+
+'--- Finalización de objeto temporal ---
+destroy ServicioNotificaciones
+
+@enduml
