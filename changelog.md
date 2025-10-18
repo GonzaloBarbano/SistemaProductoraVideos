@@ -7,6 +7,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ## [Unreleased]
 
 ### Added
+- [feature/esp-secuencia-add-diagrama-secuencia-1] Creación de los diagramas de secuencia 
+  PR: [#46](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/46) - @Santi22-7
+  (Especialista en Diagramas de Secuencia)
+
 
 ### Changed
 
