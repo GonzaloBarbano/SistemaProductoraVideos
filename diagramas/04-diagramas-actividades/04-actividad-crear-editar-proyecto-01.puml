@@ -1,0 +1,40 @@
+@startuml
+title Diagrama de Actividades - Crear/Editar Proyecto (UC1)
+|Coordinador/Productor|
+start
+:Seleccionar opción "Nuevo Proyecto" o "Editar Proyecto";
+:Completar formulario con datos del proyecto;
+:Enviar formulario al sistema;
+
+|Sistema de Gestión|
+:Recibir datos del formulario;
+:Validar campos obligatorios;
+if (¿Campos completos?) then (Sí)
+    :Validar formato de fechas;
+    if (¿Fechas válidas?) then (Sí)
+        :Verificar duplicado de nombre del proyecto;
+        if (¿Nombre duplicado?) then (No)
+            :Guardar proyecto en base de datos;
+            :Registrar auditoría de creación/edición;
+            :Generar evento de notificación;
+            |Servicio de Notificaciones|
+            :Componer mensaje con datos del proyecto;
+            :Enviar notificación a destinatarios;
+            :Registrar resultado del envío;
+            |Sistema de Gestión|
+            :Registrar envío en historial de notificaciones;
+            :Mostrar mensaje de confirmación;
+        else (Sí)
+            :Mostrar mensaje de error "Proyecto duplicado";
+        endif
+    else (No)
+        :Mostrar error "Fechas inválidas";
+    endif
+else (No)
+    :Mostrar error "Campos obligatorios faltantes";
+endif
+
+|Coordinador/Productor|
+:Revisar confirmación o errores;
+stop
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+title Diagrama de Actividades - Gestionar Etapas (UC2)
+
+|Coordinador/Productor|
+start
+:Seleccionar proyecto y etapa a gestionar;
+:Crear o editar una etapa (nombre, fechas, responsable);
+:Guardar cambios o crear nueva etapa;
+:Confirmar operación;
+
+|Sistema de Gestión|
+:Recibir solicitud de creación/edición;
+:Validar datos de la etapa (campos, fechas, responsable);
+if (¿Validación correcta?) then (Sí)
+    :Actualizar o registrar la etapa en la base de datos;
+    :Registrar auditoría (quién, cuándo, qué etapa);
+    :Mostrar confirmación de operación;
+else (No)
+    :Mostrar errores de validación;
+endif
+
+|Responsable de Etapa|
+:Ingresar a la etapa asignada;
+:Modificar estado (En curso / Finalizada);
+:Agregar observaciones o comentarios;
+:Adjuntar materiales o links relevantes;
+if (¿Detecta posible retraso?) then (Sí)
+    :Registrar alerta de retraso;
+else (No)
+    :Continuar flujo normal;
+endif
+
+|Sistema de Gestión|
+:Actualizar registros de etapa y observaciones;
+:Generar evento de notificación;
+
+|Servicio de Notificaciones|
+:Identificar destinatarios según tipo de evento;
+:Componer y enviar notificación (correo, app, etc.);
+:Registrar resultado del envío;
+
+|Sistema de Gestión|
+:Registrar notificación en historial;
+:Mostrar mensaje de confirmación general;
+
+|Coordinador/Productor|
+:Verificar actualizaciones y estado final de la etapa;
+stop
+@enduml
