@@ -1,0 +1,40 @@
+@startuml
+title Diagrama de Secuencia - Cambiar Estado de Etapa (Exitoso)
+
+actor ResponsableEtapa
+participant "PantallaEtapa:detalleEtapa" as PantallaEtapa
+participant "Sistema:GestorEtapa" as Sistema
+participant "ServicioNotificaciones:notificador" as ServicioNotificaciones
+
+'--- Inicio del flujo ---
+ResponsableEtapa -> PantallaEtapa: abrirDetalleEtapa(idEtapa)
+activate PantallaEtapa
+
+PantallaEtapa -> Sistema: obtenerEstadoActual(idEtapa)
+activate Sistema
+Sistema --> PantallaEtapa: mostrarEstadoYOpciones(estadoActual, opciones)
+deactivate Sistema
+
+ResponsableEtapa -> PantallaEtapa: seleccionarNuevoEstado(estadoNuevo)
+PantallaEtapa -> Sistema: validarReglasCambioEstado(idEtapa, estadoNuevo)
+activate Sistema
+
+Sistema -> Sistema: Validaciones de reglas de Negocio()
+Sistema -> Sistema: actualizarEstadoEtapa(idEtapa, estadoNuevo)
+Sistema -> Sistema: registrarCambioHistorial(idEtapa, estadoAnterior, estadoNuevo, fechaHora)
+
+Sistema -> ServicioNotificaciones: enviarNotificacionCambioEstado(idCoordinador, mensaje)
+activate ServicioNotificaciones
+ServicioNotificaciones --> Sistema: notificacionEnviada()
+deactivate ServicioNotificaciones
+
+Sistema --> PantallaEtapa: mostrarConfirmacionCambio("Estado de la etapa actualizado con éxito")
+PantallaEtapa --> ResponsableEtapa: mostrarMensajeConfirmacion(mensajeConfirmacion)
+
+deactivate Sistema
+deactivate PantallaEtapa
+
+'--- Finalización de objeto temporal ---
+destroy ServicioNotificaciones
+
+@enduml
