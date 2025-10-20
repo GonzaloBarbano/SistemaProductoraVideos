@@ -1,0 +1,53 @@
+@startuml
+title Diagrama de Actividades - Cambiar Estado de Etapa (UC4)
+|Responsable de Etapa|
+start
+:Seleccionar etapa a modificar;
+:Solicitar cambio de estado (p. ej. Pendiente → En curso → Finalizada);
+:Agregar observaciones (opcional);
+|Sistema de Gestión|
+:Recibir solicitud de cambio;
+:Validar reglas de negocio (permisos, precondiciones);
+if (Precondiciones ok?) then (no)
+  :Rechazar cambio y devolver motivo;
+  |Responsable de Etapa|
+  :Recibir motivo y actuar;
+  stop
+else (sí)
+  :Evaluar impacto en cronograma;
+  if (Cambio indica posible retraso?) then (sí)
+    |Sistema de Gestión|
+    :Generar alerta de posible retraso;
+    |Servicio de Notificaciones|
+    :Enviar aviso de posible retraso a Coordinador y Equipo;
+    |Coordinador/Productor|
+    :Revisar alerta y decidir acción (reasignar/recursos);
+  else (no)
+    :Continuar sin alerta;
+  endif
+  |Sistema de Gestión|
+  :Registrar observaciones y adjuntar links (si los hay);
+  :Registrar auditoría del cambio;
+  :Actualizar estado de la etapa;
+  fork
+    |Responsable de Etapa|
+    :Subir adjuntos / evidencias (si corresponde);
+  fork again
+    |Servicio de Notificaciones|
+    :Enviar notificaciones según configuración (cambio de estado);
+  fork again
+    |Asistente de Producción|
+    :Actualizar documentación y logística asociada;
+  end fork
+  |Sistema de Gestión|
+  :Registrar resultado de envíos (éxitos/fallos);
+  if (Hubo fallos en envíos?) then (sí)
+    :Notificar Admin sobre fallos masivos;
+    |Coordinador/Productor|
+    :Tomar medida correctiva;
+  else (no)
+    :Confirmar cambio y finalizar flujo;
+  endif
+  stop
+endif
+@enduml
