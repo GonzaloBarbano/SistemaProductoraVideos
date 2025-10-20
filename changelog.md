@@ -8,6 +8,14 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+### Changed
+
+### Fixed
+
+---
+
+## [Release Actividad Obligatoria N°3] - 2025-10-20
+
 - [feature/esp-secuencia-add-diagrama-secuencia-1] Creación de los diagramas de secuencia
   PR: [#46](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/46) - @Santi22-7
   (Especialista en Diagramas de Secuencia)
@@ -23,10 +31,6 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/doc-coor-repo] Actualizacion de estructura de repositorio
   PR: [#41](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/41) - @GonzaloBarbano
   (Documentador y coordinador de repositorio)
-
-### Changed
-
-### Fixed
 
 ---
 
