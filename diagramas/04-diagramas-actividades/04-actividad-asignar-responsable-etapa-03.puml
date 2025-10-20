@@ -1,65 +1,71 @@
 @startuml
-title Diagrama de Actividades - Asignar Responsable a Etapa (UC3)
+title Diagrama de Actividades - Asignar Responsable a Etapa
 |Coordinador/Productor|
 start
 :Iniciar flujo "Asignar Responsable";
 :Seleccionar proyecto y etapa;
 :Elegir posible responsable;
 :Solicitar validación de responsable;
+
 |Sistema de Gestión|
 :Recibir solicitud de validación;
 :Verificar existencia del usuario;
+
 if (Usuario existe?) then (no)
   :Informar error "Usuario no encontrado";
   |Coordinador/Productor|
-  :Mostrar error y terminar;
-  stop
+  :Mostrar error;
+  end
 else (sí)
   :Verificar rol permitido para la etapa;
   if (Rol válido?) then (no)
     :Informar error "Rol no permitido";
     |Coordinador/Productor|
-    :Mostrar error y terminar;
-    stop
+    :Mostrar error;
+    end
   else (sí)
-    :Verificar estado de usuario (activo/inactivo);
+    :Verificar estado de usuario;
     if (Usuario activo?) then (no)
       :Informar error "Usuario inactivo";
       |Coordinador/Productor|
-      :Mostrar error y terminar;
-      stop
+      :Mostrar error;
+      end
     else (sí)
-      :Determinar si es reasignación (etapa ya tenía responsable);
+      :Determinar si es reasignación;
       if (Es reasignación?) then (sí)
         |Coordinador/Productor|
-        :Solicitar confirmación y autorización (Productor/Admin);
+        :Solicitar confirmación y autorización;
         |Sistema de Gestión|
         :Validar permisos de actor;
         if (Permisos ok?) then (no)
           :Solicitar aprobación de administrador;
           |Coordinador/Productor|
           :Esperar aprobación;
-          stop
+          end
         else (sí)
           :Proceder con reasignación;
         endif
       else (no)
         :Proceder con asignación inicial;
       endif
+
       |Sistema de Gestión|
       :Asignar responsable a la etapa;
       :Registrar auditoría de asignación;
+
       |Servicio de Notificaciones|
-      :Generar notificación de asignación;
       fork
         :Enviar notificación al nuevo responsable;
       fork again
         :Registrar envío en historial;
       end fork
+
       |Responsable de Etapa|
       :Confirmar recepción de la asignación;
-      stop
     endif
   endif
 endif
+
+|Coordinador/Productor|
+stop
 @enduml

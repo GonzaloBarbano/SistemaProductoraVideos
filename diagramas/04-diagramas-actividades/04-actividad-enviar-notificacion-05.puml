@@ -1,55 +1,57 @@
 @startuml
-title Diagrama de Actividades - Enviar Notificaciones Automáticas (UC5)
-
+title Diagrama de Actividades - Enviar Notificaciones Automáticas 
 |Sistema de Gestión|
 start
-:Detectar evento activador (p. ej. cambio estado, asignación, alerta de retraso);
-:Crear contexto de notificación (evento, proyecto, etapa);
+:Detectar evento activador;
+:Crear contexto de notificación;
 :Solicitar identificación de destinatarios;
 
 |Coordinador/Productor|
-:Incluir destinatarios manuales (opcional);
+:Agregar destinatarios manuales (opcional);
 
 |Responsable de Etapa|
 :Confirmar destinatarios sugeridos (opcional);
 
 |Sistema de Gestión|
 :Compilar lista final de destinatarios;
-:Consultar preferencias de comunicación por destinatario;
+:Consultar preferencias de comunicación;
 
-if (¿Hay destinatarios?) then (No)
+if (Hay destinatarios?) then (no)
   :Abortar notificación y registrar motivo;
-  stop
-else (Sí)
-  :Determinar canal preferido por destinatario (email, whatsapp, push);
+  end
+else (sí)
+  :Determinar canal preferido (Email, WhatsApp, Push);
+
+  partition "Canal: Email / WhatsApp / Push" {
+    :Componer mensaje (plantilla + datos);
+    fork
+      :Intentar envío por canal;
+    fork again
+      :Registrar intento en historial;
+    end fork
+
+    if (Envío exitoso?) then (sí)
+      :Marcar envío como exitoso;
+    else (no)
+      :Reintentar según política;
+      if (Superó reintentos?) then (sí)
+        :Marcar envío como fallido;
+        :Notificar Admin;
+      else (no)
+        :Reintentar envío;
+      endif
+    endif
+  }
+
+  |Servicio de Notificaciones|
+  :Consolidar resultados de envíos;
+  :Enviar resumen al Sistema de Gestión;
+
+  |Sistema de Gestión|
+  :Registrar en historial;
+  :Si hay fallas críticas -> generar alerta;
 endif
 
-partition "Canal: Email / WhatsApp / Push" {
-  :Componer mensaje (plantilla + datos del evento);
-  fork
-    :Intentar envío por canal seleccionado;
-  fork again
-    :Registrar intento en historial;
-  end fork
-
-  if (¿Envío exitoso?) then (Sí)
-    :Marcar envío como exitoso;
-  else (No)
-    :Reintentar según política (n veces);
-    if (¿Superó reintentos?) then (Sí)
-      :Marcar envío como fallido y notificar Admin;
-    else (No)
-      :Reintentar envío;
-    endif
-  endif
-}
-
-|Servicio de Notificaciones|
-:Consolidar resultados de envíos;
-:Enviar resumen al Sistema de Gestión;
-
 |Sistema de Gestión|
-:Registrar en historial de notificaciones;
-:Si fallas críticas -> generar alerta operativa;
 stop
 @enduml

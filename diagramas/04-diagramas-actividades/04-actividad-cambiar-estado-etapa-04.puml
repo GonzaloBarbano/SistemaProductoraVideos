@@ -1,53 +1,60 @@
 @startuml
-title Diagrama de Actividades - Cambiar Estado de Etapa (UC4)
+title Diagrama de Actividades - Cambiar Estado de Etapa 
 |Responsable de Etapa|
 start
 :Seleccionar etapa a modificar;
-:Solicitar cambio de estado (p. ej. Pendiente → En curso → Finalizada);
+:Solicitar cambio de estado;
 :Agregar observaciones (opcional);
+
 |Sistema de Gestión|
 :Recibir solicitud de cambio;
-:Validar reglas de negocio (permisos, precondiciones);
+:Validar reglas de negocio;
+
 if (Precondiciones ok?) then (no)
   :Rechazar cambio y devolver motivo;
   |Responsable de Etapa|
-  :Recibir motivo y actuar;
-  stop
+  :Recibir motivo;
+  end
 else (sí)
   :Evaluar impacto en cronograma;
   if (Cambio indica posible retraso?) then (sí)
-    |Sistema de Gestión|
     :Generar alerta de posible retraso;
     |Servicio de Notificaciones|
-    :Enviar aviso de posible retraso a Coordinador y Equipo;
+    :Enviar aviso a Coordinador y Equipo;
     |Coordinador/Productor|
-    :Revisar alerta y decidir acción (reasignar/recursos);
+    :Revisar alerta y decidir acción;
   else (no)
     :Continuar sin alerta;
   endif
+
   |Sistema de Gestión|
-  :Registrar observaciones y adjuntar links (si los hay);
+  :Registrar observaciones y adjuntos;
   :Registrar auditoría del cambio;
   :Actualizar estado de la etapa;
+
   fork
     |Responsable de Etapa|
-    :Subir adjuntos / evidencias (si corresponde);
+    :Subir adjuntos o evidencias;
   fork again
     |Servicio de Notificaciones|
-    :Enviar notificaciones según configuración (cambio de estado);
+    :Enviar notificación de cambio de estado;
   fork again
     |Asistente de Producción|
-    :Actualizar documentación y logística asociada;
+    :Actualizar documentación y logística;
   end fork
+
   |Sistema de Gestión|
-  :Registrar resultado de envíos (éxitos/fallos);
-  if (Hubo fallos en envíos?) then (sí)
+  :Registrar resultados de envío;
+
+  if (Hubo fallos?) then (sí)
     :Notificar Admin sobre fallos masivos;
     |Coordinador/Productor|
-    :Tomar medida correctiva;
+    :Tomar medidas correctivas;
   else (no)
-    :Confirmar cambio y finalizar flujo;
+    :Confirmar cambio exitoso;
   endif
-  stop
 endif
+
+|Responsable de Etapa|
+stop
 @enduml
