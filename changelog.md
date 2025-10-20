@@ -11,6 +11,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#46](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/46) - @Santi22-7
   (Especialista en Diagramas de Secuencia)
 
+- [feature/esp-actividades-1-2-add-diagrama-actividad-1] Creación de los diagramas de Actividades 1 y 2 
+  PR: [#49](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/49) - @Santi22-7
+  (Especialista en Diagramas de Actividades - Casos de Uso 1 y 2)
 
 ### Changed
 
