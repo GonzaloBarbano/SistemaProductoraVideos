@@ -7,20 +7,28 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ## [Unreleased]
 
 ### Added
-- [feature/esp-secuencia-add-diagrama-secuencia-1] Creación de los diagramas de secuencia 
+
+- [feature/esp-secuencia-add-diagrama-secuencia-1] Creación de los diagramas de secuencia
   PR: [#46](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/46) - @Santi22-7
   (Especialista en Diagramas de Secuencia)
 
-- [feature/esp-actividades-1-2-add-diagrama-actividad-1] Creación de los diagramas de Actividades 1 y 2 
+- [feature/esp-actividades-1-2-add-diagrama-actividad-1] Creación de los diagramas de Actividades 1 y 2
   PR: [#49](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/49) - @Santi22-7
   (Especialista en Diagramas de Actividades - Casos de Uso 1 y 2)
+
+- [feature/esp-actividades-3-4-5-add-diagrama-actividad3] Creación de los diagramas de Actividades 3, 4 y 5
+  PR: [#52](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/52) - @GonzaloBarbano
+  (Especialista en Diagramas de Actividades - Casos de Uso 3, 4 y 5)
+
+- [feature/doc-coor-repo] Actualizacion de estructura de repositorio
+  PR: [#41](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/41) - @GonzaloBarbano
+  (Documentador y coordinador de repositorio)
 
 ### Changed
 
 ### Fixed
 
 ---
-
 
 ## [Release Parcial N°1] - 2025-10-01
 
@@ -43,7 +51,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/esp-srp-add-anexo-srp] Actualizacion link de anexo.md
   PR: [#33](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/33) - @GonzaloBarbano
   (Documentador y Coordinador de Repositorio + SRP)
+
 ---
+
 ## [Release Actividad Obligatoria N°2] - 2025-09-22
 
 - [feature/diseniador-tarjetas-crc] Creacion de tarjetas CRC  
@@ -58,8 +68,6 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#25](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/25) - @Santi22-7 (Diseñador de escenarios de Casos de Uso)
 
 ---
-
-
 
 ## Cómo usar este archivo
 
