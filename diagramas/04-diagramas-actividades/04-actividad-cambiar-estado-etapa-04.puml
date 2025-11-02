@@ -1,5 +1,6 @@
 @startuml
-title Diagrama de Actividades - Cambiar Estado de Etapa 
+title Diagrama de Actividades – Cambiar Estado de Etapa
+
 |Responsable de Etapa|
 start
 :Seleccionar etapa a modificar;
@@ -9,52 +10,53 @@ start
 |Sistema de Gestión|
 :Recibir solicitud de cambio;
 :Validar reglas de negocio;
+note right
+Las reglas de negocio incluyen:
+- Validar que el usuario tenga permisos para el cambio.
+- Comprobar que el estado solicitado sea coherente
+  con el flujo de trabajo definido.
+- Confirmar que no existan tareas pendientes
+  o bloqueos asociados.
+end note
 
 if (Precondiciones ok?) then (no)
   :Rechazar cambio y devolver motivo;
   |Responsable de Etapa|
-  :Recibir motivo;
+  :Recibir motivo de rechazo;
   end
 else (sí)
   :Evaluar impacto en cronograma;
-  if (Cambio indica posible retraso?) then (sí)
-    :Generar alerta de posible retraso;
-    |Servicio de Notificaciones|
-    :Enviar aviso a Coordinador y Equipo;
-    |Coordinador/Productor|
-    :Revisar alerta y decidir acción;
-  else (no)
-    :Continuar sin alerta;
-  endif
-
-  |Sistema de Gestión|
-  :Registrar observaciones y adjuntos;
-  :Registrar auditoría del cambio;
-  :Actualizar estado de la etapa;
-
-  fork
-    |Responsable de Etapa|
-    :Subir adjuntos o evidencias;
-  fork again
-    |Servicio de Notificaciones|
-    :Enviar notificación de cambio de estado;
-  fork again
-    |Asistente de Producción|
-    :Actualizar documentación y logística;
-  end fork
-
-  |Sistema de Gestión|
-  :Registrar resultados de envío;
-
-  if (Hubo fallos?) then (sí)
-    :Notificar Admin sobre fallos masivos;
-    |Coordinador/Productor|
-    :Tomar medidas correctivas;
-  else (no)
-    :Confirmar cambio exitoso;
-  endif
+  note right
+  La evaluación del impacto se realiza automáticamente
+  por el Sistema de Gestión a partir de dependencias
+  y fechas previstas.
+  end note
 endif
 
+if (Cambio indica posible retraso?) then (sí)
+  :Generar alerta de posible retraso;
+  :Preparar aviso para Coordinador y Equipo;
+  |Sistema de Gestión|
+  :Derivar aviso al Servicio de Notificaciones;
+  |Servicio de Notificaciones|
+  :Enviar aviso a Coordinador y Equipo;
+  |Coordinador/Productor|
+  :Revisar alerta y decidir acción;
+else (no)
+  :Continuar sin alerta;
+endif
+
+|Sistema de Gestión|
+fork
+  :Registrar observaciones y adjuntos;
+fork again
+  :Registrar auditoría del cambio;
+fork again
+  :Actualizar estado de la etapa;
+end fork
+
+:Confirmar actualización exitosa;
 |Responsable de Etapa|
+:Recibir confirmación del cambio;
 stop
 @enduml

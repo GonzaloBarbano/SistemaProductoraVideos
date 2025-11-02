@@ -1,57 +1,63 @@
 @startuml
-title Diagrama de Actividades - Enviar Notificaciones Automáticas 
-|Sistema de Gestión|
+title Diagrama de Actividades - UC5: Enviar Notificación
+
+|Responsable de Etapa|
 start
-:Detectar evento activador;
-:Crear contexto de notificación;
+:Identificar necesidad de notificación;
 :Solicitar identificación de destinatarios;
 
 |Coordinador/Productor|
-:Agregar destinatarios manuales (opcional);
+:Add destinatarios manuales;
+note right
+Esta actividad es opcional. Se pueden añadir destinatarios adicionales
+según criterio del Coordinador o Productor.
+end note
 
 |Responsable de Etapa|
-:Confirmar destinatarios sugeridos (opcional);
+:Confirmar destinatarios sugeridos;
+note right
+Actividad opcional. El Responsable puede aprobar o modificar la lista de destinatarios sugeridos.
+end note
 
 |Sistema de Gestión|
-:Compilar lista final de destinatarios;
-:Consultar preferencias de comunicación;
-
-if (Hay destinatarios?) then (no)
-  :Abortar notificación y registrar motivo;
-  end
+:Validar existencia y estado de destinatarios;
+if (Validación exitosa?) then (no)
+  :Abortar notificación;
+  :Registrar motivo de rechazo;
+  stop
 else (sí)
-  :Determinar canal preferido (Email, WhatsApp, Push);
+  :Determinar canal preferido;
+  note right
+Los canales disponibles son: Email, WhatsApp o Push.  
+El sistema selecciona el canal según las preferencias del destinatario.
+end note
 
   partition "Canal: Email / WhatsApp / Push" {
-    :Componer mensaje (plantilla + datos);
-    fork
-      :Intentar envío por canal;
-    fork again
-      :Registrar intento en historial;
-    end fork
+    :Componer mensaje;
+    note right
+Se utiliza una plantilla predefinida combinada con los datos dinámicos.
+end note
 
-    if (Envío exitoso?) then (sí)
-      :Marcar envío como exitoso;
-    else (no)
-      :Reintentar según política;
-      if (Superó reintentos?) then (sí)
-        :Marcar envío como fallido;
-        :Notificar Admin;
+    repeat
+      :Intentar envío;
+      if (¿Envío exitoso?) then (sí)
+        break
       else (no)
-        :Reintentar envío;
+        :Reintentar envío según política del sistema;
+        note right
+La política define el número máximo de reintentos y el tiempo entre intentos.
+end note
       endif
-    endif
+    repeat while (Intentos < Límite)
   }
 
-  |Servicio de Notificaciones|
-  :Consolidar resultados de envíos;
-  :Enviar resumen al Sistema de Gestión;
-
   |Sistema de Gestión|
-  :Registrar en historial;
-  :Si hay fallas críticas -> generar alerta;
+  if (¿Fallas críticas detectadas?) then (sí)
+    :Generar alerta para revisión manual;
+  else (no)
+    :Registrar notificación en historial;
+  endif
 endif
 
-|Sistema de Gestión|
 stop
 @enduml

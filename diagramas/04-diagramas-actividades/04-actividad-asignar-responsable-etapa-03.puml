@@ -1,7 +1,8 @@
 @startuml
-title Diagrama de Actividades - Asignar Responsable a Etapa
+title Diagrama de Actividades – Asignar Responsable a Etapa
 |Coordinador/Productor|
 start
+
 :Iniciar flujo "Asignar Responsable";
 :Seleccionar proyecto y etapa;
 :Elegir posible responsable;
@@ -18,54 +19,36 @@ if (Usuario existe?) then (no)
   end
 else (sí)
   :Verificar rol permitido para la etapa;
-  if (Rol válido?) then (no)
-    :Informar error "Rol no permitido";
-    |Coordinador/Productor|
-    :Mostrar error;
-    end
-  else (sí)
-    :Verificar estado de usuario;
-    if (Usuario activo?) then (no)
-      :Informar error "Usuario inactivo";
-      |Coordinador/Productor|
-      :Mostrar error;
-      end
-    else (sí)
-      :Determinar si es reasignación;
-      if (Es reasignación?) then (sí)
-        |Coordinador/Productor|
-        :Solicitar confirmación y autorización;
-        |Sistema de Gestión|
-        :Validar permisos de actor;
-        if (Permisos ok?) then (no)
-          :Solicitar aprobación de administrador;
-          |Coordinador/Productor|
-          :Esperar aprobación;
-          end
-        else (sí)
-          :Proceder con reasignación;
-        endif
-      else (no)
-        :Proceder con asignación inicial;
-      endif
+endif
 
-      |Sistema de Gestión|
-      :Asignar responsable a la etapa;
-      :Registrar auditoría de asignación;
+if (Rol válido?) then (no)
+  :Informar error "Rol no permitido";
+  |Coordinador/Productor|
+  :Mostrar error;
+  end
+else (sí)
+  :Verificar estado del usuario;
+endif
 
-      |Servicio de Notificaciones|
-      fork
-        :Enviar notificación al nuevo responsable;
-      fork again
-        :Registrar envío en historial;
-      end fork
+if (Usuario activo?) then (no)
+  :Informar error "Usuario inactivo";
+  |Coordinador/Productor|
+  :Mostrar error;
+  end
+else (sí)
+  :Determinar si es reasignación;
+endif
 
-      |Responsable de Etapa|
-      :Confirmar recepción de la asignación;
-    endif
-  endif
+|Sistema de Gestión|
+if (Es reasignación?) then (sí)
+  :Actualizar responsable en etapa;
+  :Registrar historial de reasignación;
+else (no)
+  :Asignar responsable a etapa;
 endif
 
 |Coordinador/Productor|
+:Recibir confirmación de asignación exitosa;
+:Finalizar proceso;
 stop
 @enduml
