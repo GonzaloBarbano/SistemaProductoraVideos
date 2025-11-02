@@ -2,39 +2,39 @@
 title Diagrama de Secuencia - Cambiar Estado de Etapa (Exitoso)
 
 actor ResponsableEtapa
-participant "PantallaEtapa:detalleEtapa" as PantallaEtapa
-participant "Sistema:GestorEtapa" as Sistema
-participant "ServicioNotificaciones:notificador" as ServicioNotificaciones
+participant "PantallaEtapa : detalleEtapa" as PantallaEtapa
+participant "Sistema : GestorEtapa" as Sistema
+participant "ServicioNotificaciones : notificador" as ServicioNotificaciones
 
 '--- Inicio del flujo ---
-ResponsableEtapa -> PantallaEtapa: abrirDetalleEtapa(idEtapa)
+ResponsableEtapa -> PantallaEtapa : abrir detalle de la etapa
 activate PantallaEtapa
 
-PantallaEtapa -> Sistema: obtenerEstadoActual(idEtapa)
+PantallaEtapa -> Sistema : obtener estado actual de la etapa
 activate Sistema
-Sistema --> PantallaEtapa: mostrarEstadoYOpciones(estadoActual, opciones)
+Sistema -> PantallaEtapa : mostrar estado y opciones
 deactivate Sistema
 
-ResponsableEtapa -> PantallaEtapa: seleccionarNuevoEstado(estadoNuevo)
-PantallaEtapa -> Sistema: validarReglasCambioEstado(idEtapa, estadoNuevo)
+ResponsableEtapa -> PantallaEtapa : seleccionar nuevo estado
+PantallaEtapa -> Sistema : validar reglas de negocio del cambio
 activate Sistema
 
-Sistema -> Sistema: Validaciones de reglas de Negocio()
-Sistema -> Sistema: actualizarEstadoEtapa(idEtapa, estadoNuevo)
-Sistema -> Sistema: registrarCambioHistorial(idEtapa, estadoAnterior, estadoNuevo, fechaHora)
+Sistema -> Sistema : verificar condiciones del cambio de estado
+Sistema -> Sistema : actualizar estado de la etapa
+Sistema -> Sistema : registrar cambio en historial
 
-Sistema -> ServicioNotificaciones: enviarNotificacionCambioEstado(idCoordinador, mensaje)
+Sistema -> ServicioNotificaciones : enviar notificación al coordinador
 activate ServicioNotificaciones
-ServicioNotificaciones --> Sistema: notificacionEnviada()
+ServicioNotificaciones -> Sistema : confirmar notificación enviada
 deactivate ServicioNotificaciones
 
-Sistema --> PantallaEtapa: mostrarConfirmacionCambio("Estado de la etapa actualizado con éxito")
-PantallaEtapa --> ResponsableEtapa: mostrarMensajeConfirmacion(mensajeConfirmacion)
+Sistema -> PantallaEtapa : mostrar confirmación del cambio
+PantallaEtapa -> ResponsableEtapa : mostrar mensaje de confirmación
 
 deactivate Sistema
 deactivate PantallaEtapa
 
-'--- Finalización de objeto temporal ---
 destroy ServicioNotificaciones
 
 @enduml
+
