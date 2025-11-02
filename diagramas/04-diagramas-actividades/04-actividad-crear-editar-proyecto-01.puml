@@ -1,5 +1,6 @@
 @startuml
 title Diagrama de Actividades - Crear/Editar Proyecto (UC1)
+
 |Coordinador/Productor|
 start
 :Seleccionar opción "Nuevo Proyecto" o "Editar Proyecto";
@@ -9,32 +10,65 @@ start
 |Sistema de Gestión|
 :Recibir datos del formulario;
 :Validar campos obligatorios;
+note right
+Se verifica que el formulario incluya todos los campos requeridos:
+nombre, fechas, descripción y responsable.
+end note
+
 if (¿Campos completos?) then (Sí)
     :Validar formato de fechas;
+    note right
+    Esta validación no es iterativa; si falla, el flujo termina
+    y el usuario debe reenviar el formulario corregido.
+    end note
+
     if (¿Fechas válidas?) then (Sí)
         :Verificar duplicado de nombre del proyecto;
+        note right
+        No se repite automáticamente; si hay conflicto,
+        se muestra error al usuario.
+        end note
+
         if (¿Nombre duplicado?) then (No)
-            :Guardar proyecto en base de datos;
-            :Registrar auditoría de creación/edición;
+            fork
+                :Guardar proyecto en base de datos;
+            fork again
+                :Registrar auditoría de creación/edición;
+            end fork
             :Generar evento de notificación;
+
             |Servicio de Notificaciones|
             :Componer mensaje con datos del proyecto;
             :Enviar notificación a destinatarios;
             :Registrar resultado del envío;
+
             |Sistema de Gestión|
             :Registrar envío en historial de notificaciones;
             :Mostrar mensaje de confirmación;
+
         else (Sí)
             :Mostrar mensaje de error "Proyecto duplicado";
+            note right
+            El Coordinador/Productor recibe este mensaje en la interfaz.
+            end note
         endif
+
     else (No)
         :Mostrar error "Fechas inválidas";
+        note right
+        El Coordinador/Productor recibe el mensaje indicando el error en las fechas.
+        end note
     endif
+
 else (No)
     :Mostrar error "Campos obligatorios faltantes";
+    note right
+    El Coordinador/Productor ve un mensaje indicando los campos faltantes.
+    end note
 endif
 
 |Coordinador/Productor|
 :Revisar confirmación o errores;
 stop
 @enduml
+
