@@ -8,64 +8,69 @@ start
 :Enviar formulario al sistema;
 
 |Sistema de Gestión|
-:Recibir datos del formulario;
-:Validar campos obligatorios;
-note right
-Se verifica que el formulario incluya todos los campos requeridos:
-nombre, fechas, descripción y responsable.
-end note
+repeat
+    :Recibir datos del formulario;
+    :Validar campos obligatorios;
+    note right
+    Se verifica que el formulario incluya todos los campos requeridos:
+    nombre, fechas, descripción y responsable.
+    Si algún campo falta, se solicita al usuario que corrija.
+    end note
 
-if (¿Campos completos?) then (Sí)
+    if (¿Campos completos?) then (Sí)
+        break
+    else (No)
+        :Mostrar error "Campos obligatorios faltantes";
+        :Solicitar reenvío del formulario corregido;
+    endif
+repeat while (Campos incompletos)
+
+repeat
     :Validar formato de fechas;
     note right
-    Esta validación no es iterativa; si falla, el flujo termina
-    y el usuario debe reenviar el formulario corregido.
+    Esta validación se repite hasta que las fechas ingresadas
+    sean válidas (formato correcto y coherencia lógica).
     end note
 
     if (¿Fechas válidas?) then (Sí)
-        :Verificar duplicado de nombre del proyecto;
-        note right
-        No se repite automáticamente; si hay conflicto,
-        se muestra error al usuario.
-        end note
-
-        if (¿Nombre duplicado?) then (No)
-            fork
-                :Guardar proyecto en base de datos;
-            fork again
-                :Registrar auditoría de creación/edición;
-            end fork
-            :Generar evento de notificación;
-
-            |Servicio de Notificaciones|
-            :Componer mensaje con datos del proyecto;
-            :Enviar notificación a destinatarios;
-            :Registrar resultado del envío;
-
-            |Sistema de Gestión|
-            :Registrar envío en historial de notificaciones;
-            :Mostrar mensaje de confirmación;
-
-        else (Sí)
-            :Mostrar mensaje de error "Proyecto duplicado";
-            note right
-            El Coordinador/Productor recibe este mensaje en la interfaz.
-            end note
-        endif
-
+        break
     else (No)
         :Mostrar error "Fechas inválidas";
-        note right
-        El Coordinador/Productor recibe el mensaje indicando el error en las fechas.
-        end note
+        :Solicitar reenvío del formulario corregido;
     endif
+repeat while (Fechas inválidas)
 
-else (No)
-    :Mostrar error "Campos obligatorios faltantes";
+repeat
+    :Verificar duplicado de nombre del proyecto;
     note right
-    El Coordinador/Productor ve un mensaje indicando los campos faltantes.
+    Se valida que el nombre del proyecto no exista previamente.
+    Si existe, el usuario deberá corregir y reenviar.
     end note
-endif
+
+    if (¿Nombre duplicado?) then (No)
+        break
+    else (Sí)
+        :Mostrar error "Proyecto duplicado";
+        :Solicitar reenvío del formulario corregido;
+    endif
+repeat while (Nombre duplicado)
+
+fork
+    :Guardar proyecto en base de datos;
+fork again
+    :Registrar auditoría de creación/edición;
+end fork
+
+:Generar evento de notificación;
+
+|Servicio de Notificaciones|
+:Componer mensaje con datos del proyecto;
+:Enviar notificación a destinatarios;
+:Registrar resultado del envío;
+
+|Sistema de Gestión|
+:Registrar envío en historial de notificaciones;
+:Mostrar mensaje de confirmación;
 
 |Coordinador/Productor|
 :Revisar confirmación o errores;
