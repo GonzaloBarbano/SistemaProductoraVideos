@@ -1,4 +1,4 @@
-@startuml
+@startuml 
 title Diagrama de Secuencia - Crear Proyecto (Exitoso)
 
 actor Cliente
@@ -9,39 +9,39 @@ participant "RepositorioProyecto : Repositorio" as RepositorioProyecto
 participant "ServicioNotificaciones : Servicio" as ServicioNotificaciones
 
 ' ==== Inicio del escenario ====
-Cliente -> PantallaProyectos : seleccionarOpcion("NuevoProyecto")
+Cliente -> PantallaProyectos : seleccionar opción "Nuevo Proyecto"
 activate PantallaProyectos
 note right of PantallaProyectos
 El cliente accede a la opción "Nuevo Proyecto"
 desde el menú principal.
 end note
 
-PantallaProyectos -> ControladorProyecto : mostrarFormulario()
+PantallaProyectos -> ControladorProyecto : mostrar formulario
 activate ControladorProyecto
-ControladorProyecto -> PantallaProyectos : solicitarDatosProyecto()
+ControladorProyecto -> PantallaProyectos : solicitar datos del proyecto
 deactivate ControladorProyecto
 
 ' ==== Cliente completa el formulario ====
-Cliente -> PantallaProyectos : ingresarDatos(nombre, cliente, fechas, estado, observaciones)
+Cliente -> PantallaProyectos : ingresar datos del proyecto
 note right of PantallaProyectos
 El cliente completa los campos obligatorios
 y presiona "Guardar".
 end note
 
-PantallaProyectos -> ControladorProyecto : enviarFormulario(datosProyecto)
+PantallaProyectos -> ControladorProyecto : enviar datos del proyecto
 activate ControladorProyecto
-ControladorProyecto -> ServicioProyecto : validarProyecto(datosProyecto)
+ControladorProyecto -> ServicioProyecto : validar proyecto
 activate ServicioProyecto
 
 ' ==== Validaciones internas ====
-ServicioProyecto -> ServicioProyecto : validarCamposObligatorios()
-ServicioProyecto -> ServicioProyecto : validarFormatoFechas()
-ServicioProyecto -> ServicioProyecto : verificarDuplicadoNombre()
+ServicioProyecto -> ServicioProyecto : validar campos obligatorios
+ServicioProyecto -> ServicioProyecto : validar formato de fechas
+ServicioProyecto -> ServicioProyecto : verificar si nombre está duplicado
 
-alt [Validación fallida]
-    ServicioProyecto -> ControladorProyecto : devolverErrores(listaErrores)
-    deactivate ServicioProyecto
-    ControladorProyecto -> PantallaProyectos : mostrarErrores(listaErrores)
+' ==== Bloque corregido ====
+alt Validación con errores
+    ServicioProyecto -> ControladorProyecto : devolver lista de errores
+    ControladorProyecto -> PantallaProyectos : mostrar errores de validación
     note left of PantallaProyectos
 El sistema muestra mensajes de error
 en los campos inválidos.
@@ -49,18 +49,18 @@ end note
     deactivate ControladorProyecto
     deactivate PantallaProyectos
 
-else [Validación exitosa]
-    ServicioProyecto -> RepositorioProyecto : guardarProyecto(datosProyecto)
+else Validación exitosa
+    ServicioProyecto -> RepositorioProyecto : guardar proyecto
     activate RepositorioProyecto
     note right of RepositorioProyecto
 El proyecto se guarda en la base de datos.
 end note
-    RepositorioProyecto --> ServicioProyecto : confirmarPersistencia()
+    RepositorioProyecto -> ServicioProyecto : confirmar persistencia
     deactivate RepositorioProyecto
 
-    ServicioProyecto -> RepositorioProyecto : registrarAuditoria(usuario, fechaHora)
+    ServicioProyecto -> RepositorioProyecto : registrar auditoría de creación
     activate RepositorioProyecto
-    RepositorioProyecto --> ServicioProyecto : confirmarAuditoria()
+    RepositorioProyecto -> ServicioProyecto : confirmar auditoría
     deactivate RepositorioProyecto
 
     note right of ServicioProyecto
@@ -68,18 +68,18 @@ Se registra la auditoría del evento:
 usuario, fecha y hora de creación.
 end note
 
-    ServicioProyecto -> ServicioNotificaciones : enviarNotificacion(destinatario, "Proyecto creado exitosamente")
+    ServicioProyecto -> ServicioNotificaciones : enviar notificación "Proyecto creado exitosamente"
     activate ServicioNotificaciones
     note right of ServicioNotificaciones
 Se envía una notificación al cliente
 y al administrador.
 end note
-    ServicioNotificaciones --> ServicioProyecto : confirmacionEnvio()
+    ServicioNotificaciones -> ServicioProyecto : confirmar envío
     deactivate ServicioNotificaciones
 
-    ServicioProyecto -> ControladorProyecto : devolverConfirmacion()
+    ServicioProyecto -> ControladorProyecto : devolver confirmación
     deactivate ServicioProyecto
-    ControladorProyecto -> PantallaProyectos : mostrarDetalleProyecto(proyecto)
+    ControladorProyecto -> PantallaProyectos : mostrar detalle del nuevo proyecto
     note left of PantallaProyectos
 El sistema confirma la creación y
 muestra el detalle del nuevo proyecto.
@@ -88,8 +88,5 @@ end note
     deactivate PantallaProyectos
 end
 
-' ==== Destrucción de objetos temporales (opcional) ====
-destroy ServicioProyecto
-destroy ServicioNotificaciones
-
 @enduml
+

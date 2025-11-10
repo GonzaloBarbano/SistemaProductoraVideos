@@ -1,60 +1,66 @@
 @startuml
-title Diagrama de Actividades - Cambiar Estado de Etapa 
+title Diagrama de Actividades - UC4: Cambiar Estado de Etapa
+
 |Responsable de Etapa|
 start
 :Seleccionar etapa a modificar;
 :Solicitar cambio de estado;
-:Agregar observaciones (opcional);
+:Agregar observaciones;
+note right
+La agregación de observaciones es opcional.
+end note
 
 |Sistema de Gestión|
 :Recibir solicitud de cambio;
 :Validar reglas de negocio;
+note right
+Las reglas de negocio incluyen permisos, 
+precondiciones y estados válidos para el cambio.
+end note
 
-if (Precondiciones ok?) then (no)
+if (¿Precondiciones válidas?) then (no)
   :Rechazar cambio y devolver motivo;
   |Responsable de Etapa|
-  :Recibir motivo;
-  end
+  :Recibir motivo del rechazo;
+  stop
 else (sí)
   :Evaluar impacto en cronograma;
-  if (Cambio indica posible retraso?) then (sí)
+  note right
+  La evaluación del impacto en el cronograma 
+  se realiza **automáticamente** por el Sistema de Gestión.
+  end note
+  
+  if (¿Cambio implica posible retraso?) then (sí)
     :Generar alerta de posible retraso;
     |Servicio de Notificaciones|
-    :Enviar aviso a Coordinador y Equipo;
+    :Enviar aviso de posible retraso a Coordinador y Equipo;
+    note right
+    Este aviso se genera automáticamente 
+    por el Servicio de Notificaciones.
+    end note
     |Coordinador/Productor|
-    :Revisar alerta y decidir acción;
+    :Revisar alerta y decidir acción correctiva;
   else (no)
     :Continuar sin alerta;
   endif
 
   |Sistema de Gestión|
-  :Registrar observaciones y adjuntos;
-  :Registrar auditoría del cambio;
-  :Actualizar estado de la etapa;
-
   fork
-    |Responsable de Etapa|
-    :Subir adjuntos o evidencias;
+    :Registrar observaciones y adjuntos;
   fork again
-    |Servicio de Notificaciones|
-    :Enviar notificación de cambio de estado;
+    :Registrar auditoría del cambio;
   fork again
-    |Asistente de Producción|
-    :Actualizar documentación y logística;
+    :Actualizar estado de la etapa;
   end fork
 
-  |Sistema de Gestión|
-  :Registrar resultados de envío;
-
-  if (Hubo fallos?) then (sí)
-    :Notificar Admin sobre fallos masivos;
+  :Consolidar resultados;
+  if (¿Hubo fallos en envíos o registros?) then (sí)
+    :Notificar al Coordinador/Productor;
     |Coordinador/Productor|
     :Tomar medidas correctivas;
   else (no)
-    :Confirmar cambio exitoso;
+    :Confirmar cambio y cerrar flujo;
   endif
+  stop
 endif
-
-|Responsable de Etapa|
-stop
 @enduml

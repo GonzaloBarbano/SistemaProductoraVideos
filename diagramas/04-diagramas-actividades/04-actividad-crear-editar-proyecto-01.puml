@@ -1,5 +1,6 @@
 @startuml
 title Diagrama de Actividades - Crear/Editar Proyecto (UC1)
+
 |Coordinador/Productor|
 start
 :Seleccionar opción "Nuevo Proyecto" o "Editar Proyecto";
@@ -7,34 +8,72 @@ start
 :Enviar formulario al sistema;
 
 |Sistema de Gestión|
-:Recibir datos del formulario;
-:Validar campos obligatorios;
-if (¿Campos completos?) then (Sí)
+repeat
+    :Recibir datos del formulario;
+    :Validar campos obligatorios;
+    note right
+    Se verifica que el formulario incluya todos los campos requeridos:
+    nombre, fechas, descripción y responsable.
+    Si algún campo falta, se solicita al usuario que corrija.
+    end note
+
+    if (¿Campos completos?) then (Sí)
+        break
+    else (No)
+        :Mostrar error "Campos obligatorios faltantes";
+        :Solicitar reenvío del formulario corregido;
+    endif
+repeat while (Campos incompletos)
+
+repeat
     :Validar formato de fechas;
+    note right
+    Esta validación se repite hasta que las fechas ingresadas
+    sean válidas (formato correcto y coherencia lógica).
+    end note
+
     if (¿Fechas válidas?) then (Sí)
-        :Verificar duplicado de nombre del proyecto;
-        if (¿Nombre duplicado?) then (No)
-            :Guardar proyecto en base de datos;
-            :Registrar auditoría de creación/edición;
-            :Generar evento de notificación;
-            |Servicio de Notificaciones|
-            :Componer mensaje con datos del proyecto;
-            :Enviar notificación a destinatarios;
-            :Registrar resultado del envío;
-            |Sistema de Gestión|
-            :Registrar envío en historial de notificaciones;
-            :Mostrar mensaje de confirmación;
-        else (Sí)
-            :Mostrar mensaje de error "Proyecto duplicado";
-        endif
+        break
     else (No)
         :Mostrar error "Fechas inválidas";
+        :Solicitar reenvío del formulario corregido;
     endif
-else (No)
-    :Mostrar error "Campos obligatorios faltantes";
-endif
+repeat while (Fechas inválidas)
+
+repeat
+    :Verificar duplicado de nombre del proyecto;
+    note right
+    Se valida que el nombre del proyecto no exista previamente.
+    Si existe, el usuario deberá corregir y reenviar.
+    end note
+
+    if (¿Nombre duplicado?) then (No)
+        break
+    else (Sí)
+        :Mostrar error "Proyecto duplicado";
+        :Solicitar reenvío del formulario corregido;
+    endif
+repeat while (Nombre duplicado)
+
+fork
+    :Guardar proyecto en base de datos;
+fork again
+    :Registrar auditoría de creación/edición;
+end fork
+
+:Generar evento de notificación;
+
+|Servicio de Notificaciones|
+:Componer mensaje con datos del proyecto;
+:Enviar notificación a destinatarios;
+:Registrar resultado del envío;
+
+|Sistema de Gestión|
+:Registrar envío en historial de notificaciones;
+:Mostrar mensaje de confirmación;
 
 |Coordinador/Productor|
 :Revisar confirmación o errores;
 stop
 @enduml
+
