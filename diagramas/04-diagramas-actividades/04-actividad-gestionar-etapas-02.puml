@@ -1,0 +1,102 @@
+@startuml
+title Diagrama de Actividades - Gestionar Etapas (UC2)
+
+|Coordinador/Productor|
+start
+:Seleccionar proyecto y etapa a gestionar;
+
+split
+    :Crear etapa;
+    note right
+    Incluye nombre, fechas y responsable.
+    end note
+split again
+    :Editar etapa;
+    note right
+    Permite modificar nombre, fechas y responsable.
+    end note
+end split
+
+split
+    :Guardar cambios;
+split again
+    :Crear nueva etapa;
+end split
+
+:Confirmar operación;
+
+|Sistema de Gestión|
+:Recibir solicitud de creación o edición;
+:Validar datos de la etapa;
+note right
+Se validan campos, fechas y responsable.
+Esta validación no es iterativa; si falla, el flujo finaliza.
+end note
+
+if (¿Validación correcta?) then (Sí)
+    fork
+        :Actualizar la etapa en la base de datos;
+    fork again
+        :Registrar la etapa en la base de datos;
+    end fork
+
+    fork
+        :Registrar auditoría;
+        note right
+        Incluye quién realizó la acción, cuándo y qué etapa fue afectada.
+        end note
+    fork again
+        :Mostrar confirmación de operación;
+        note right
+        El Coordinador/Productor recibe este mensaje en la interfaz.
+        end note
+    end fork
+else (No)
+    :Mostrar errores de validación;
+    note right
+    El Coordinador/Productor recibe el mensaje de error con los detalles.
+    end note
+endif
+
+|Responsable de Etapa|
+:Ingresar a la etapa asignada;
+:Modificar estado;
+note right
+El estado puede ser “En curso” o “Finalizada”.
+end note
+:Agregar observaciones o comentarios;
+:Adjuntar materiales o links relevantes;
+
+if (¿Detecta posible retraso?) then (Sí)
+    :Registrar alerta de retraso;
+else (No)
+    :Continuar flujo normal;
+endif
+
+|Sistema de Gestión|
+fork
+    :Actualizar registros de etapa;
+fork again
+    :Actualizar observaciones;
+end fork
+
+:Generar evento de notificación;
+
+|Servicio de Notificaciones|
+:Identificar destinatarios según tipo de evento;
+:Componer notificación;
+:Enviar notificación;
+note right
+El envío puede realizarse por correo o aplicación.
+end note
+:Registrar resultado del envío;
+
+
+|Sistema de Gestión|
+:Registrar notificación en historial;
+:Mostrar mensaje de confirmación general;
+
+|Coordinador/Productor|
+:Verificar actualizaciones y estado final de la etapa;
+stop
+@enduml

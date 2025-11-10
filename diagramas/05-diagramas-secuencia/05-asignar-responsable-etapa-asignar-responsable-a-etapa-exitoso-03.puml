@@ -1,0 +1,49 @@
+@startuml
+title Diagrama de Secuencia - Asignar Responsable a Etapa (Exitoso)
+
+actor Coordinador
+participant "PantallaProyecto : detalleProyecto" as PantallaProyecto
+participant "Sistema : GestorEtapa" as Sistema
+participant "SelectorUsuario : selector" as SelectorUsuario
+participant ServicioNotificaciones
+
+'--- Inicio del flujo ---
+Coordinador -> PantallaProyecto : abrir detalle del proyecto
+activate PantallaProyecto
+
+PantallaProyecto -> Sistema : obtener etapas del proyecto
+activate Sistema
+Sistema -> PantallaProyecto : enviar lista de etapas
+deactivate Sistema
+
+Coordinador -> PantallaProyecto : seleccionar etapa
+PantallaProyecto -> Sistema : obtener datos de etapa
+activate Sistema
+Sistema -> PantallaProyecto : mostrar datos de la etapa
+deactivate Sistema
+
+Coordinador -> PantallaProyecto : seleccionar opción "Asignar Responsable"
+PantallaProyecto -> SelectorUsuario : mostrar selector de usuarios
+activate SelectorUsuario
+
+Coordinador -> SelectorUsuario : elegir responsable
+SelectorUsuario -> Sistema : validar y actualizar responsable
+activate Sistema
+
+Sistema -> Sistema : registrar cambio en historial
+Sistema -> ServicioNotificaciones : enviar notificación al usuario asignado
+activate ServicioNotificaciones
+ServicioNotificaciones -> Sistema : confirmar envío de notificación
+deactivate ServicioNotificaciones
+
+Sistema -> PantallaProyecto : mostrar confirmación de asignación
+
+PantallaProyecto -> Coordinador : mostrar mensaje de confirmación
+
+deactivate Sistema
+deactivate PantallaProyecto
+deactivate SelectorUsuario
+destroy SelectorUsuario
+
+@enduml
+

@@ -1,0 +1,92 @@
+@startuml 
+title Diagrama de Secuencia - Crear Proyecto (Exitoso)
+
+actor Cliente
+participant "PantallaProyectos : UI" as PantallaProyectos
+participant "ControladorProyecto : Controlador" as ControladorProyecto
+participant "ServicioProyecto : Servicio" as ServicioProyecto
+participant "RepositorioProyecto : Repositorio" as RepositorioProyecto
+participant "ServicioNotificaciones : Servicio" as ServicioNotificaciones
+
+' ==== Inicio del escenario ====
+Cliente -> PantallaProyectos : seleccionar opción "Nuevo Proyecto"
+activate PantallaProyectos
+note right of PantallaProyectos
+El cliente accede a la opción "Nuevo Proyecto"
+desde el menú principal.
+end note
+
+PantallaProyectos -> ControladorProyecto : mostrar formulario
+activate ControladorProyecto
+ControladorProyecto -> PantallaProyectos : solicitar datos del proyecto
+deactivate ControladorProyecto
+
+' ==== Cliente completa el formulario ====
+Cliente -> PantallaProyectos : ingresar datos del proyecto
+note right of PantallaProyectos
+El cliente completa los campos obligatorios
+y presiona "Guardar".
+end note
+
+PantallaProyectos -> ControladorProyecto : enviar datos del proyecto
+activate ControladorProyecto
+ControladorProyecto -> ServicioProyecto : validar proyecto
+activate ServicioProyecto
+
+' ==== Validaciones internas ====
+ServicioProyecto -> ServicioProyecto : validar campos obligatorios
+ServicioProyecto -> ServicioProyecto : validar formato de fechas
+ServicioProyecto -> ServicioProyecto : verificar si nombre está duplicado
+
+' ==== Bloque corregido ====
+alt Validación con errores
+    ServicioProyecto -> ControladorProyecto : devolver lista de errores
+    ControladorProyecto -> PantallaProyectos : mostrar errores de validación
+    note left of PantallaProyectos
+El sistema muestra mensajes de error
+en los campos inválidos.
+end note
+    deactivate ControladorProyecto
+    deactivate PantallaProyectos
+
+else Validación exitosa
+    ServicioProyecto -> RepositorioProyecto : guardar proyecto
+    activate RepositorioProyecto
+    note right of RepositorioProyecto
+El proyecto se guarda en la base de datos.
+end note
+    RepositorioProyecto -> ServicioProyecto : confirmar persistencia
+    deactivate RepositorioProyecto
+
+    ServicioProyecto -> RepositorioProyecto : registrar auditoría de creación
+    activate RepositorioProyecto
+    RepositorioProyecto -> ServicioProyecto : confirmar auditoría
+    deactivate RepositorioProyecto
+
+    note right of ServicioProyecto
+Se registra la auditoría del evento:
+usuario, fecha y hora de creación.
+end note
+
+    ServicioProyecto -> ServicioNotificaciones : enviar notificación "Proyecto creado exitosamente"
+    activate ServicioNotificaciones
+    note right of ServicioNotificaciones
+Se envía una notificación al cliente
+y al administrador.
+end note
+    ServicioNotificaciones -> ServicioProyecto : confirmar envío
+    deactivate ServicioNotificaciones
+
+    ServicioProyecto -> ControladorProyecto : devolver confirmación
+    deactivate ServicioProyecto
+    ControladorProyecto -> PantallaProyectos : mostrar detalle del nuevo proyecto
+    note left of PantallaProyectos
+El sistema confirma la creación y
+muestra el detalle del nuevo proyecto.
+end note
+    deactivate ControladorProyecto
+    deactivate PantallaProyectos
+end
+
+@enduml
+

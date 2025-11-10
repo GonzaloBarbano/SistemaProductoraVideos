@@ -1,0 +1,63 @@
+@startuml
+title Diagrama de Actividades - UC5: Enviar Notificación
+
+|Responsable de Etapa|
+start
+:Identificar necesidad de notificación;
+:Solicitar identificación de destinatarios;
+
+|Coordinador/Productor|
+:Add destinatarios manuales;
+note right
+Esta actividad es opcional. Se pueden añadir destinatarios adicionales
+según criterio del Coordinador o Productor.
+end note
+
+|Responsable de Etapa|
+:Confirmar destinatarios sugeridos;
+note right
+Actividad opcional. El Responsable puede aprobar o modificar la lista de destinatarios sugeridos.
+end note
+
+|Sistema de Gestión|
+:Validar existencia y estado de destinatarios;
+if (Validación exitosa?) then (no)
+  :Abortar notificación;
+  :Registrar motivo de rechazo;
+  stop
+else (sí)
+  :Determinar canal preferido;
+  note right
+Los canales disponibles son: Email, WhatsApp o Push.  
+El sistema selecciona el canal según las preferencias del destinatario.
+end note
+
+  partition "Canal: Email / WhatsApp / Push" {
+    :Componer mensaje;
+    note right
+Se utiliza una plantilla predefinida combinada con los datos dinámicos.
+end note
+
+    repeat
+      :Intentar envío;
+      if (¿Envío exitoso?) then (sí)
+        break
+      else (no)
+        :Reintentar envío según política del sistema;
+        note right
+La política define el número máximo de reintentos y el tiempo entre intentos.
+end note
+      endif
+    repeat while (Intentos < Límite)
+  }
+
+  |Sistema de Gestión|
+  if (¿Fallas críticas detectadas?) then (sí)
+    :Generar alerta para revisión manual;
+  else (no)
+    :Registrar notificación en historial;
+  endif
+endif
+
+stop
+@enduml
