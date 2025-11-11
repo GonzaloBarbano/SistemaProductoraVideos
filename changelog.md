@@ -8,9 +8,25 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
+
 ### Changed
 
 ### Fixed
+
+---
+## [Release Actividad Obligatoria N°3] - 2025-10-20
+
+### Added
+
+- [feature/esp-matriz-clae-4-5-add-matrices] Creación de las Matrices 4 y 5
+  PR: [#64](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/64) - @Santi22-7
+  (Especialista en Matrices CLAE - Casos de Uso 4 y 5 )
+
+
+
+### Changed
+
+
 
 ---
 
