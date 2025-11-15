@@ -30,18 +30,18 @@
 > Los métodos se derivan directamente de las operaciones (C/L/A/E) marcadas en la tabla.  
 > Cada método deberá existir en la clase correspondiente del **diagrama de clases**, y reflejarse en su **Tarjeta CRC** y en el **diagrama de secuencia** del caso de uso.
 
-| Clase                      | Método                                                      | Tipo (C/L/A/E) | Parámetros (nombre: tipo)            | Retorno| Actividad asociada       |
-|----------------------------|-------------------------------------------------------------|----------------|--------------------------------------|--------|--------------------------|
-| Responsable de Etapa       | `generarEventoNotificable(etapaId: int, cambio: string)`   |        C    | `etapaId: int`, `cambio: string`| `Bool`| Inicia el evento que dispara la notificación (Secuencia)|
-| Sistema (GestorNotificaciones)| `identificarDestinatarios(eventoId: int)`  |        L    | `eventoId: int`| `List<Usuario>`| Identificar destinatarios (CLAE, Secuencia)|
-| Sistema (GestorNotificaciones)| `determinarCanal(usuarioId: int)`|     L    | `usuarioId: int`| `string`| Determinar canal de envío (CLAE, Secuencia)|
-| Sistema (GestorNotificaciones)| `componerMensaje(destinatarioId: int, datos: object)`|        C       | `destinatarioId: int`, `datos: object`| `Mensaje` | Componer mensaje (CLAE, Secuencia)|
-| Servicio  Notificaciones | `enviarNotificacion(destinatario: Usuario, mensaje: Mensaje)`| C | `destinatario: Usuario`, `mensaje: Mensaje` | `bool` | Enviar notificación automática (Diagrama de clases / CRC)|
-| Servicio  Notificaciones | `registrarEnvio(etapaId: int, canal: string, estado: string)`|   C | `etapaId: int`, `canal: string` , `estado: string` | `bool` | Registrar envío en historial (CLAE / Secuencia)|
-| Sistema Integracion | `registrarResultadoExterno(envioId: int, estado: string)` |        C    | `envioId: int`, `estado: string`| `bool` | Registrar resultado del envío en sistemas externos (Secuencia)|
-| Proyecto | `finalizarProyecto()` |        A    | | `bool` | Cierre del proyecto (referencia al DIP, CRC Proyecto)|
-| Notificacion (implementa INotificacion) | `programarNotificacion(fecha: date, mensaje: string)` |        C    |  `fecha: date`,`mensaje: string`| `bool` | Programar fecha y hora de envío (CRC Notificación / Clase)|
-| INotificacion (interfaz) | `enviarNotificacion(destinatarioId: int, mensaje: string)` |        C    | `destinatarioId: int`, `mensaje: string`| `bool` | Firma del método implementado por Notificación|
+
+| Clase                       | Método                                                   | Tipo | Parámetros                                 | Retorno | Actividad asociada |
+|-----------------------------|-----------------------------------------------------------|------|--------------------------------------------|---------|---------------------|
+| Responsable de Etapa        | `generarEventoNotificable(etapa: Etapa, cambio: Cambio)` | C    | etapa: Etapa, cambio: Cambio               | bool    | Disparar evento |
+| GestorNotificaciones        | `identificarDestinatarios(evento: Evento)`               | L    | evento: Evento                              | List<Usuario> | Identificar destinatarios |
+| GestorNotificaciones        | `determinarCanal(usuario: Usuario)`                     | L    | usuario: Usuario                            | Canal   | Determinar canal |
+| GestorNotificaciones        | `componerMensaje(usuario: Usuario, datos: DatosNotif)`  | C    | usuario: Usuario, datos: DatosNotif         | Mensaje | Crear mensaje |
+| Servicio Notificaciones     | `enviarNotificacion(destinatario: Usuario, mensaje: Mensaje)` | C | destinatario: Usuario, mensaje: Mensaje | bool | Enviar |
+| Servicio Notificaciones     | `registrarEnvio(etapa: Etapa, canal: Canal, estado: Estado)` | C | etapa: Etapa, canal: Canal, estado: Estado | bool | Registrar historial |
+| Sistema Integración         | `registrarResultadoExterno(envio: Envio, estado: Estado)` | C    | envio: Envio, estado: Estado               | bool    | Registrar respuesta |
+| Notificacion (INotificacion) | `programarNotificacion(fecha: DateTime, mensaje: Mensaje)` | C  | fecha: DateTime, mensaje: Mensaje          | bool    | Programar |
+
 
 
 ---
@@ -70,19 +70,16 @@
 
 > Registrar cualquier diferencia encontrada entre esta matriz y los artefactos relacionados.
 
+
 | URL | Descripción de la inconsistencia | Artefacto relacionado | Acción correctiva | Estado |
-|----|----------------------------------|------------------------|-------------------|:------:|
-| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60)| El método registrarEnvio() no tiene declarado su tipo de operación (C/L/A/E) en el diagrama de clases. | Diagrama de Clases – 5 (DIP) | Agregar responsabilidad “Validar reglas de negocio antes del cambio de estado”. | Pendiente |    
+|-----|----------------------------------|------------------------|-------------------|:------:|
+| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60) | El método `registrarEnvio()` no tiene declarado su tipo de operación (C/L/A/E) en el diagrama de clases. | Diagrama de Clases – 5 (DIP) | Declarar el tipo de operación según sintaxis UML. | Pendiente |
+| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60) | El método `componerMensaje()` no figura explícitamente en la interfaz `INotificacion`. | Diagrama de Clases – 5 (DIP) | Agregar el método `componerMensaje()` en la interfaz `INotificacion`. | Pendiente |
+| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60) | No se muestra relación entre la clase Proyecto y la notificación, aunque se usan sus datos. | Diagrama de Clases – 5 (DIP) | Incorporar método `obtenerDatosProyecto()` o una asociación directa con Notificación. | Pendiente |
+| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60) | La interfaz `INotificacion` define `programarNotificacion()`, pero no se utiliza en UC5. | Diagrama de Clases – 5 (DIP) | Evaluar eliminarlo o integrarlo como flujo alternativo (notificaciones diferidas). | Pendiente |
+| [#61](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/61) | En la tarjeta CRC de Notificación no se menciona la responsabilidad de registrar historial. | Tarjeta CRC – Notificación | Añadir responsabilidad “Registrar historial de envío de notificaciones”. | Pendiente |
+| [#62](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/62) | El diagrama de secuencia no representa el paso “Determinar canal de envío”. | Diagrama de Secuencia – 5 | Agregar interacción con el módulo/actor que gestiona los canales de envío. | Pendiente |
 
-| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60)| El método componerMensaje() no figura explícitamente en la interfaz INotificacion. | Diagrama de Clases – 5 (DIP) | Agregar el método componerMensaje() en la interfaz INotificacion, dado que forma parte del flujo de notificación. | Pendiente |
-
-| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60)| No se muestra relación directa entre la clase Proyecto y el caso de uso, aunque se utilizan sus datos en la notificación. | Diagrama de Clases – 5 (DIP) | Incorporar un método de lectura (obtenerDatosProyecto()) o una relación de asociación con Notificacion. | Pendiente |
-
-| [#60](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/60)| La interfaz INotificacion define programarNotificacion(), pero no se usa en el flujo del caso de uso UC5. | Diagrama de Clases – 5 (DIP) | Evaluar si el método debe eliminarse o integrarse en un flujo alternativo (por ejemplo, notificaciones diferidas). | Pendiente |
-
-| [#61](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/61)| En la Tarjeta CRC de Notificacion no se menciona el registro de historial. | Tarjets CRC – Notificación | Añadir responsabilidad “Registrar historial de envío de notificaciones”. | Pendiente |
-
-| [#62](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/62)| El diagrama de secuencia no representa explícitamente el paso “Determinar canal de envío” como interacción con el actor o clase correspondiente. | Diagrama de Secuencia – 5 | Incorporar un mensaje adicional que refleje la interacción del sistema con la clase o módulo que gestiona los canales. | Pendiente |
 
 **Estados posibles:** Abierto / Pendiente / Resuelto
 

@@ -8,3 +8,4 @@
 | Registrar el tipo de proyecto (publicidad, videoclip, institucional) | Cliente           | Conozco mi tipo para clasificar y generar estadísticas.                      | tipo                              |
 | Definir y actualizar estado del proyecto                             | Etapa             | Mi estado refleja el avance global del proyecto.                             | estado                            |
 | Calcular duración planificada y real                                 | Etapa             | Comparo planificación con ejecución.                                         | duracionPlanificada, duracionReal |
+

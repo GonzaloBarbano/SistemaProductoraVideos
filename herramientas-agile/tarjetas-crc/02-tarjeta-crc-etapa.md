@@ -8,3 +8,4 @@
 | Registrar estado (pendiente, en curso, terminado) | Responsable del Proyecto | Mi estado refleja el progreso de la etapa.  | estado                |
 | Registrar fechas estimadas de inicio y fin        | Notificacion             | Guardo planificación para detectar demoras. | fechaInicio, fechaFin |
 | Calcular tiempos reales de ejecución              | Proyecto                 | Comparo lo planificado con lo ejecutado.    | tiempoReal            |
+

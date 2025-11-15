@@ -1,4 +1,4 @@
-|                                      |                          |                                                       |                |
+|                                      | ------------------------ | ----------------------------------------------------- | -------------- |
 | ------------------------------------ | ------------------------ | ----------------------------------------------------- | -------------- |
 | **Nombre de la Clase:**              | Recurso                  |                                                       |                |
 | **Superclase:**                      |                          |                                                       |                |
@@ -8,3 +8,4 @@
 | Asociar recursos a tareas y etapas   | Tarea                    | Participo en actividades específicas.                 | asignacion     |
 | Controlar uso del recurso            | Responsable del Proyecto | Mi estado refleja si estoy libre, reservado o en uso. | estado         |
 | Generar alertas de conflicto         | Notificacion             | Aviso si hay solapamiento o falta de recursos.        | alerta         |
+

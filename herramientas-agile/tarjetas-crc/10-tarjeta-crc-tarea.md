@@ -1,4 +1,4 @@
-|                                            |                          |                                               |                |
+|                                            | ------------------------ | --------------------------------------------- | -------------- |
 | ------------------------------------------ | ------------------------ | --------------------------------------------- | -------------- |
 | **Nombre de la Clase:**                    | Tarea                    |                                               |                |
 | **Superclase:**                            |                          |                                               |                |
@@ -9,3 +9,4 @@
 | Registrar tiempos estimados de ejecución   | Usuario                  | Defino cuánto debería demorarme.              | tiempoEstimado |
 | Registrar tiempos reales de ejecución      | Usuario                  | Comparo lo planeado con lo real.              | tiempoReal     |
 | Notificar avances o bloqueos               | Notificacion             | Comunico cualquier novedad o problema.        | alerta         |
+
