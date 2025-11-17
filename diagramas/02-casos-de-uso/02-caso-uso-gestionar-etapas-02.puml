@@ -15,7 +15,6 @@ rectangle "Gestionar Etapas (UC2)" {
     usecase "Enviar Notificaciones Automáticas" as UC5
 }
 
-' Actores
 Prod -- CrearEtapa
 Prod -- CambiarEtapa
 Resp -- CambiarEtapa
@@ -23,14 +22,14 @@ Resp -- RegObs
 Resp -- Links
 Asist -- RegObs
 
-' Relaciones internas
+Notif -- Alerta
+
 CrearEtapa ..> UC5 : <<include>>
 CambiarEtapa ..> UC5 : <<include>>
 RegObs ..> UC5 : <<include>>
 Links ..> UC5 : <<include>>
 Alerta ..> UC5 : <<include>>
 
-' Flechas ocultas para acomodar
 CrearEtapa -[#white]-> CambiarEtapa
 RegObs -[#white]-> Links
 

@@ -32,6 +32,7 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 - [fix/inconsistencias] Correccion de issues y actualizacion de changelog
   PR: [#84](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/84) - @GonzaloBarbano
+  (Resolve #55 #79 #58 #61 #56 #75 #74 #60)
 
 ---
 
