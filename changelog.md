@@ -25,9 +25,13 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 ### Changed
 
 ### Fixed
+
 - [feature/esp-matriz-clae-1-2-3] Correccion de issues y actualizacion de changelog
   PR: [#83](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/83) - @GonzaloBarbano
   (Especialista en Matrices CLAE - Casos de Uso 1,2 y 3 )
+
+- [fix/inconsistencias] Correccion de issues y actualizacion de changelog
+  PR: [#84](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/84) - @GonzaloBarbano
 
 ---
 
