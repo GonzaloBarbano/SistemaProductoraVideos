@@ -131,9 +131,9 @@ Usuario <|-- Asistente
 
 Proyecto "1" *-- "1..*" Etapa : contiene >
 Etapa "1" *-- "1..*" Tarea : incluye >
-Etapa "1" --> "0..1" ResponsableDelProyecto : asignado a >
+Etapa "1" --> "0..1" ResponsableDelProyecto : asignada a >
 Proyecto "1" --> "1" Cliente : solicitado por >
-Tarea "0..*" --> "0..*" Recurso : usa >
+Tarea "0..*" --> "0..*" Recurso : utiliza >
 Etapa "0..*" --> "0..*" Notificacion : genera >
 
 Usuario "1" --> "0..*" Notificacion : recibe >
@@ -168,11 +168,13 @@ class RepositorioEtapas {
     + obtenerPorProyecto(id:int) : List<Etapa>
 }
 
-Proyecto --> ServicioProyecto
-Etapa --> ServicioEtapa
-Notificacion --> ServicioNotificaciones
+'=== RELACIONES CON MULTIPLICIDAD Y DESCRIPCIÓN ===
 
-ServicioProyecto --> RepositorioProyecto
-ServicioEtapa --> RepositorioEtapas
+Proyecto --> ServicioProyecto : gestiona >
+Etapa --> ServicioEtapa : administra >
+Notificacion --> ServicioNotificaciones : procesa >
+
+ServicioProyecto --> RepositorioProyecto : persiste >
+ServicioEtapa --> RepositorioEtapas : consulta/guarda >
 
 @enduml
