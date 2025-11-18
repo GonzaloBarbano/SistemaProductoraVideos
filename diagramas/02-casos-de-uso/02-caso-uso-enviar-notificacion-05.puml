@@ -27,4 +27,10 @@ note right of Destinatarios
   - Cambio de estado a Pendiente o En curso
   - Alerta de posible retraso
 end note
+
+note bottom of Registro
+  Precondición:
+  - El Servicio de Notificaciones debe estar disponible y operativo.
+end note
+
 @enduml

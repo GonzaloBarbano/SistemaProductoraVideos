@@ -8,5 +8,4 @@
 | Registrar responsable y estado             | Responsable del Proyecto | Indico quién la realiza y en qué estado está. | estado         |
 | Registrar tiempos estimados de ejecución   | Usuario                  | Defino cuánto debería demorarme.              | tiempoEstimado |
 | Registrar tiempos reales de ejecución      | Usuario                  | Comparo lo planeado con lo real.              | tiempoReal     |
-| Notificar avances o bloqueos               | Notificacion             | Comunico cualquier novedad o problema.        | alerta         |
-
+| Notificar avances o bloqueos               | ServicioNotificaciones   | Comunico cualquier novedad o problema.        | alerta         |

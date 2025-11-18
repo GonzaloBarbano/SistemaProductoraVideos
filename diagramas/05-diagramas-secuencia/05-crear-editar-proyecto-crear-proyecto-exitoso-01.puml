@@ -11,6 +11,7 @@ participant "ServicioNotificaciones : Servicio" as ServicioNotificaciones
 ' ==== Inicio del escenario ====
 Cliente -> PantallaProyectos : seleccionar opción "Nuevo Proyecto"
 activate PantallaProyectos
+
 note right of PantallaProyectos
 El cliente accede a la opción "Nuevo Proyecto"
 desde el menú principal.
@@ -23,70 +24,67 @@ deactivate ControladorProyecto
 
 ' ==== Cliente completa el formulario ====
 Cliente -> PantallaProyectos : ingresar datos del proyecto
+
 note right of PantallaProyectos
-El cliente completa los campos obligatorios
-y presiona "Guardar".
+El cliente completa los datos y presiona "Guardar".
 end note
 
-PantallaProyectos -> ControladorProyecto : enviar datos del proyecto
+PantallaProyectos -> ControladorProyecto : enviar Proyecto
 activate ControladorProyecto
-ControladorProyecto -> ServicioProyecto : validar proyecto
+
+ControladorProyecto -> ServicioProyecto : validar(Proyecto)
 activate ServicioProyecto
 
-' ==== Validaciones internas ====
-ServicioProyecto -> ServicioProyecto : validar campos obligatorios
-ServicioProyecto -> ServicioProyecto : validar formato de fechas
-ServicioProyecto -> ServicioProyecto : verificar si nombre está duplicado
+' ==== Validaciones internas sobre Proyecto ====
+ServicioProyecto -> ServicioProyecto : validar campos obligatorios(Proyecto)
+ServicioProyecto -> ServicioProyecto : validar fechas(Proyecto)
+ServicioProyecto -> ServicioProyecto : verificar duplicado de nombre(Proyecto)
 
 ' ==== Bloque corregido ====
 alt Validación con errores
-    ServicioProyecto -> ControladorProyecto : devolver lista de errores
-    ControladorProyecto -> PantallaProyectos : mostrar errores de validación
-    note left of PantallaProyectos
-El sistema muestra mensajes de error
-en los campos inválidos.
-end note
+    ServicioProyecto -> ControladorProyecto : devolver errores
+    ControladorProyecto -> PantallaProyectos : mostrar errores
     deactivate ControladorProyecto
     deactivate PantallaProyectos
 
 else Validación exitosa
-    ServicioProyecto -> RepositorioProyecto : guardar proyecto
+    ServicioProyecto -> RepositorioProyecto : guardar(Proyecto)
     activate RepositorioProyecto
     note right of RepositorioProyecto
-El proyecto se guarda en la base de datos.
+Se persiste el objeto Proyecto completo.
 end note
-    RepositorioProyecto -> ServicioProyecto : confirmar persistencia
+    RepositorioProyecto -> ServicioProyecto : devolver Proyecto
     deactivate RepositorioProyecto
 
-    ServicioProyecto -> RepositorioProyecto : registrar auditoría de creación
+    ServicioProyecto -> RepositorioProyecto : registrar auditoría(Proyecto)
     activate RepositorioProyecto
-    RepositorioProyecto -> ServicioProyecto : confirmar auditoría
+    RepositorioProyecto -> ServicioProyecto : auditoría confirmada
     deactivate RepositorioProyecto
 
     note right of ServicioProyecto
-Se registra la auditoría del evento:
-usuario, fecha y hora de creación.
+Se registra la auditoría asociada al objeto Proyecto.
 end note
 
-    ServicioProyecto -> ServicioNotificaciones : enviar notificación "Proyecto creado exitosamente"
+    ServicioProyecto -> ServicioNotificaciones : enviarNotificación(Proyecto)
     activate ServicioNotificaciones
+
     note right of ServicioNotificaciones
-Se envía una notificación al cliente
-y al administrador.
+Se envía una notificación utilizando datos del Proyecto.
 end note
-    ServicioNotificaciones -> ServicioProyecto : confirmar envío
+
+    ServicioNotificaciones -> ServicioProyecto : confirmación envío
     deactivate ServicioNotificaciones
 
-    ServicioProyecto -> ControladorProyecto : devolver confirmación
+    ServicioProyecto -> ControladorProyecto : confirmar creación(Proyecto)
     deactivate ServicioProyecto
-    ControladorProyecto -> PantallaProyectos : mostrar detalle del nuevo proyecto
+
+    ControladorProyecto -> PantallaProyectos : mostrar detalle(Proyecto)
     note left of PantallaProyectos
-El sistema confirma la creación y
-muestra el detalle del nuevo proyecto.
+El sistema muestra el detalle final del Proyecto creado.
 end note
+
     deactivate ControladorProyecto
     deactivate PantallaProyectos
 end
 
 @enduml
-
