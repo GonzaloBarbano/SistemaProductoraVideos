@@ -11,34 +11,34 @@ participant ServicioNotificaciones
 Coordinador -> PantallaProyecto : abrir detalle del proyecto
 activate PantallaProyecto
 
-PantallaProyecto -> Sistema : obtener etapas del proyecto
+PantallaProyecto -> Sistema : obtenerEtapas(Proyecto)
 activate Sistema
-Sistema -> PantallaProyecto : enviar lista de etapas
+Sistema -> PantallaProyecto : enviarLista(Etapa[])
 deactivate Sistema
 
-Coordinador -> PantallaProyecto : seleccionar etapa
-PantallaProyecto -> Sistema : obtener datos de etapa
+Coordinador -> PantallaProyecto : seleccionarEtapa(Etapa)
+PantallaProyecto -> Sistema : obtenerDatos(Etapa)
 activate Sistema
-Sistema -> PantallaProyecto : mostrar datos de la etapa
+Sistema -> PantallaProyecto : devolverDatos(Etapa)
 deactivate Sistema
 
-Coordinador -> PantallaProyecto : seleccionar opción "Asignar Responsable"
-PantallaProyecto -> SelectorUsuario : mostrar selector de usuarios
+Coordinador -> PantallaProyecto : seleccionar "Asignar Responsable"
+PantallaProyecto -> SelectorUsuario : mostrarSelectorUsuarios()
 activate SelectorUsuario
 
-Coordinador -> SelectorUsuario : elegir responsable
-SelectorUsuario -> Sistema : validar y actualizar responsable
+Coordinador -> SelectorUsuario : elegirResponsable(Usuario)
+SelectorUsuario -> Sistema : validarYActualizarResponsable(Etapa, Usuario)
 activate Sistema
 
-Sistema -> Sistema : registrar cambio en historial
-Sistema -> ServicioNotificaciones : enviar notificación al usuario asignado
+Sistema -> Sistema : registrarCambio(Etapa, Usuario)
+Sistema -> ServicioNotificaciones : enviarNotificación(Usuario, Etapa)
 activate ServicioNotificaciones
-ServicioNotificaciones -> Sistema : confirmar envío de notificación
+ServicioNotificaciones -> Sistema : confirmarEnvío()
 deactivate ServicioNotificaciones
 
-Sistema -> PantallaProyecto : mostrar confirmación de asignación
+Sistema -> PantallaProyecto : mostrarConfirmación(Etapa, Usuario)
 
-PantallaProyecto -> Coordinador : mostrar mensaje de confirmación
+PantallaProyecto -> Coordinador : mostrarMensajeConfirmación()
 
 deactivate Sistema
 deactivate PantallaProyecto
@@ -46,4 +46,3 @@ deactivate SelectorUsuario
 destroy SelectorUsuario
 
 @enduml
-

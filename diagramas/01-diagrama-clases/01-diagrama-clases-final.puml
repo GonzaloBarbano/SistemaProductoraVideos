@@ -51,7 +51,7 @@ class Recurso {
     + generarAlerta() : void
 }
 
-class Notificacion {
+class ServicioNotificaciones {
     - mensaje : String
     - destinatario : Usuario
     - fechaEnvio : Date

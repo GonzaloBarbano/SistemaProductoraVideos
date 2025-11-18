@@ -2,6 +2,7 @@
 title Gestionar Etapas de un Proyecto (Exitoso) - Sistema de Gestión de Etapas y Proyectos
 
 actor Coordinador
+actor Asistente
 participant "PantallaProyecto : UI" as PantallaProyecto
 participant "ServicioEtapa : Servicio" as ServicioEtapa
 participant "RepositorioEtapas : Repositorio" as RepositorioEtapas
@@ -17,60 +18,70 @@ end note
 
 PantallaProyecto -> ServicioEtapa : mostrar lista de etapas
 activate ServicioEtapa
-ServicioEtapa -> RepositorioEtapas : obtener etapas del proyecto
+ServicioEtapa -> RepositorioEtapas : obtenerEtapas(Proyecto)
 activate RepositorioEtapas
-RepositorioEtapas -> ServicioEtapa : devolver lista de etapas
+RepositorioEtapas -> ServicioEtapa : devolver lista de Etapa
 deactivate RepositorioEtapas
 ServicioEtapa -> PantallaProyecto : enviar lista de etapas
 deactivate ServicioEtapa
 
 == Gestión de etapas ==
-Coordinador -> PantallaProyecto : seleccionar acción sobre etapa
-note right of PantallaProyecto
-El coordinador elige una acción de gestión
-sobre las etapas del proyecto (agregar, editar o eliminar).
-end note
+Coordinador -> PantallaProyecto : seleccionar acción (agregar/editar/eliminar)
 
 PantallaProyecto -> PantallaProyecto : mostrar formulario de etapa
 note right of PantallaProyecto
-Se muestra formulario con campos:
-nombre, responsable, estado, fechas, observaciones.
+Campos: nombre, responsable, estado,
+fechas, observaciones.
 end note
 
-Coordinador -> PantallaProyecto : completar formulario de etapa
-PantallaProyecto -> ServicioEtapa : validar datos de etapa
+Coordinador -> PantallaProyecto : completar formulario
+PantallaProyecto -> ServicioEtapa : validarEtapa(Etapa)
 activate ServicioEtapa
 note right of ServicioEtapa
-Se valida que el responsable exista,
-las fechas sean coherentes y
-el estado esté permitido.
+Validación:
+- Responsable existente
+- Fechas coherentes
+- Estado permitido
 end note
 
 alt Datos inválidos
-    ServicioEtapa -> PantallaProyecto : mostrar errores de validación
-    note left of PantallaProyecto
-Si hay errores de validación,
-se muestran los mensajes correspondientes.
-end note
-    deactivate ServicioEtapa
+    ServicioEtapa -> PantallaProyecto : mostrar errores
+    deactivate ServiçoEtapa
 
 else Datos válidos
-    ServicioEtapa -> RepositorioEtapas : guardar etapa
+    ServicioEtapa -> RepositorioEtapas : guardarEtapa(Etapa)
     activate RepositorioEtapas
     RepositorioEtapas -> ServicioEtapa : confirmar guardado
     deactivate RepositorioEtapas
-    note right of ServicioEtapa
-El registro se guarda y se genera
-auditoría (alta, edición o baja).
-end note
 end
 
-== Notificación ==
-ServicioEtapa -> ServicioNotificaciones : enviar notificación al responsable
+== Adjuntar Material (Issue 76) ==
+Asistente -> PantallaProyecto : solicitar adjuntar material
+PantallaProyecto -> ServicioEtapa : adjuntarMaterial(Etapa, Material)
+note right of ServicioEtapa
+El asistente carga material asociado
+a una etapa existente.
+end note
+
+ServicioEtapa -> RepositorioEtapas : guardarMaterial(Etapa, Material)
+activate RepositorioEtapas
+RepositorioEtapas -> ServicioEtapa : confirmar adjunto
+deactivate RepositorioEtapas
+
+== Notificación (Issue 78) ==
+ServicioEtapa -> ServicioEtapa : generarEventoNotificable(Etapa, tipoCambio)
+note right of ServicioEtapa
+Evento incluye:
+- Tipo de cambio (alta/edición/eliminación/material adjunto)
+- Responsable afectado
+- Proyecto y etapa involucrados
+end note
+
+ServicioEtapa -> ServicioNotificaciones : enviarNotificacion(Evento)
 activate ServicioNotificaciones
 note right of ServicioNotificaciones
-Se notifica al usuario responsable afectado
-por la modificación de la etapa.
+Se compone el mensaje y se envía
+al responsable afectado.
 end note
 ServicioNotificaciones -> ServicioEtapa : confirmar envío
 deactivate ServicioNotificaciones
@@ -80,11 +91,10 @@ ServicioEtapa -> PantallaProyecto : actualizar lista de etapas
 PantallaProyecto -> Coordinador : mostrar confirmación
 note right of PantallaProyecto
 Se actualiza la lista y se confirma
-la acción al coordinador.
+la operación realizada.
 end note
 
 deactivate ServicioEtapa
 deactivate PantallaProyecto
 
 @enduml
-
