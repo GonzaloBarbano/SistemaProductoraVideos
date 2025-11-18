@@ -34,6 +34,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#85](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/85) - @GonzaloBarbano
   (Resolve #66 #67)
 
+- [fix/inconsistencias] Correccion de issues y actualizacion de changelog
+  PR: [#86](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/86) - @GonzaloBarbano
+  (Resolve #57 #59 #62 #69 #70 #71 #72 #73 #74 #76 #77 #78 #79 #80 #81)
+
 ---
 
 ## [Release Actividad Obligatoria N°3] - 2025-10-20
