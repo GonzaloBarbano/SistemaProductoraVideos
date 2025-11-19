@@ -1,0 +1,48 @@
+@startuml
+title Patrón Creacional – Factory Method aplicado a Notificaciones
+
+interface Notificacion {
+    +enviar() : void
+}
+
+class EmailNotificacion {
+    -direccionCorreo : String
+    +enviar() : void
+}
+
+class PushNotificacion {
+    -tokenDispositivo : String
+    +enviar() : void
+}
+
+class NotificacionInterna {
+    -usuarioDestino : Usuario
+    +enviar() : void
+}
+
+abstract class NotificacionCreator {
+    +crearNotificacion() : Notificacion
+    +procesarEnvio() : void
+}
+
+class EmailNotificacionCreator {
+    +crearNotificacion() : Notificacion
+}
+
+class PushNotificacionCreator {
+    +crearNotificacion() : Notificacion
+}
+
+class NotificacionInternaCreator {
+    +crearNotificacion() : Notificacion
+}
+
+NotificacionCreator <|-- EmailNotificacionCreator
+NotificacionCreator <|-- PushNotificacionCreator
+NotificacionCreator <|-- NotificacionInternaCreator
+
+Notificacion <|.. EmailNotificacion
+Notificacion <|.. PushNotificacion
+Notificacion <|.. NotificacionInterna
+
+@enduml

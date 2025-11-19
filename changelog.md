@@ -14,6 +14,16 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
+## [Release Parcial N°1] - 2025-11-20
+
+### Added
+
+- [feature/esp-patron-creacional-add-patron-factory-method] Creacion patron de diseño creacional - Factory Method
+  PR: [#91](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/91) - @GonzaloBarbano
+  (Especialista en Patrón de Diseño Creacional)
+
+---
+
 ## [Release Actividad Obligatoria N°4] - 2025-11-10
 
 ### Added
