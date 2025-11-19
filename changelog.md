@@ -4,10 +4,12 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [Release Parcial N°1] - 2025-11-19
 
 ### Added
-
+- [feature/esp-patron-estructural-add-patron-adapter] Creación del diseño estrutural 
+  PR: [#90](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/90) - @Santi22-7
+  (Especialista en Patrón de Diseño Estructural )
 ### Changed
 
 ### Fixed
