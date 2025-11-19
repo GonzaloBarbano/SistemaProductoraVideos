@@ -4,3 +4,4 @@ Los Patrones de Diseño surgen como soluciones probadas a problemas recurrentes 
 
 - [Patron de diseño creacional - Factory Method](patron-de-diseno-creacional.md)
 - [Patron de diseño estructural - Fachada](patron-de-diseno-estructural.md)
+- [Patron de diseño comportamiento - Observer](../../anexos/patrones-diseno/patron-de-diseno-creacional.md)

@@ -1,0 +1,52 @@
+@startuml
+title Patrón Observer aplicado al Sistema de Gestión de Proyectos Audiovisuales
+
+interface Observer {
+    + actualizar(Evento evento)
+}
+
+interface Subject {
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers()
+}
+
+class Etapa {
+    - List<Observer> observers
+    + cambiarEstado()
+    + registrarObserver(o)
+    + removerObserver(o)
+    + notificarObservers()
+}
+
+class Tarea {
+    - List<Observer> observers
+    + cambiarEstado()
+    + registrarObserver(o)
+    + removerObserver(o)
+    + notificarObservers()
+}
+
+Subject <|.. Etapa
+Subject <|.. Tarea
+
+class ServicioNotificaciones {
+    + actualizar(evento)
+}
+
+class ResponsableDelProyecto {
+    + actualizar(evento)
+}
+
+class ServicioAuditoria {
+    + actualizar(evento)
+}
+
+Observer <|.. ServicioNotificaciones
+Observer <|.. ResponsableDelProyecto
+Observer <|.. ServicioAuditoria
+
+Etapa --> Observer : notifica cambios
+Tarea --> Observer : notifica cambios
+
+@enduml
