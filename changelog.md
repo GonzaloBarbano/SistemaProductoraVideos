@@ -4,25 +4,25 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Release Parcial N°1] - 2025-11-19
+## [Release Parcial N°2] - 2025-11-19
 
 ### Added
-- [feature/esp-patron-estructural-add-patron-adapter] Creación del diseño estrutural 
+
+- [feature/esp-patron-estructural-add-patron-adapter] Creación del diseño estrutural
   PR: [#90](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/90) - @Santi22-7
   (Especialista en Patrón de Diseño Estructural )
-### Changed
-
-### Fixed
-
----
-
-## [Release Parcial N°1] - 2025-11-20
-
-### Added
 
 - [feature/esp-patron-creacional-add-patron-factory-method] Creacion patron de diseño creacional - Factory Method
   PR: [#91](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/91) - @GonzaloBarbano
   (Especialista en Patrón de Diseño Creacional)
+
+- [feature/coordinadir] Correccion y actualizacion de repositorio
+  PR: [#93](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/93) - @GonzaloBarbano
+  (Coordinador de repositorio)
+
+### Changed
+
+### Fixed
 
 ---
 
