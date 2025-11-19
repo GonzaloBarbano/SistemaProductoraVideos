@@ -1,0 +1,65 @@
+@startuml
+title Aplicación del Patrón Facade - Sistema de Gestión de Proyectos Audiovisuales
+
+'========== CLASES DEL DOMINIO ==========
+class Proyecto {
+    + calcularDuracionPlanificada() : int
+    + calcularDuracionReal() : int
+    + actualizarEstado() : void
+}
+
+class Etapa {
+    + calcularTiempoReal() : int
+    + cambiarEstado(nuevoEstado:String) : void
+    + asignarResponsable(r: ResponsableDelProyecto) : void
+}
+
+class Tarea {
+    + registrarTiempoReal(t:int) : void
+    + actualizarEstado(e:String) : void
+}
+
+class ResponsableDelProyecto {
+    + nombre : String
+    + asignarTarea(t:Tarea) : void
+    + gestionarEtapa(e:Etapa) : void
+    + supervisarProyecto(p:Proyecto) : void
+}
+
+'========== SERVICIOS EXISTENTES ==========
+class ServicioProyecto {
+    + validarProyecto(p:Proyecto) : List<String>
+    + crearProyecto(p:Proyecto) : void
+}
+
+class ServicioEtapa {
+    + validarEtapa(e:Etapa) : List<String>
+    + guardarEtapa(e:Etapa) : void
+}
+
+class ServicioNotificaciones {
+    + enviarNotificacion(msg:String) : void
+}
+
+'========== FACADE ==========
+class GestorDeProyectosFacade {
+    + crearNuevoProyecto(p:Proyecto) : void
+    + guardarEtapa(e:Etapa) : void
+    + notificar(msg:String) : void
+}
+
+'===== RELACIONES DEL RESPONSABLE =====
+ResponsableDelProyecto --> Proyecto : supervisa >
+ResponsableDelProyecto --> Etapa : gestiona >
+ResponsableDelProyecto --> Tarea : asigna >
+
+'===== RELACIONES CON LA FACADE =====
+Proyecto --> GestorDeProyectosFacade : solicita >
+Etapa --> GestorDeProyectosFacade : solicita >
+Tarea --> GestorDeProyectosFacade : solicita >
+
+GestorDeProyectosFacade --> ServicioProyecto : usa >
+GestorDeProyectosFacade --> ServicioEtapa : usa >
+GestorDeProyectosFacade --> ServicioNotificaciones : usa >
+
+@enduml
