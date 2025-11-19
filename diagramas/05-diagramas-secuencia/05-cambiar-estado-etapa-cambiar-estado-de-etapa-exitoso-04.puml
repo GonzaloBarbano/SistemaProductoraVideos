@@ -2,6 +2,7 @@
 title Diagrama de Secuencia - Cambiar Estado de Etapa (Exitoso)
 
 actor ResponsableEtapa
+actor "Asistente de Producción" as Asistente
 participant "PantallaEtapa : detalleEtapa" as PantallaEtapa
 participant "Sistema : GestorEtapa" as Sistema
 participant "ServicioNotificaciones : notificador" as ServicioNotificaciones
@@ -10,31 +11,45 @@ participant "ServicioNotificaciones : notificador" as ServicioNotificaciones
 ResponsableEtapa -> PantallaEtapa : abrir detalle de la etapa
 activate PantallaEtapa
 
-PantallaEtapa -> Sistema : obtener estado actual de la etapa
+PantallaEtapa -> Sistema : obtener estado actual de la etapa(etapaId)
 activate Sistema
 Sistema -> PantallaEtapa : mostrar estado y opciones
 deactivate Sistema
 
 ResponsableEtapa -> PantallaEtapa : seleccionar nuevo estado
-PantallaEtapa -> Sistema : validar reglas de negocio del cambio
+PantallaEtapa -> Sistema : validar reglas de negocio del cambio(etapaId)
 activate Sistema
 
+Sistema -> Sistema : verificarPermisos(ResponsableEtapa)
 Sistema -> Sistema : verificar condiciones del cambio de estado
 Sistema -> Sistema : actualizar estado de la etapa
 Sistema -> Sistema : registrar cambio en historial
+Sistema -> Sistema : registrarAuditoria("Cambio de estado")
 
+'--- Alternativa: Posible retraso ---
+alt Posible retraso detectado
+    Sistema -> Sistema : alertarPosibleRetraso(etapaId)
+    Sistema -> ServicioNotificaciones : enviar alerta de retraso
+    activate ServicioNotificaciones
+    ServicioNotificaciones -> Sistema : confirmar alerta enviada
+    deactivate ServicioNotificaciones
+end
+
+'--- Adjuntar Links o Materiales ---
+Asistente -> PantallaEtapa : adjuntar links/material
+PantallaEtapa -> Sistema : adjuntarLinksMaterial(etapaId, archivos)
+Sistema -> Sistema : registrarAuditoria("Adjunto de materiales")
+
+'--- Notificación normal ---
 Sistema -> ServicioNotificaciones : enviar notificación al coordinador
 activate ServicioNotificaciones
 ServicioNotificaciones -> Sistema : confirmar notificación enviada
 deactivate ServicioNotificaciones
 
 Sistema -> PantallaEtapa : mostrar confirmación del cambio
-PantallaEtapa -> ResponsableEtapa : mostrar mensaje de confirmación
-
 deactivate Sistema
+
+PantallaEtapa -> ResponsableEtapa : mostrar mensaje de confirmación
 deactivate PantallaEtapa
 
-destroy ServicioNotificaciones
-
 @enduml
-

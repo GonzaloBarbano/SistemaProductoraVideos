@@ -8,13 +8,13 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ### Added
 
-
 ### Changed
 
 ### Fixed
 
 ---
-## [Release Actividad Obligatoria N°3] - 2025-10-20
+
+## [Release Actividad Obligatoria N°4] - 2025-11-10
 
 ### Added
 
@@ -22,11 +22,21 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#64](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/64) - @Santi22-7
   (Especialista en Matrices CLAE - Casos de Uso 4 y 5 )
 
-
-
 ### Changed
 
+### Fixed
 
+- [fix/inconsistencias] Correccion de issues y actualizacion de changelog
+  PR: [#84](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/84) - @GonzaloBarbano
+  (Resolve #55 #79 #58 #61 #56 #75 #74 #60)
+
+- [fix/inconsistencias] Correccion de issues y actualizacion de changelog
+  PR: [#85](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/85) - @GonzaloBarbano
+  (Resolve #66 #67)
+
+- [fix/inconsistencias] Correccion de issues y actualizacion de changelog
+  PR: [#86](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/86) - @GonzaloBarbano
+  (Resolve #57 #59 #62 #69 #70 #71 #72 #73 #74 #76 #77 #78 #79 #80 #81)
 
 ---
 

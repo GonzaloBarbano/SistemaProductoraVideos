@@ -31,17 +31,18 @@
 > Los métodos se derivan directamente de las operaciones (C/L/A/E) marcadas en la tabla.  
 > Cada método deberá existir en la clase correspondiente del **diagrama de clases**, y reflejarse en su **Tarjeta CRC** y en el **diagrama de secuencia** del caso de uso.
 
-| Clase                      | Método                                                          | Tipo (C/L/A/E) | Parámetros (nombre: tipo)                       | Retorno | Actividad asociada                                |
-| -------------------------- | --------------------------------------------------------------- | -------------- | ----------------------------------------------- | ------- | ------------------------------------------------- |
-| Responsable de Etapa       | `validarReglasNegocio(etapaId: int, nuevoEstado: string)`       | L              | `etapaId: int`, `nuevoEstado: string`           | `bool`  | Validar reglas de negocio del cambio de estado    |
-| Responsable de Etapa       | `actualizarEstadoEtapa(etapaId: int, nuevoEstado: string)`      | A              | `etapaId: int`, `nuevoEstado: string`           | `bool`  | Cambiar estado de la etapa                        |
-| Coordinador / Productor    | `registrarAuditoria(usuarioId: int, etapaId: int, fecha: date)` | C              | `usuarioId: int`, `etapaId: int`, `fecha: date` | `bool`  | Registrar auditoría del cambio                    |
-| Asistente de Producción    | `registrarComentario(etapaId: int, texto: string)`              | C              | `etapaId: int`, `texto: string`                 | `bool`  | Registrar observaciones o comentarios             |
-| Asistente de Producción    | `adjuntarLink(etapaId: int, url: string)`                       | C              | `etapaId: int`, `url: string`                   | `bool`  | Adjuntar links a material                         |
-| Asistente de Producción    | `gestionarDocumentacion(proyectoId: int)`                       | A              | `proyectoId: int`                               | `bool`  | Gestionar documentación del proyecto              |
-| Servicio de Notificaciones | `enviarNotificacion(destinatarioId: int, mensaje: string)`      | C              | `destinatarioId: int`, `mensaje: string`        | `bool`  | Enviar notificaciones automáticas                 |
-| Servicio de Notificaciones | `registrarEnvio(etapaId: int, fecha: date, estado: string)`     | C              | `etapaId: int`, `fecha: date`, `estado: string` | `bool`  | Registrar envío en historial de notificaciones    |
-| Servicio de Notificaciones | `programarEnvio(fechaHora: datetime)`                           | L              | `fechaHora: datetime`                           | `bool`  | Programar fecha y hora de envío de notificaciones |
+
+| Clase                    | Método                                                     | Tipo | Parámetros                       | Retorno | Actividad asociada |
+|--------------------------|-----------------------------------------------------------|------|----------------------------------|---------|---------------------|
+| Responsable de Etapa     | `validarReglasNegocio(etapa: Etapa, nuevoEstado: Estado)` | L    | etapa: Etapa, nuevoEstado: Estado | bool    | Validar reglas antes del cambio |
+| Responsable de Etapa     | `actualizarEstado(etapa: Etapa, nuevoEstado: Estado)`     | A    | etapa: Etapa, nuevoEstado: Estado | bool    | Cambiar estado |
+| Coordinador/Productor    | `registrarAuditoria(usuario: Usuario, etapa: Etapa)`      | C    | usuario: Usuario, etapa: Etapa    | bool    | Registrar auditoría |
+| Asistente de Producción  | `registrarComentario(etapa: Etapa, texto: string)`         | C    | etapa: Etapa, texto: string       | bool    | Registrar comentarios |
+| Asistente de Producción  | `adjuntarLink(etapa: Etapa, url: string)`                 | C    | etapa: Etapa, url: string         | bool    | Adjuntar material |
+| Servicio Notificaciones  | `enviarNotificacion(destinatario: Usuario, mensaje: Mensaje)` | C | destinatario: Usuario, mensaje: Mensaje | bool | Enviar aviso |
+| Servicio Notificaciones  | `registrarEnvio(etapa: Etapa, estado: Estado)`              | C    | etapa: Etapa, estado: Estado       | bool    | Registrar historial |
+| Servicio Notificaciones  | `programarEnvio(fecha: DateTime, mensaje: Mensaje)`        | L    | fecha: DateTime, mensaje: Mensaje | bool    | Programar envío |
+
 ---
 
 ## 3 Relación con otros artefactos del diseño
@@ -69,27 +70,20 @@
 
 | URL | Descripción de la inconsistencia | Artefacto relacionado | Acción correctiva | Estado |
 |----|----------------------------------|------------------------|-------------------|:------:|
-| [#55](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/55)| El método validarReglasNegocio() está en la CLAE pero no figura en la tarjeta CRC del Responsable de Etapa. | Tarjeta CRC – Responsable de Etapa | Agregar responsabilidad “Validar reglas de negocio antes del cambio de estado”. | Pendiente |    
+| URL | Descripción de la inconsistencia | Artefacto relacionado | Acción correctiva | Estado |
+|----|----------------------------------|------------------------|-------------------|:------:|
+| [#55](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/55) | El método `validarReglasNegocio()` está en la CLAE pero no figura en la Tarjeta CRC del Responsable de Etapa. | Tarjeta CRC – Responsable de Etapa | Agregar responsabilidad: “Validar reglas de negocio antes de cambiar el estado”. | Pendiente |
+| [#56](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/56) | El método `alertarPosibleRetraso()` aparece en la CLAE pero no está en la CRC del Coordinador/Productor. | Tarjeta CRC – Coordinador/Productor | Incluir operación vinculada al monitoreo del avance de etapas. | Pendiente |
+| [#56](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/56) | En la CRC del Administrador se menciona “Designar responsables”, pero no existe ese método en la CLAE de UC4. | Tarjeta CRC – Administrador | Verificar si pertenece a otro caso de uso o agregar referencia en la matriz. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | No se representa `alertarPosibleRetraso()` en el diagrama de secuencia. | Diagrama de Secuencia – 4 | Agregar fragmento `alt` que muestre alerta por retraso. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | La actividad “Registrar Auditoría” existe en la CLAE pero no está en el diagrama de secuencia. | Diagrama de Secuencia – 4 | Incluir mensaje interno `registrarAuditoria()`. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | “Registrar Auditoría” tampoco aparece en el diagrama de actividad. | Diagrama de Actividad – 4 | Agregar acción antes del envío de notificación. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | Falta el mensaje `adjuntarLinksMaterial()` en el diagrama de secuencia. | Diagrama de Secuencia – 4 | Incorporar mensaje desde Asistente de Producción. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | El diagrama destruye `ServicioNotificaciones`, pero la clase es persistente. | Diagrama de Secuencia – 4 | Eliminar símbolo `destroy` o aclarar instancia temporal. | Pendiente |
+| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57) | No se verifica permisos antes del cambio de estado. | Diagrama de Actividad – 4 | Agregar `verificarPermisos(actor)` antes de validar reglas. | Pendiente |
+| [#58](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/58) | Falta responsabilidad sobre comentarios en CRC del Asistente. | Tarjeta CRC – Asistente | Añadir responsabilidad “Registrar y gestionar comentarios”. | Pendiente |
+| [#59](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/59) | Inconsistencia en nombre "Notificacion" vs "Servicio de Notificaciones". | CRC / Diagramas | Unificar nomenclatura en todos los artefactos. | Pendiente |
 
-| [#56](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/56)| El método alertarPosibleRetraso() aparece en la CLAE pero no está presente en la CRC del Coordinador/Productor. | Tarjeta CRC – Coordinador/Productor | Incluir esta operación como comportamiento adicional vinculado al monitoreo de etapas. | Pendiente |
-
-| [#56](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/56)| En la CRC del Administrador se menciona la responsabilidad “Designar diseñadores o responsables”, pero ese método no se ve reflejado en la CLAE de UC4. | Tarjeta CRC – Coordinador/Productor | Confirmar si pertenece a otro caso de uso o incluir asignarResponsable() como referencia compartida. | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| En el diagrama de secuencia no se representa la interacción para alertarPosibleRetraso(). | Diagrama de Secuencia – 4 | Añadir una condición alternativa (alt) que muestre el envío de alerta en caso de demora. | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| La actividad “Registrar Auditoría” existe en la CLAE pero no está modelada en el diagrama de secuencia. | Diagrama de Secuencia – 4 | Insertar mensaje interno del sistema registrarAuditoria() después de actualizar estado. | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| La acción “Registrar Auditoría” tampoco está presente en el diagrama de actividad. | Diagrama de Secuencia – 4 | Incorporar acción de registro de auditoría antes de notificar al usuario. | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| El método adjuntarLinksMaterial() está indicado en la CLAE pero no se visualiza en el diagrama de secuencia. | Diagrama de Secuencia – 4 | Agregar mensaje desde el actor Asistente de Producción al sistema adjuntarLinksMaterial(). | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| En el diagrama de secuencia se destruye ServicioNotificaciones al final del flujo, pero en el modelo de clases el objeto se considera persistente. | Diagrama de Secuencia – 4 | Eliminar el destroy o aclarar que se trata de una instancia temporal del servicio. | Pendiente |
-
-| [#57](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/57)| En el diagrama de secuencia no se muestra la verificación de permisos del actor antes de cambiar el estado. |Diagrama de Actividad – 4 | Incluir llamada interna verificarPermisos(actor) en el sistema antes de validar reglas. | Pendiente |
-
-| [#58](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/58)| El método registrarComentarios() aparece en la CLAE, pero en la CRC del Asistente de Producción no figura ninguna responsabilidad relacionada con comentarios. | Tarjeta CRC – Asistente  | Añadir responsabilidad “Registrar y mantener comentarios asociados a etapas”. | Pendiente |
- 
-| [#59](https://github.com/GonzaloBarbano/SistemaProductoraVideos/issues/59)| En la CRC del Notificación se usa el nombre “Notificacion” (singular), pero en los otros artefactos figura “Servicio de Notificaciones”. | CRC / Diagramas 4 | Unificar nomenclatura en todos los artefactos para mantener consistencia. | Pendiente |
 
 **Estados posibles:** Abierto / Pendiente / Resuelto
 

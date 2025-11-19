@@ -3,30 +3,30 @@ title Diagrama de Actividades - UC3: Asignar Responsable de Etapa
 
 |Coordinador/Productor|
 start
-:Seleccionar etapa del proyecto;
-:Elegir usuario para asignar;
-:Enviar solicitud de validación al Sistema de Gestión;
+:Seleccionar Etapa;
+:Seleccionar Usuario para asignar;
+:Enviar solicitud de validación (Etapa, Usuario) al Sistema;
 
 |Sistema de Gestión|
-:Recibir solicitud de validación;
+:Recibir solicitud (Etapa, Usuario);
+
 repeat
-  :Verificar existencia del usuario;
+  :Verificar existencia del Usuario;
   if (¿Usuario existe?) then (no)
     :Notificar error al Coordinador/Productor;
     note right
-    Si el usuario no existe, el sistema informa el error
-    y permite reintentar la validación.
+    El usuario no existe. Se informa el error
+    y se permite reintentar.
     end note
   else (sí)
     break
   endif
 repeat while (Usuario inválido)
 
-:Verificar rol permitido para la etapa;
+:Verificar rol permitido para esa Etapa;
 note right
-Esta verificación la realiza el **Sistema de Gestión**, 
-asegurando que el usuario tenga un rol válido 
-para ser Responsable de Etapa.
+El Sistema valida que el Usuario tenga un rol
+compatible con la responsabilidad requerida.
 end note
 
 if (¿Rol válido?) then (no)
@@ -34,7 +34,7 @@ if (¿Rol válido?) then (no)
   :Enviar mensaje de error al Coordinador/Productor;
   stop
 else (sí)
-  :Registrar asignación en la base de datos;
+  :Registrar asignación (Etapa, Usuario);
   :Actualizar auditoría del proyecto;
 endif
 

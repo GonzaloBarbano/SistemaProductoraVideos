@@ -4,6 +4,7 @@ title Principio de Inversión de Dependencias (DIP)
 interface INotificacion {
     +enviarNotificacion()
     +programarNotificacion()
+    +componerMensaje()
 }
 
 class Proyecto {
@@ -14,6 +15,7 @@ class Proyecto {
     -fechaFin
     +crearProyecto()
     +finalizarProyecto()
+    +obtenerDatosProyecto()
 }
 
 class Notificacion {
@@ -22,9 +24,22 @@ class Notificacion {
     -destinatario
     +enviarNotificacion()
     +programarNotificacion()
+    +registrarEnvio()
+    +validarReglasNegocio()
+    +componerMensaje()
 }
 
-Proyecto --> INotificacion : depende de 
+Proyecto --> INotificacion : depende de
 Notificacion ..|> INotificacion
 
+Proyecto --> Notificacion : genera
+Notificacion --> Proyecto : usa datos
+
 @enduml
+
+
+
+
+
+
+
