@@ -11,6 +11,9 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/esp-patron-estructural-add-patron-adapter] Creación del diseño estrutural
   PR: [#90](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/90) - @Santi22-7
   (Especialista en Patrón de Diseño Estructural )
+- [feature/esp-patron-comportamiento-add-patron-observer] Creación del diseño de comportamiento
+  PR: [#94](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/94) - @Santi22-7
+  ( Especialista en Patrón de Diseño de Comportamiento )
 
 - [feature/esp-patron-creacional-add-patron-factory-method] Creacion patron de diseño creacional - Factory Method
   PR: [#91](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/91) - @GonzaloBarbano
