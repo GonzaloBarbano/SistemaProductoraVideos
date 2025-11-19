@@ -3,6 +3,7 @@ title Diagrama de Secuencia - Enviar Notificaciones Automáticas (Exitoso)
 
 actor ResponsableEtapa
 participant "Sistema : GestorNotificaciones" as Sistema
+participant "GestorCanales : canalEnvio" as GestorCanales
 participant "ServicioNotificaciones : notificador" as ServicioNotificaciones
 participant "Usuario : destinatario" as Destinatario
 participant "SistemaIntegracion : registroExterno" as SistemaIntegracion
@@ -12,7 +13,13 @@ ResponsableEtapa -> Sistema : generar evento notificable
 activate Sistema
 
 Sistema -> Sistema : identificar destinatarios
-Sistema -> Sistema : determinar canal de notificación
+
+'--- Issue 62: interacción explícita para determinar el canal ---
+Sistema -> GestorCanales : solicitar canal de envío
+activate GestorCanales
+GestorCanales -> Sistema : devolver canal seleccionado
+deactivate GestorCanales
+
 Sistema -> Sistema : componer mensajes para destinatarios
 
 Sistema -> ServicioNotificaciones : enviar notificaciones
@@ -37,6 +44,4 @@ deactivate ServicioNotificaciones
 deactivate Sistema
 
 destroy ServicioNotificaciones
-
 @enduml
-

@@ -1,0 +1,180 @@
+@startuml
+title Diagrama de Clases - Sistema de Gestión de Proyectos Audiovisuales
+
+'==========================
+'        CLASES BASE
+'==========================
+
+class Proyecto {
+    - nombre : String
+    - descripcion : String
+    - tipo : String
+    - estado : String
+    - duracionPlanificada : int
+    - duracionReal : int
+    --
+    + calcularDuracionPlanificada() : int
+    + calcularDuracionReal() : int
+    + actualizarEstado() : void
+}
+
+class Etapa {
+    - pasos : String
+    - estado : String
+    - fechaInicio : Date
+    - fechaFin : Date
+    - tiempoReal : int
+    --
+    + calcularTiempoReal() : int
+    + cambiarEstado(nuevoEstado:String) : void
+    + asignarResponsable(r: ResponsableDelProyecto) : void
+}
+
+class Tarea {
+    - descripcion : String
+    - estado : String
+    - tiempoEstimado : int
+    - tiempoReal : int
+    - alerta : String
+    --
+    + registrarTiempoReal(t:int) : void
+    + actualizarEstado(e:String) : void
+}
+
+class Recurso {
+    - disponibilidad : String
+    - asignacion : String
+    - estado : String
+    - alerta : String
+    --
+    + controlarUso() : void
+    + generarAlerta() : void
+}
+
+class ServicioNotificaciones {
+    - mensaje : String
+    - destinatario : Usuario
+    - fechaEnvio : Date
+    --
+    + enviar() : void
+}
+
+'==========================
+'        USUARIOS
+'==========================
+
+abstract class Usuario {
+    - nombre : String
+    - apellido : String
+    - rol : String
+    - correo : String
+    - contraseña : String
+    - proyectosAsignados : List<Proyecto>
+    --
+    + autenticar() : boolean
+}
+
+class Administrador {
+    - permisos : String
+    - nivelAcceso : String
+    - registro : String
+    --
+    + crearProyecto(p:Proyecto) : void
+    + asignarResponsables() : void
+    + archivarProyecto(p:Proyecto) : void
+}
+
+class Diseñador {
+    - especialidad : String
+    - entregables : String
+    - revisiones : String
+    --
+    + subirEntregable() : void
+    + coordinarRevision() : void
+}
+
+class ResponsableDelProyecto {
+    - autorizacion : String
+    - validacion : String
+    - observaciones : String
+    --
+    + cambiarEstado(etapa:Etapa) : void
+    + revisarEntregables() : void
+}
+
+class Asistente {
+    - tareasAuxiliares : String
+    - agenda : String
+    - documentos : String
+    --
+    + coordinarAgenda() : void
+    + gestionarDocumentos() : void
+}
+
+class Cliente {
+    - requerimiento : String
+    - contacto : String
+    - produccionFinal : String
+    --
+    + solicitarProyecto() : Proyecto
+    + recibirProyecto() : void
+}
+
+Usuario <|-- Administrador
+Usuario <|-- Diseñador
+Usuario <|-- ResponsableDelProyecto
+Usuario <|-- Asistente
+
+'==========================
+'    RELACIONES PRINCIPALES
+'==========================
+
+Proyecto "1" *-- "1..*" Etapa : contiene >
+Etapa "1" *-- "1..*" Tarea : incluye >
+Etapa "1" --> "0..1" ResponsableDelProyecto : asignada a >
+Proyecto "1" --> "1" Cliente : solicitado por >
+Tarea "0..*" --> "0..*" Recurso : utiliza >
+Etapa "0..*" --> "0..*" Notificacion : genera >
+
+Usuario "1" --> "0..*" Notificacion : recibe >
+
+'==========================
+'  SERVICIOS Y REPOSITORIOS
+'==========================
+
+class ServicioProyecto {
+    + validarProyecto(p:Proyecto) : List<String>
+    + crearProyecto(p:Proyecto) : void
+    + registrarAuditoria() : void
+}
+
+class ServicioEtapa {
+    + validarEtapa(e:Etapa) : List<String>
+    + guardarEtapa(e:Etapa) : void
+    + enviarNotificacion() : void
+}
+
+class ServicioNotificaciones {
+    + enviarNotificacion(n:Notificacion) : void
+}
+
+class RepositorioProyecto {
+    + guardar(p:Proyecto) : void
+    + obtener() : Proyecto
+}
+
+class RepositorioEtapas {
+    + guardar(e:Etapa) : void
+    + obtenerPorProyecto(id:int) : List<Etapa>
+}
+
+'=== RELACIONES CON MULTIPLICIDAD Y DESCRIPCIÓN ===
+
+Proyecto --> ServicioProyecto : gestiona >
+Etapa --> ServicioEtapa : administra >
+Notificacion --> ServicioNotificaciones : procesa >
+
+ServicioProyecto --> RepositorioProyecto : persiste >
+ServicioEtapa --> RepositorioEtapas : consulta/guarda >
+
+@enduml

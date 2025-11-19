@@ -2,6 +2,7 @@
 left to right direction
 
 actor "Coordinador/Productor" as Prod
+actor "Responsable de Etapa" as RespEtapa
 actor "Servicio de Notificaciones" as Notif <<Sistema>>
 
 rectangle "Crear/Editar Proyecto (UC1)" {
@@ -11,8 +12,9 @@ rectangle "Crear/Editar Proyecto (UC1)" {
     usecase "Enviar Notificaciones Automáticas" as UC5
 }
 
-' Relaciones
 Prod -- Form
+RespEtapa -- Form
+
 Form ..> Valida : <<include>>
 Valida ..> Audit : <<include>>
 Valida ..> UC5 : <<include>>

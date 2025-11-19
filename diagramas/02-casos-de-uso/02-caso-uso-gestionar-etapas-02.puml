@@ -3,34 +3,40 @@ left to right direction
 
 actor "Coordinador/Productor" as Prod
 actor "Responsable de Etapa" as Resp
-actor "Asistente de Producción" as Asist
-actor "Servicio de Notificaciones" as Notif <<Sistema>>
+actor "Asistente de Producción\n(Solo registra, no modifica)" as Asist
+
+actor "ServicioCorreo" as Correo <<Sistema>>
+actor "ServicioWhatsApp" as WhatsApp <<Sistema>>
+actor "GestorCanales" as Gestor <<Sistema>>
 
 rectangle "Gestionar Etapas (UC2)" {
     usecase "Crear/Editar Etapa" as CrearEtapa
     usecase "Cambiar/Cerrar Etapa" as CambiarEtapa
-    usecase "Registrar Observaciones/Comentarios" as RegObs
+    usecase "Registrar Observaciones/Comentarios\n(Solo creación)" as RegObs
     usecase "Adjuntar Materiales/Links" as Links
     usecase "Alertar Posible Retraso" as Alerta
-    usecase "Enviar Notificaciones Automáticas" as UC5
+    usecase "Enviar Notificaciones Automáticas\n(UC5)" as UC5
 }
 
-' Actores
 Prod -- CrearEtapa
 Prod -- CambiarEtapa
+
 Resp -- CambiarEtapa
 Resp -- RegObs
 Resp -- Links
-Asist -- RegObs
 
-' Relaciones internas
+Asist -- RegObs  
+
+Gestor -- Alerta
+Correo -- UC5
+WhatsApp -- UC5
+
 CrearEtapa ..> UC5 : <<include>>
 CambiarEtapa ..> UC5 : <<include>>
 RegObs ..> UC5 : <<include>>
 Links ..> UC5 : <<include>>
 Alerta ..> UC5 : <<include>>
 
-' Flechas ocultas para acomodar
 CrearEtapa -[#white]-> CambiarEtapa
 RegObs -[#white]-> Links
 
