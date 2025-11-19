@@ -16,6 +16,10 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
   PR: [#91](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/91) - @GonzaloBarbano
   (Especialista en Patrón de Diseño Creacional)
 
+- [feature/coordinadir] Correccion y actualizacion de repositorio
+  PR: [#93](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/93) - @GonzaloBarbano
+  (Coordinador de repositorio)
+
 ### Changed
 
 ### Fixed
