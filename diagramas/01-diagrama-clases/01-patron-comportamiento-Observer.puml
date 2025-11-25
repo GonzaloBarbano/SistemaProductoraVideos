@@ -1,6 +1,10 @@
 @startuml
 title Patrón Observer aplicado al Sistema de Gestión de Proyectos Audiovisuales
 
+'==============================
+'  Interfaces del patrón
+'==============================
+
 interface Observer {
     + actualizar(Evento evento)
 }
@@ -8,38 +12,59 @@ interface Observer {
 interface Subject {
     + registrarObserver(Observer o)
     + removerObserver(Observer o)
-    + notificarObservers()
+    + notificarObservers(Evento evento)
 }
 
+'==============================
+'  Clase que representa el evento
+'==============================
+
+class Evento {
+    + tipo : String
+    + idEntidad : int
+    + idProyecto : int
+    + estadoAnterior : String
+    + estadoNuevo : String
+    + timestamp : DateTime
+}
+
+'==============================
+'  Subjects (Etapa y Tarea)
+'==============================
+
 class Etapa {
-    - List<Observer> observers
+    - observers : List<Observer>
     + cambiarEstado()
-    + registrarObserver(o)
-    + removerObserver(o)
-    + notificarObservers()
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers(Evento evento)
 }
 
 class Tarea {
-    - List<Observer> observers
+    - observers : List<Observer>
     + cambiarEstado()
-    + registrarObserver(o)
-    + removerObserver(o)
-    + notificarObservers()
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers(Evento evento)
 }
 
 Subject <|.. Etapa
 Subject <|.. Tarea
 
+'==============================
+'  Observers concretos
+'==============================
+
 class ServicioNotificaciones {
-    + actualizar(evento)
+    + actualizar(Evento evento)
 }
 
 class ResponsableDelProyecto {
-    + actualizar(evento)
+    + actualizar(Evento evento)
 }
 
 class ServicioAuditoria {
-    + actualizar(evento)
+    + actualizar(Evento evento)
 }
 
 Observer <|.. ServicioNotificaciones
@@ -48,5 +73,12 @@ Observer <|.. ServicioAuditoria
 
 Etapa --> Observer : notifica cambios
 Tarea --> Observer : notifica cambios
+
+'==============================
+' Relación del evento con Subjects
+'==============================
+
+Etapa --> Evento : crea y envía
+Tarea --> Evento : crea y envía
 
 @enduml
