@@ -1,87 +1,63 @@
 @startuml
-title Patrón Creacional - Factory Method (Sistema de Notificaciones)
+title Patrón Factory Method - Notificaciones
 
-'==========================
-'     PRODUCTO (INTERFAZ)
-'==========================
+'===========================
+' Clases de Soporte
+'===========================
+
+class DatosNotificacion {
+    + destinatario : String
+    + mensaje : String
+    + prioridad : int
+}
+
+'===========================
+' Producto
+'===========================
 
 interface Notificacion {
-    + enviar() : void
+    + enviar()
 }
 
-' El producto ahora recibe información necesaria
-class DatosNotificacion {
-    - mensaje : String
-    - destinatario : Usuario
-}
-
-'==========================
-'  PRODUCTOS CONCRETOS
-'==========================
-
-class EmailNotificacion {
+class NotificacionEmail {
     - datos : DatosNotificacion
-    + EmailNotificacion(datos:DatosNotificacion)
-    + enviar() : void
+    + enviar()
 }
 
-class PushNotificacion {
+class NotificacionSMS {
     - datos : DatosNotificacion
-    + PushNotificacion(datos:DatosNotificacion)
-    + enviar() : void
+    + enviar()
 }
 
-class NotificacionInterna {
-    - datos : DatosNotificacion
-    + NotificacionInterna(datos:DatosNotificacion)
-    + enviar() : void
-}
+Notificacion <|.. NotificacionEmail
+Notificacion <|.. NotificacionSMS
 
-class WhatsAppNotificacion {
-    - datos : DatosNotificacion
-    + WhatsAppNotificacion(datos:DatosNotificacion)
-    + enviar() : void
-}
+' Relación: los productos usan datos
+DatosNotificacion --> NotificacionEmail : se inyecta
+DatosNotificacion --> NotificacionSMS : se inyecta
 
-Notificacion <|.. EmailNotificacion
-Notificacion <|.. PushNotificacion
-Notificacion <|.. NotificacionInterna
-Notificacion <|.. WhatsAppNotificacion
-
-'==========================
-'    CREATOR ABSTRACTO
-'==========================
+'===========================
+' Creador y Concrete Creators
+'===========================
 
 abstract class NotificacionCreator {
-    + crearNotificacion(datos:DatosNotificacion) : Notificacion
-    + procesarEnvio(datos:DatosNotificacion) : void
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-NotificacionCreator --> Notificacion : crea >
-
-'==========================
-'     CREADORES CONCRETOS
-'==========================
-
-class EmailNotificacionCreator {
-    + crearNotificacion(datos:DatosNotificacion) : Notificacion
+class EmailCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-class PushNotificacionCreator {
-    + crearNotificacion(datos:DatosNotificacion) : Notificacion
+class SMSCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-class NotificacionInternaCreator {
-    + crearNotificacion(datos:DatosNotificacion) : Notificacion
-}
+NotificacionCreator <|-- EmailCreator
+NotificacionCreator <|-- SMSCreator
 
-class WhatsAppNotificacionCreator {
-    + crearNotificacion(datos:DatosNotificacion) : Notificacion
-}
-
-NotificacionCreator <|-- EmailNotificacionCreator
-NotificacionCreator <|-- PushNotificacionCreator
-NotificacionCreator <|-- NotificacionInternaCreator
-NotificacionCreator <|-- WhatsAppNotificacionCreator
+' Relación del Factory Method
+NotificacionCreator --> DatosNotificacion : usa
+EmailCreator --> NotificacionEmail : instancia
+SMSCreator --> NotificacionSMS : instancia
 
 @enduml
