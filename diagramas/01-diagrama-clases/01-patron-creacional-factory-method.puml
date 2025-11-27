@@ -1,48 +1,63 @@
 @startuml
-title Patrón Creacional – Factory Method aplicado a Notificaciones
+title Patrón Factory Method - Notificaciones
+
+'===========================
+' Clases de Soporte
+'===========================
+
+class DatosNotificacion {
+    + destinatario : String
+    + mensaje : String
+    + prioridad : int
+}
+
+'===========================
+' Producto
+'===========================
 
 interface Notificacion {
-    +enviar() : void
+    + enviar()
 }
 
-class EmailNotificacion {
-    -direccionCorreo : String
-    +enviar() : void
+class NotificacionEmail {
+    - datos : DatosNotificacion
+    + enviar()
 }
 
-class PushNotificacion {
-    -tokenDispositivo : String
-    +enviar() : void
+class NotificacionSMS {
+    - datos : DatosNotificacion
+    + enviar()
 }
 
-class NotificacionInterna {
-    -usuarioDestino : Usuario
-    +enviar() : void
-}
+Notificacion <|.. NotificacionEmail
+Notificacion <|.. NotificacionSMS
+
+' Relación: los productos usan datos
+DatosNotificacion --> NotificacionEmail : se inyecta
+DatosNotificacion --> NotificacionSMS : se inyecta
+
+'===========================
+' Creador y Concrete Creators
+'===========================
 
 abstract class NotificacionCreator {
-    +crearNotificacion() : Notificacion
-    +procesarEnvio() : void
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-class EmailNotificacionCreator {
-    +crearNotificacion() : Notificacion
+class EmailCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-class PushNotificacionCreator {
-    +crearNotificacion() : Notificacion
+class SMSCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
 }
 
-class NotificacionInternaCreator {
-    +crearNotificacion() : Notificacion
-}
+NotificacionCreator <|-- EmailCreator
+NotificacionCreator <|-- SMSCreator
 
-NotificacionCreator <|-- EmailNotificacionCreator
-NotificacionCreator <|-- PushNotificacionCreator
-NotificacionCreator <|-- NotificacionInternaCreator
-
-Notificacion <|.. EmailNotificacion
-Notificacion <|.. PushNotificacion
-Notificacion <|.. NotificacionInterna
+' Relación del Factory Method
+NotificacionCreator --> DatosNotificacion : usa
+EmailCreator --> NotificacionEmail : instancia
+SMSCreator --> NotificacionSMS : instancia
 
 @enduml

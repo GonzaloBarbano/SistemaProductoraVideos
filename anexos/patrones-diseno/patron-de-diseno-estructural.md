@@ -1,150 +1,139 @@
-# Anexo – Aplicación de Patrón de Diseño Estructural – Fachada (Facade)
+# Anexo – Aplicación de Patrón de Diseño Estructural – Facade
 
-## Patrones de Diseño Estructurales y su Relación con SOLID
+## Patrones de Diseño Estructurales y su relación con SOLID
 
-Los patrones estructurales se enfocan en cómo se organizan y conectan clases y objetos para reducir acoplamiento, mejorar cohesión y permitir estructuras más flexibles y mantenibles.
+Los patrones de diseño estructurales se enfocan en cómo organizar, simplificar y conectar clases y objetos dentro de un sistema. Permiten reducir acoplamiento, encapsular relaciones complejas y facilitar la extensibilidad, trabajando en línea con principios SOLID como:
 
-Relación con SOLID:
-
-* **S — Responsabilidad Única:** Separan responsabilidades distribuyendo funciones en clases específicas.
-* **O — Abierto/Cerrado:** Permiten extender funcionalidades mediante envoltorios, adaptadores o fachadas sin modificar código existente.
-* **L — Sustitución de Liskov:** El uso de interfaces y abstracciones permite intercambiar implementaciones sin alterar el comportamiento del sistema.
-* **I — Segregación de Interfaces:** Favorecen interfaces pequeñas y específicas cuando el patrón lo requiere.
-* **D — Inversión de Dependencias:** Promueven depender de abstracciones en lugar de implementaciones concretas.
+- **S (Responsabilidad Única):** cada clase cumple un rol bien definido.
+- **O (Abierto/Cerrado):** permite extender funcionalidades sin modificar el código existente.
+- **D (Inversión de Dependencias):** el cliente depende de una interfaz simplificada y no de subsistemas concretos.
 
 ---
 
-## Propósito y Tipo del Patrón
+# Propósito y Tipo del Patrón
 
-### Propósito del Patrón Fachada
+## Propósito
 
-La **Fachada** provee una interfaz simple y unificada para acceder a funcionalidades complejas de múltiples subsistemas. Reduce la complejidad y oculta detalles internos del sistema.
+En el sistema original, varios componentes del dominio (Proyecto, Etapa, Tarea, ResponsableDelProyecto) debían interactuar directamente con múltiples servicios técnicos como:
 
-### Tipo de patrón
+- ServicioProyecto
+- ServicioEtapa
+- ServicioNotificaciones
 
-**Patrón estructural**, utilizado para organizar y simplificar interacciones entre componentes.
+Este diseño generaba:
 
-### Problema que resuelve
+- Acoplamiento fuerte entre dominio y servicios técnicos
+- Duplicación de lógica
+- Dificultad para escalar o modificar servicios
+- Complejidad excesiva para desarrolladores
 
-En el sistema existía duplicación de código, múltiples dependencias entre clases y necesidad de coordinar varios servicios. Esto generaba acoplamiento fuerte, complejidad y poca mantenibilidad.
+El patrón **Facade** se utiliza para **simplificar el acceso** a estos servicios, encapsular la complejidad y proporcionar una única interfaz unificada.
 
-La fachada encapsula y orquesta estas operaciones, centralizando la lógica del caso de uso.
+## Tipo
 
----
+Patrón estructural: **Facade**.
 
-## Motivación
+Adecuado porque:
 
-En este caso real del **Sistema de Gestión de Proyectos Audiovisuales**, el problema estructural surge por la forma en que las clases del dominio interactúan entre sí. Actualmente, componentes como `Proyecto`, `Etapa`, `Tarea`, `ResponsableDelProyecto` y los servicios (`ServicioProyecto`, `ServicioEtapa`, `ServicioNotificaciones`) están **fuertemente acoplados**. Cada capa conoce detalles internos de otras, lo que genera alta dependencia y dificulta la evolución del sistema.
-
-Ejemplos del problema real observado:
-
-* **`Proyecto` depende directamente de `ServicioProyecto`**, y `Etapa` depende de `ServicioEtapa`, creando vínculos rígidos entre la lógica del dominio y los servicios.
-* `Etapa` genera notificaciones a través de `ServicioNotificaciones`, mezclando responsabilidades (violación de SRP).
-* `ResponsableDelProyecto` cambia estados directamente en `Etapa`, provocando una dependencia circular en el comportamiento.
-* Agregar nuevas reglas, flujos o servicios externos (p. ej., WhatsApp, auditorías) implica modificar múltiples clases del dominio.
-
-El patrón estructural **Facade** ofrece una solución para **organizar dependencias, ocultar complejidad y reducir el acoplamiento entre capas**.
-
----
-
-## Profundización del Problema en el Sistema
-
-Al analizar el diseño del sistema se detectó que la lógica del dominio está fuertemente entrelazada con los servicios externos, generando los siguientes problemas:
-
-### 1. Dependencias rígidas entre el dominio y los servicios
-
-Las clases del dominio ejecutan directamente validaciones, persistencia y notificaciones, mezclando niveles de abstracción y violando **DIP** y **SRP**.
-
-### 2. Dificultad para extender el sistema
-
-Cualquier cambio requiere modificar varias clases, rompiendo **OCP**.  
-Ejemplos:
-
-* nuevos repositorios,
-* nuevos canales de notificación,
-* nuevas reglas de validación.
-
-### 3. Alto acoplamiento entre etapas, tareas y servicios
-
-Las clases conocen demasiados detalles sobre cómo se guardan, validan o notifican datos, dificultando:
-
-* pruebas unitarias,
-* mantenimiento,
-* incorporación de cambios futuros.
+- Simplifica el acceso al sistema.
+- Reduce acoplamiento.
+- Centraliza lógica repetitiva.
+- Mejora la mantenibilidad.
 
 ---
 
-## Cómo el Patrón Estructural Soluciona el Problema
+# Motivación
 
-El patrón **Facade** introduce una única clase que actúa como **punto de acceso** para las operaciones del sistema. Esta fachada:
+Antes de implementar el patrón:
 
-* encapsula la complejidad de los servicios,
-* organiza los flujos de trabajo,
-* y evita que las clases del dominio dependan de múltiples servicios externos.
+- Proyecto, Etapa y Tarea debían comunicarse directamente con distintos servicios.
+- Se repetía lógica de validación, creación y notificaciones.
+- Los servicios estaban expuestos al dominio generando acoplamiento.
 
-### Beneficios obtenidos
+**Clases del problema original:**
 
-* Menor acoplamiento entre capas.
-* Mayor encapsulamiento de la lógica de orquestación.
-* Mayor extensibilidad sin modificar clases del dominio.
-* Mayor claridad arquitectónica.
+- Proyecto
+- Etapa
+- Tarea
+- ResponsableDelProyecto
+- ServicioProyecto
+- ServicioEtapa
+- ServicioNotificaciones
 
----
+**Nueva clase introducida:**
 
-## Clases Implicadas en el Problema
+- **GestorDeProyectosFacade**
 
-Las clases afectadas por el acoplamiento excesivo son:
+Esta fachada:
 
-* `Proyecto`
-* `Etapa`
-* `Tarea`
-* `ResponsableDelProyecto`
-* `ServicioProyecto`
-* `ServicioEtapa`
-* `ServicioNotificaciones`
-* `RepositorioProyecto`
-* `RepositorioEtapas`
-
-Estas clases mezclaban responsabilidades del negocio con lógica de infraestructura.
+- Reduce dependencia directa hacia los servicios
+- Simplifica la API
+- Centraliza validaciones y flujo de creación y persistencia
 
 ---
 
-## Nueva Clase Incorporada con el Patrón Facade
+# Estructura de Clases
 
-Se incorpora **una única clase adicional**:
+![diagrama](../../diagramas/01-diagrama-clases/01-patron-estructural-Fachada.png)
+
+## Justificación Técnica de la Estructura de Clases
+
+### **Proyecto**
+
+- **Responsabilidad:** administrar reglas internas del proyecto.
+- **Motivo:** interactúa con la fachada para evitar acoplamiento directo.
+- **Colaboración:** delega creación y validaciones a la fachada.
+
+---
+
+### **Etapa**
+
+- **Responsabilidad:** gestionar cambios de estado y responsables.
+- **Motivo:** anteriormente llamaba directamente a servicios.
+- **Colaboración:** usa la fachada para guardar y validar etapas.
+
+---
+
+### **Tarea**
+
+- **Responsabilidad:** registrar tiempos y estados.
+- **Motivo:** parte del flujo que interactúa con servicios externos.
+- **Colaboración:** delega operaciones comunes en la fachada.
+
+---
+
+### **ResponsableDelProyecto**
+
+- **Responsabilidad:** orquestar la gestión del proyecto.
+- **Motivo:** interactúa con la fachada como punto central de operaciones.
+- **Colaboración:** solicita acciones estandarizadas.
+
+---
+
+### **Servicios (ServicioProyecto / ServicioEtapa / ServicioNotificaciones)**
+
+- **Responsabilidad:** lógica transversal interna.
+- **Motivo:** son subsistemas a los que la fachada encapsula.
+- **Colaboración:** la fachada orquesta su uso.
+
+---
 
 ### **GestorDeProyectosFacade**
 
-Responsabilidades:
-
-* Centralizar operaciones como creación de proyectos, gestión de etapas y envío de notificaciones.
-* Utilizar internamente los servicios (`ServicioProyecto`, `ServicioEtapa`, `ServicioNotificaciones`).
-* Eliminar dependencias directas entre el dominio y los servicios.
-* Reducir acoplamiento y mejorar orden arquitectónico.
+- **Responsabilidad:** exponer una API simplificada y unificada.
+- **Motivo:** reducir acoplamiento y ocultar complejidad técnica.
+- **Colaboración:** valida, crea, guarda y notifica en nombre del dominio.
 
 ---
 
-## ✔ Justificación Técnica de la Solución Propuesta
+## Explicación del Flujo Estructural
 
-La aplicación del patrón **Facade** se justifica porque:
-
-1. **Reduce el acoplamiento** al evitar que el dominio dependa de múltiples servicios externos.
-2. **Mejora la cohesión**, concentrando en un único lugar la lógica de coordinación.
-3. **Cumple DIP**, ya que el dominio pasa a depender de una fachada estable en lugar de implementaciones concretas.
-4. **Facilita la extensibilidad (OCP)**: nuevos servicios o reglas pueden incorporarse dentro de la fachada sin afectar al dominio.
-5. **Ordena la arquitectura**, separando:
-   * dominio (reglas del negocio),
-   * servicios (infraestructura),
-   * fachada (orquestación).
-6. **Mejora pruebas y mantenimiento**, permitiendo testear el dominio sin involucrar servicios externos.
-
-En conjunto, el patrón aporta **simplicidad, escalabilidad y claridad arquitectónica**.
-
----
-
-# 📌 Diagrama de Clases – Aplicación del Patrón Facade
-
-> ![diagrama](../../diagramas/01-diagrama-clases/01-patron-estructural-Fachada.png)
-
-
-
+1. Una clase del dominio solicita una operación (crear proyecto, guardar etapa, enviar notificación).
+2. En lugar de llamar directamente a los servicios técnicos, **llama a `GestorDeProyectosFacade`**.
+3. La fachada:
+   - Valida reglas
+   - Orquesta servicios
+   - Maneja errores
+   - Envía notificaciones
+4. El dominio se mantiene **limpio y con responsabilidad única**.
+5. Se elimina acoplamiento y el sistema se vuelve **extensible y mantenible**.
