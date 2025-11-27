@@ -1,0 +1,63 @@
+@startuml
+title Patrón Factory Method - Notificaciones
+
+'===========================
+' Clases de Soporte
+'===========================
+
+class DatosNotificacion {
+    + destinatario : String
+    + mensaje : String
+    + prioridad : int
+}
+
+'===========================
+' Producto
+'===========================
+
+interface Notificacion {
+    + enviar()
+}
+
+class NotificacionEmail {
+    - datos : DatosNotificacion
+    + enviar()
+}
+
+class NotificacionSMS {
+    - datos : DatosNotificacion
+    + enviar()
+}
+
+Notificacion <|.. NotificacionEmail
+Notificacion <|.. NotificacionSMS
+
+' Relación: los productos usan datos
+DatosNotificacion --> NotificacionEmail : se inyecta
+DatosNotificacion --> NotificacionSMS : se inyecta
+
+'===========================
+' Creador y Concrete Creators
+'===========================
+
+abstract class NotificacionCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
+}
+
+class EmailCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
+}
+
+class SMSCreator {
+    + crearNotificacion(datos : DatosNotificacion) : Notificacion
+}
+
+NotificacionCreator <|-- EmailCreator
+NotificacionCreator <|-- SMSCreator
+
+' Relación del Factory Method
+NotificacionCreator --> DatosNotificacion : usa
+EmailCreator --> NotificacionEmail : instancia
+SMSCreator --> NotificacionSMS : instancia
+
+@enduml

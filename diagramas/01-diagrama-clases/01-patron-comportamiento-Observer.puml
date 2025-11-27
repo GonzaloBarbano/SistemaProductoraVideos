@@ -1,0 +1,84 @@
+@startuml
+title Patrón Observer aplicado al Sistema de Gestión de Proyectos Audiovisuales
+
+'==============================
+'  Interfaces del patrón
+'==============================
+
+interface Observer {
+    + actualizar(Evento evento)
+}
+
+interface Subject {
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers(Evento evento)
+}
+
+'==============================
+'  Clase que representa el evento
+'==============================
+
+class Evento {
+    + tipo : String
+    + idEntidad : int
+    + idProyecto : int
+    + estadoAnterior : String
+    + estadoNuevo : String
+    + timestamp : DateTime
+}
+
+'==============================
+'  Subjects (Etapa y Tarea)
+'==============================
+
+class Etapa {
+    - observers : List<Observer>
+    + cambiarEstado()
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers(Evento evento)
+}
+
+class Tarea {
+    - observers : List<Observer>
+    + cambiarEstado()
+    + registrarObserver(Observer o)
+    + removerObserver(Observer o)
+    + notificarObservers(Evento evento)
+}
+
+Subject <|.. Etapa
+Subject <|.. Tarea
+
+'==============================
+'  Observers concretos
+'==============================
+
+class ServicioNotificaciones {
+    + actualizar(Evento evento)
+}
+
+class ResponsableDelProyecto {
+    + actualizar(Evento evento)
+}
+
+class ServicioAuditoria {
+    + actualizar(Evento evento)
+}
+
+Observer <|.. ServicioNotificaciones
+Observer <|.. ResponsableDelProyecto
+Observer <|.. ServicioAuditoria
+
+Etapa --> Observer : notifica cambios
+Tarea --> Observer : notifica cambios
+
+'==============================
+' Relación del evento con Subjects
+'==============================
+
+Etapa --> Evento : crea y envía
+Tarea --> Evento : crea y envía
+
+@enduml

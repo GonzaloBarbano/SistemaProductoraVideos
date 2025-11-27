@@ -4,13 +4,24 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 
 ---
 
-## [Unreleased]
+## [Release Parcial N°2] - 2025-11-19
 
 ### Added
 
-### Changed
+- [feature/esp-patron-estructural-add-patron-adapter] Creación del diseño estrutural
+  PR: [#90](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/90) - @Santi22-7
+  (Especialista en Patrón de Diseño Estructural )
+- [feature/esp-patron-comportamiento-add-patron-observer] Creación del diseño de comportamiento
+  PR: [#94](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/94) - @Santi22-7
+  ( Especialista en Patrón de Diseño de Comportamiento )
 
-### Fixed
+- [feature/esp-patron-creacional-add-patron-factory-method] Creacion patron de diseño creacional - Factory Method
+  PR: [#91](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/91) - @GonzaloBarbano
+  (Especialista en Patrón de Diseño Creacional)
+
+- [feature/coordinadir] Correccion y actualizacion de repositorio
+  PR: [#93](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/93) - @GonzaloBarbano
+  (Coordinador de repositorio)
 
 ---
 
@@ -21,8 +32,6 @@ Este archivo se actualiza con cada Pull Request para registrar avances y correcc
 - [feature/esp-matriz-clae-4-5-add-matrices] Creación de las Matrices 4 y 5
   PR: [#64](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/64) - @Santi22-7
   (Especialista en Matrices CLAE - Casos de Uso 4 y 5 )
-
-### Changed
 
 ### Fixed
 
