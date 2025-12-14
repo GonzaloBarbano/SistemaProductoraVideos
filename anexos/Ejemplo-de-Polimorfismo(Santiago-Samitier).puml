@@ -1,0 +1,13 @@
+@startuml
+abstract class Usuario {
+  + ejecutarRol() : void
+}
+
+class Administrador
+class Diseñador
+class Asistente
+
+Usuario <|-- Administrador
+Usuario <|-- Diseñador
+Usuario <|-- Asistente
+@enduml
