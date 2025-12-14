@@ -1,6 +1,12 @@
 # Changelog
 
 Este archivo se actualiza con cada Pull Request para registrar avances y correcciones.
+---
+## [Examen final] - 2025-12-14
+- [feature/anexo-fundamentos-doo] Creación de lo pedido en el examen final 
+  PR: [#99](https://github.com/GonzaloBarbano/SistemaProductoraVideos/pull/99) - @Santi22-7
+  ()
+### Added
 
 ---
 
