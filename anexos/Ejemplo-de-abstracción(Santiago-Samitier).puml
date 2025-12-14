@@ -1,0 +1,9 @@
+@startuml
+class Proyecto {
+- estado : String
+- duracionPlanificada : int
+- duracionReal : int
++ actualizarEstado(nuevoEstado : String) : void
++ calcularDuracionReal() : int
+}
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+abstract class Usuario {
+  - nombre : String
+  - email : String
+  + autenticar() : boolean
+}
+
+class Productor {
+  + crearProyecto() : void
+}
+
+class ResponsableEtapa {
+  + gestionarEtapa() : void
+}
+
+Usuario <|-- Productor
+Usuario <|-- ResponsableEtapa
+@enduml
