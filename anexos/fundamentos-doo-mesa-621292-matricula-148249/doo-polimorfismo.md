@@ -27,8 +27,8 @@ La clase Usuario define un comportamiento común que es implementado de manera d
 
 Las clases Administrador, Diseñador y Asistente heredan de Usuario y redefinen un mismo método para ejecutar acciones acordes a su responsabilidad.
 
-![Polimorfismo](../../SistemaProductoraVideos/anexos/Ejemplo-de-Polimorfismo(Santiago-Samitier).png)
-- [Ejemplo de Polimorfismo (Codigo del diagrama UML)](../../SistemaProductoraVideos/anexos/Ejemplo-de-Polimorfismo(Santiago-Samitier).puml)
+![Polimorfismo](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Polimorfismo(Santiago-Samitier).png)
+- [Ejemplo de Polimorfismo (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Polimorfismo(Santiago-Samitier).puml)
 
 Relación con los diagramas de clase:
 

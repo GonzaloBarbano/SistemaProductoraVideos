@@ -26,8 +26,8 @@ En el Sistema de Gestión de Proyectos Audiovisuales, el encapsulamiento se apli
 
 Las demás clases del sistema interactúan con Proyecto exclusivamente a través de estos métodos, sin acceder directamente a sus atributos internos.
 
-![encapsulamiento](../../SistemaProductoraVideos/anexos/Ejemplo-de-Encapsulamiento(Santiago-Samitier).png)
-- [Ejemplo de encapsulamiento (Codigo del diagrama UML)](../../SistemaProductoraVideos/anexos/Ejemplo-de-Encapsulamiento(Santiago-Samitier).puml)
+![encapsulamiento](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).png)
+- [Ejemplo de encapsulamiento (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).puml)
 
 Relación con el diagrama de clases:
 

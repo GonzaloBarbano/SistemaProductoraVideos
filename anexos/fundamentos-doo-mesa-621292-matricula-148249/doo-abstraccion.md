@@ -16,8 +16,8 @@ En el Sistema de Gestión de Proyectos Audiovisuales, la clase Proyecto actúa c
 
 A su vez, otras clases del sistema (como Cliente, ServicioProyecto o los distintos roles de Usuario) interactúan con Proyecto a través de sus métodos públicos, sin conocer ni depender de cómo se calculan internamente sus estados o duraciones.
 
-![Abstracción](../../SistemaProductoraVideos/anexos/Ejemplo-de-abstracción(Santiago-Samitier).png)
-- [Ejemplo de abstracción (Codigo del diagrama UML)](../../SistemaProductoraVideos/anexos/Ejemplo-de-abstracción(Santiago-Samitier).puml)
+![Abstracción](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).png)
+- [Ejemplo de abstracción (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).puml)
 
 Relación con el diagrama de clases:
 

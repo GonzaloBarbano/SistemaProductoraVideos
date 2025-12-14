@@ -23,8 +23,8 @@ Template Method, donde una clase padre define la estructura general del algoritm
 En el Sistema de Gestión de Proyectos Audiovisuales, la herencia se aplica en la jerarquía de usuarios del sistema.  
 La clase Usuario representa el concepto general de un usuario, definiendo atributos y comportamientos comunes, mientras que las clases Productor y ResponsableEtapa heredan dichas características y agregan responsabilidades específicas según su rol.
 
-![Abstracción](../../SistemaProductoraVideos/anexos/Ejemplo-de-Herencia(Santiago-Samitier).png)
-- [Ejemplo de abstracción (Codigo del diagrama UML)](../../SistemaProductoraVideos/anexos/Ejemplo-de-Herencia(Santiago-Samitier).puml)
+![Herencia](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).png)
+- [Ejemplo de Herencia (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).puml)
 
 Relación con diagrama de clase:
 El fragmento del diagrama UML seleccionado muestra una jerarquía de herencia en la que la clase Usuario actúa como superclase, concentrando atributos y comportamientos comunes a todos los usuarios del sistema, como la identificación y la autenticación.
