@@ -40,30 +40,37 @@ El diagrama UML muestra una jerarquía donde múltiples clases heredan de Usuari
 
 ## Ejemplo de codigo
 
+```java
 public abstract class Usuario {
+
     public abstract void ejecutarRol();
 }
 
 public class Administrador extends Usuario {
+
     @Override
     public void ejecutarRol() {
-        
+        // lógica de administración del sistema
     }
 }
 
 public class Diseñador extends Usuario {
+
     @Override
     public void ejecutarRol() {
-        
+        // lógica de diseño y revisión de contenidos
     }
 }
 
 public class Asistente extends Usuario {
+
     @Override
     public void ejecutarRol() {
-        
+        // lógica de asistencia operativa
     }
 }
+```
+
 
 Justificación técnica del código:
 

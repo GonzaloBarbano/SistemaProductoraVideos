@@ -38,9 +38,11 @@ Justificación técnica del ejemplo (UML):
 El diagrama UML evidencia el uso del encapsulamiento al mostrar los atributos con visibilidad privada y los métodos públicos que controlan el acceso al estado interno del objeto. Esta separación entre estado y comportamiento expuesto garantiza la integridad de los datos y una interacción segura entre las clases del sistema.
 
 ## Ejemplo de Código
-Codigo escrito en java:
 
+
+```java
 public class Proyecto {
+
     private String estado;
     private int duracionPlanificada;
     private int duracionReal;
@@ -61,6 +63,8 @@ public class Proyecto {
         return duracionReal;
     }
 }
+```
+
 
 Justificación técnica del código:
 

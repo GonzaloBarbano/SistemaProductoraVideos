@@ -28,23 +28,25 @@ Justificación técnica del ejemplo (UML):
 Desde el punto de vista técnico, la abstracción se aplica al definir a Proyecto como un modelo del dominio que concentra la lógica y los datos esenciales relacionados con la gestión de un proyecto audiovisual. Otras clases del sistema interactúan con esta abstracción a través de métodos bien definidos, sin depender de cálculos internos, estructuras de datos o reglas de negocio específicas. Esto permite modificar o extender la lógica interna del proyecto (por ejemplo, cambiar la forma de calcular la duración o el estado) sin impactar en las clases que lo utilizan, cumpliendo con los principios de bajo acoplamiento y alta cohesión.
 
 ## Ejemplo de Código
-Codigo escrito en java:
 
+
+```java
 public class Proyecto {
-private String estado;
-private int duracionPlanificada;
-private int duracionReal;
 
+    private String estado;
+    private int duracionPlanificada;
+    private int duracionReal;
 
-public void actualizarEstado(String nuevoEstado) {
-this.estado = nuevoEstado;
+    public void actualizarEstado(String nuevoEstado) {
+        this.estado = nuevoEstado;
+    }
+
+    public int calcularDuracionReal() {
+        return duracionReal;
+    }
 }
+```
 
-
-public int calcularDuracionReal() {
-return duracionReal;
-}
-}
 
 Justificación técnica del código:
 

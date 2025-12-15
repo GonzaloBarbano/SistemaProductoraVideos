@@ -38,23 +38,32 @@ Desde el punto de vista técnico, la herencia se aplica al definir una clase bas
 Este diseño facilita la mantenibilidad y extensibilidad del sistema, ya que permite incorporar nuevos tipos de usuarios mediante la creación de nuevas clases hijas sin modificar la clase base ni afectar el comportamiento existente, cumpliendo con los principios de bajo acoplamiento, alta cohesión y con el principio Abierto/Cerrado (OCP) de SOLID.
 
 ## Ejemplo de Código
-Codigo escrito en java:
 
+
+```java
 public abstract class Usuario {
+
     protected String nombre;
     protected String email;
 
     public boolean autenticar() {
-        return true;}
+        return true;
+    }
 }
+
 public class Productor extends Usuario {
 
-    public void crearProyecto() {}
+    public void crearProyecto() {
+    }
 }
+
 public class ResponsableEtapa extends Usuario {
 
-    public void gestionarEtapa() {}
+    public void gestionarEtapa() {
+    }
 }
+```
+
 
 Justificación técnica del código:
 
