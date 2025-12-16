@@ -1,18 +1,18 @@
 # Encapsulamiento 
 
-Explicación del concepto:
+### Explicación del concepto:
 
 El encapsulamiento es un fundamento de la Programación Orientada a Objetos que consiste en ocultar el estado interno de un objeto y permitir el acceso a sus datos únicamente a través de métodos públicos bien definidos. De esta forma, se controla cómo se leen o modifican los atributos de una clase, evitando accesos directos que puedan comprometer la consistencia del objeto.
 
 Este principio permite proteger la información interna, reducir el acoplamiento entre clases y garantizar que los cambios de estado se realicen de manera controlada y coherente con las reglas del negocio.
 
-Relacion con los principios SOLID: 
+### Relacion con los principios SOLID: 
 
  Principio de Responsabilidad Única (SRP): la clase es responsable de gestionar y proteger su propio estado.
 
  Principio de Inversión de Dependencias (DIP): las clases consumidoras dependen de métodos públicos y no de los detalles internos de implementación.
 
-Relacion con los patrones de diseño:
+### Relacion con los patrones de diseño:
 
 El encapsulamiento es un principio fundamental en patrones de diseño como:
 
@@ -26,14 +26,14 @@ En el Sistema de Gestión de Proyectos Audiovisuales, el encapsulamiento se apli
 
 Las demás clases del sistema interactúan con Proyecto exclusivamente a través de estos métodos, sin acceder directamente a sus atributos internos.
 
-![encapsulamiento](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).png)
-- [Ejemplo de encapsulamiento (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).puml)
+![encapsulamiento](../../diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).png)
+- [Ejemplo de encapsulamiento (Codigo del diagrama UML)](../../diagramas/01-diagrama-clases/Ejemplo-de-Encapsulamiento(Santiago-Samitier).puml)
 
-Relación con el diagrama de clases:
+### Relación con el diagrama de clases:
 
 El fragmento del diagrama UML seleccionado muestra que los atributos de la clase Proyecto se definen con visibilidad privada, mientras que las operaciones públicas permiten consultar o modificar el estado del objeto. Esto asegura que las reglas de negocio se apliquen correctamente y que el estado interno no pueda ser alterado de forma incorrecta desde el exterior.
 
-Justificación técnica del ejemplo (UML):
+### Justificación técnica del ejemplo (UML):
 
 El diagrama UML evidencia el uso del encapsulamiento al mostrar los atributos con visibilidad privada y los métodos públicos que controlan el acceso al estado interno del objeto. Esta separación entre estado y comportamiento expuesto garantiza la integridad de los datos y una interacción segura entre las clases del sistema.
 
@@ -66,7 +66,7 @@ public class Proyecto {
 ```
 
 
-Justificación técnica del código:
+### Justificación técnica del código:
 
 En este fragmento de código, los atributos de la clase Proyecto se declaran como privados, impidiendo el acceso directo desde otras clases del sistema. El estado del objeto solo puede ser consultado o modificado a través de métodos públicos, como actualizarEstado() o los métodos de acceso.
 

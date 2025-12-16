@@ -1,17 +1,17 @@
 # Herencia
- Explicación del concepto
+### Explicación del concepto
 
 La herencia es un fundamento de la Programación Orientada a Objetos que permite crear nuevas clases a partir de una clase existente.  
 La clase base o padre define atributos y métodos comunes, mientras que las clases derivadas o hijas heredan dichas características, pudiendo ampliarlas o especializarlas.
 
 Este mecanismo facilita la reutilización de código, evita la duplicación de lógica común y permite representar jerarquías naturales del dominio del problema dentro del sistema.
 
-Relación con los principios SOLID
+### Relación con los principios SOLID
 
 Principio Abierto/Cerrado (OCP): la herencia permite extender el comportamiento del sistema mediante nuevas clases hijas sin modificar la clase base.
 Principio de Responsabilidad Única (SRP): la clase padre concentra la lógica común, mientras que las clases hijas se enfocan en responsabilidades específicas.
 
-Relación con patrones de diseño
+### Relación con patrones de diseño
 
 La herencia es un recurso estructural utilizado en distintos patrones de diseño, como:
 Factory Method, donde las clases concretas heredan de una clase base o interfaz.
@@ -23,15 +23,15 @@ Template Method, donde una clase padre define la estructura general del algoritm
 En el Sistema de Gestión de Proyectos Audiovisuales, la herencia se aplica en la jerarquía de usuarios del sistema.  
 La clase Usuario representa el concepto general de un usuario, definiendo atributos y comportamientos comunes, mientras que las clases Productor y ResponsableEtapa heredan dichas características y agregan responsabilidades específicas según su rol.
 
-![Herencia](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).png)
-- [Ejemplo de Herencia (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).puml)
+![Herencia](../../diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).png)
+- [Ejemplo de Herencia (Codigo del diagrama UML)](../../diagramas/01-diagrama-clases/Ejemplo-de-Herencia(Santiago-Samitier).puml)
 
-Relación con diagrama de clase:
+### Relación con diagrama de clase:
 El fragmento del diagrama UML seleccionado muestra una jerarquía de herencia en la que la clase Usuario actúa como superclase, concentrando atributos y comportamientos comunes a todos los usuarios del sistema, como la identificación y la autenticación.
 
 Las clases Productor y ResponsableEtapa heredan dichas características y extienden la funcionalidad base incorporando responsabilidades específicas asociadas a cada rol. Esta relación permite reutilizar código común y representar de forma clara las jerarquías naturales del dominio del sistema.
 
-Justificación técnica del ejemplo (UML):
+### Justificación técnica del ejemplo (UML):
 
 Desde el punto de vista técnico, la herencia se aplica al definir una clase base (Usuario) que centraliza la lógica y los datos compartidos por todos los tipos de usuarios del sistema. Las clases derivadas reutilizan esta funcionalidad heredada y la especializan según su responsabilidad particular, evitando la duplicación de atributos y métodos comunes.
 
@@ -65,7 +65,7 @@ public class ResponsableEtapa extends Usuario {
 ```
 
 
-Justificación técnica del código:
+### Justificación técnica del código:
 
 En este fragmento de código, la clase Usuario actúa como clase base y define atributos y comportamientos comunes a todos los tipos de usuarios del sistema, como la identidad y el proceso de autenticación. Las clases Productor y ResponsableEtapa heredan estos atributos y métodos, reutilizando la lógica común sin necesidad de duplicarla.
 

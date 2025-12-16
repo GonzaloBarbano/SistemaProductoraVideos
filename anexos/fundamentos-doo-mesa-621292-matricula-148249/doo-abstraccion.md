@@ -1,9 +1,9 @@
 # Abstracción
 
-Explicación del fundamento: 
+### Explicación del fundamento: 
 La abstracción es el principio del diseño orientado a objetos que permite representar los conceptos esenciales del dominio del problema, ocultando los detalles de implementación que no son relevantes para el uso del sistema. Su objetivo es reducir la complejidad, facilitar la comprensión del modelo y permitir que las dependencias se establezcan sobre conceptos generales y no sobre detalles concretos.
 
-Relación con SOLID y patrones de diseño:
+### Relación con SOLID y patrones de diseño:
 
 .Se relaciona directamente con el principio de Inversión de Dependencias (DIP), ya que las clases de alto nivel dependen de abstracciones conceptuales y no de clases concretas.
 
@@ -16,14 +16,14 @@ En el Sistema de Gestión de Proyectos Audiovisuales, la clase Proyecto actúa c
 
 A su vez, otras clases del sistema (como Cliente, ServicioProyecto o los distintos roles de Usuario) interactúan con Proyecto a través de sus métodos públicos, sin conocer ni depender de cómo se calculan internamente sus estados o duraciones.
 
-![Abstracción](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).png)
-- [Ejemplo de abstracción (Codigo del diagrama UML)](../../SistemaProductoraVideos/diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).puml)
+![Abstracción](../../diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).png)
+- [Ejemplo de abstracción (Codigo del diagrama UML)](../../diagramas/01-diagrama-clases/Ejemplo-de-abstracción(Santiago-Samitier).puml)
 
-Relación con el diagrama de clases:
+### Relación con el diagrama de clases:
 
 El fragmento del diagrama UML seleccionado muestra cómo Proyecto encapsula información relevante (estado, duración planificada y real) y expone únicamente operaciones de alto nivel como actualizarEstado() o calcularDuracionReal(). Esto refleja claramente la abstracción, ya que las clases consumidoras utilizan estas operaciones sin acceder a los detalles internos.
 
-Justificación técnica del ejemplo (UML):
+### Justificación técnica del ejemplo (UML):
 
 Desde el punto de vista técnico, la abstracción se aplica al definir a Proyecto como un modelo del dominio que concentra la lógica y los datos esenciales relacionados con la gestión de un proyecto audiovisual. Otras clases del sistema interactúan con esta abstracción a través de métodos bien definidos, sin depender de cálculos internos, estructuras de datos o reglas de negocio específicas. Esto permite modificar o extender la lógica interna del proyecto (por ejemplo, cambiar la forma de calcular la duración o el estado) sin impactar en las clases que lo utilizan, cumpliendo con los principios de bajo acoplamiento y alta cohesión.
 
@@ -48,7 +48,7 @@ public class Proyecto {
 ```
 
 
-Justificación técnica del código:
+### Justificación técnica del código:
 
 Este fragmento de código representa la abstracción al definir una clase que modela el concepto de Proyecto mediante atributos y métodos significativos para el dominio. Las clases que utilizan Proyecto no necesitan conocer cómo se calcula la duración real ni cómo se gestiona internamente el estado, sino únicamente invocar los métodos expuestos.
 Esto reduce el acoplamiento, mejora la mantenibilidad y permite modificar la lógica interna del proyecto sin afectar al resto del sistema.
