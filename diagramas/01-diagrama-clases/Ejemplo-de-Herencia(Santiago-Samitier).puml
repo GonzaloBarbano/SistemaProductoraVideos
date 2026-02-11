@@ -1,18 +1,44 @@
 @startuml
+title Ejemplo de Herencia - Jerarquía de Usuarios
+
 abstract class Usuario {
-  - nombre : String
-  - email : String
-  + autenticar() : boolean
+    - nombre : String
+    - apellido : String
+    - correo : String
+    - contraseña : String
+    --
+    + autenticar() : boolean
 }
 
-class Productor {
-  + crearProyecto() : void
+class Administrador {
+    - permisos : String
+    - nivelAcceso : String
+    --
+    + crearProyecto(p:Proyecto) : void
+    + archivarProyecto(p:Proyecto) : void
 }
 
-class ResponsableEtapa {
-  + gestionarEtapa() : void
+class Diseñador {
+    - especialidad : String
+    --
+    + subirEntregable() : void
 }
 
-Usuario <|-- Productor
-Usuario <|-- ResponsableEtapa
+class ResponsableDelProyecto {
+    - autorizacion : String
+    --
+    + cambiarEstado(etapa:Etapa) : void
+}
+
+class Asistente {
+    - agenda : String
+    --
+    + gestionarDocumentos() : void
+}
+
+Usuario <|-- Administrador
+Usuario <|-- Diseñador
+Usuario <|-- ResponsableDelProyecto
+Usuario <|-- Asistente
+
 @enduml

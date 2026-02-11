@@ -3,9 +3,12 @@ class Proyecto {
   - estado : String
   - duracionPlanificada : int
   - duracionReal : int
+  --
   + getEstado() : String
   + actualizarEstado(nuevoEstado : String) : void
   + getDuracionPlanificada() : int
-  + calcularDuracionReal() : int
+  + registrarDuracionReal(duracion : int) : void
+  + calcularDesviacion() : int
+  + estaRetrasado() : boolean
 }
 @enduml
