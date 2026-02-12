@@ -1,0 +1,15 @@
+@startuml
+title Ejemplo de Abstracción - Proyecto
+
+class Proyecto {
+    - nombre : String
+    - duracionPlanificada : int
+    - duracionReal : int
+    - estado : String
+    --
+    + actualizarEstado(nuevoEstado : String) : void
+    + registrarDuracionReal(dias : int) : void
+    + calcularDesviacion() : int
+    + estaRetrasado() : boolean
+}
+@enduml

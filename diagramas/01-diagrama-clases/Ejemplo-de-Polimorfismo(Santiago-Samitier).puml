@@ -1,0 +1,25 @@
+@startuml
+title Ejemplo de Polimorfismo - Usuarios del Sistema
+
+abstract class Usuario {
+    - nombre : String
+    - correo : String
+    --
+    + autenticar() : boolean
+    + mostrarPanel() : void
+}
+
+class Productor {
+    + mostrarPanel() : void
+    + crearProyecto() : void
+}
+
+class ResponsableEtapa {
+    + mostrarPanel() : void
+    + gestionarEtapa() : void
+}
+
+Usuario <|-- Productor
+Usuario <|-- ResponsableEtapa
+
+@enduml
